@@ -1,10 +1,13 @@
 # Diálogo por slide — Escalamiento de Conpro
 
 > Texto literal del diálogo. Cada **[Slide N]** marca en qué slide va lo que sigue.
+> Las líneas **⚠️ Por precisar** señalan lo que falta afinar/verificar en esa slide (no son parte del diálogo).
 
 ## Introducción
 
 **[Slide 3]**
+> ⚠️ Por precisar: falta la foto/retrato de Juan (hoy hay un placeholder).
+
 Juan tiene 40 años, vive en Providencia y es papá de dos hijos. Representa al cliente objetivo de Conpro: hogares de ingresos medios a altos, ubicados en comunas urbanas de la Región Metropolitana, que planifican sus compras y buscan optimizar su gasto.
 
 Cuando compra alimentos para su familia, Juan no solo mira el precio; también le importa la calidad, el origen y la confianza de lo que lleva a su casa. Sin embargo, muchas veces esos productos de mejor calidad tienen precios elevados, por lo que debe elegir entre pagar más por productos premium o comprar alternativas más baratas que no siempre cumplen con lo que busca.
@@ -17,6 +20,8 @@ Ahí aparece Conpro: una iniciativa de comercio comunitario que actúa como inte
 ## Análisis de mercado
 
 **[Slide 5]**
+> ⚠️ Por precisar: los precios del gráfico son aproximados (Ilustración 1 del Informe 3); verificar los valores exactos (mínimo / Conpro / máximo por producto).
+
 Para entender qué tan atractiva es esta propuesta, comparamos los precios de los productos que ofrece Conpro actualmente con distintas alternativas del mercado. Este análisis mostró que Conpro no compite directamente con supermercados ni mayoristas, ya que estos suelen ofrecer productos, que, si bien son más económicos, son de menor calidad. Donde realmente aparece su competitividad es frente a tiendas naturistas y especializadas, que ofrecen productos de similares a los de Conpro, pero generalmente a precios más altos.
 
 ## Funcionamiento actual
@@ -34,6 +39,8 @@ Este funcionamiento permite mantener una operación cercana y flexible, pero tam
 ## Costo de oportunidad
 
 **[Slide 8]**
+> ⚠️ Por precisar: el costo de oportunidad ($16.700/h) difiere entre el guion y el informe; confirmar la cifra.
+
 En total, Ricardo dedica cerca de 4 horas semanales a estas tareas administrativas, es decir, aproximadamente 16 horas al mes. Considerando que Conpro genera cerca de $88.000 mensuales de ingreso líquido, esto equivale a alrededor de $5.500 por hora dedicada al negocio. Al compararlo con su costo de oportunidad, estimado en $16.700 por hora según lo que obtiene en otras actividades laborales, se vuelve evidente que existe una oportunidad importante de liberar tiempo operativo y redirigirlo hacia actividades de mayor valor.
 
 ## Caso base optimizado
@@ -44,6 +51,8 @@ Con este diagnóstico, el primer paso no es cambiar por completo el modelo, sino
 El CBO requiere una inversión inicial de $295.000, asociada principalmente a la formalización de la marca y la elaboración de términos y condiciones. El ahorro operativo, en cambio, proviene de Fintoc, que reduciría aproximadamente 2,5 horas semanales de trabajo administrativo. Ese tiempo podría reinvertirse en difusión y captación de nuevos clientes, especialmente considerando que hasta ahora el crecimiento de Conpro ha sido orgánico y basado en recomendaciones boca a boca.
 
 **[Slide 11]**
+> ⚠️ Por precisar: VAN del CBO ($2,41 M, sin valor terminal) y WACC (27% ≈ 27,09%); confirmar cifras exactas.
+
 Para evaluar esta alternativa, modelamos los flujos con un WACC de 27% y una proyección de demanda que incorpora estos esfuerzos de difusión durante los años 2 y 3. Esto se debe a que, al dedicar 2,5 horas semanales a contactar potenciales clientes, Ricardo agotaría razonablemente su círculo cercano en un período de dos años; desde entonces, este canal dejaría de generar crecimiento adicional.
 
 Los resultados muestran que el CBO mejora la operación actual. Al año 5, Ricardo podría generar cerca de $126.850 mensuales, un 20% más que bajo el modelo actual. Además, su ingreso por hora aumentaría de $5.500 a $7.930. Si bien este valor sigue por debajo de su costo de oportunidad, estimado en $16.700 por hora, evidencia que el CBO permite capturar más valor mediante una intervención de bajo costo.
@@ -68,6 +77,8 @@ Para responderla, necesitamos ir más allá de la intuición y construir un mode
 ## Modelo financiero
 
 **[Slide 17]**
+> ⚠️ Por precisar: la curva del gráfico es placeholder (solo se conoce la base: 60 hogares → ~$37 MM al año 5). Falta el **x%** del mercado potencial y los puntos intermedios reales.
+
 Para esto debemos modelar la variable más importante y, al mismo tiempo, la más incierta: la demanda.
 
 Para ello utilizamos una adaptación del modelo logístico discreto de difusión, que incorpora los principales factores que influyen en la expansión de Conpro. Entre ellos se encuentran la difusión boca a boca, la inversión en marketing para captar nuevos clientes y la tasa de fuga, que representa la pérdida de usuarios y está estrechamente relacionada con la calidad y funcionamiento de la plataforma.
@@ -77,6 +88,8 @@ Partimos de una base de 60 hogares activos, genrenado un ingreso bruto de $10MM 
 ## Costos
 
 **[Slide 18]**
+> ⚠️ Por precisar: los costos fijos ($310.000/año) difieren entre el guion y el informe; confirmar.
+
 La inversión inicial, de $2.445.000, incluye el desarrollo de la plataforma digital, con un costo de $1.600.000, y los gastos legales.
 
 En cuanto a los costos fijos, estos tienen un valor de alrededor de $310.000 anuales y contemplan la patente y el hosting y servidor de la plataforma.
@@ -86,11 +99,15 @@ Respecto a los costos variables, se considera una inversión en marketing financ
 Finalmente, se considera el costo por venta, correspondiente al monto que se paga al proveedor por cada producto comercializado.
 
 **[Slide 19]**
+> ⚠️ Por precisar: la tabla y el gráfico de ganancias (años 1-5) son **PLACEHOLDER**; falta la tabla real del informe.
+
 Considerando los ingresos estimados y la estructura de costos presentada, las ganancias anuales proyectadas son las que se muestran en la siguiente tabla:
 
 ## Indicadores de rentabilidad
 
 **[Slide 20]**
+> ⚠️ Por precisar: VAN y TIR son del informe; del payback solo está confirmado el escenario base (3 años), faltan los otros dos.
+
 Se utilizó una tasa de descuento del 29,59%, la cual refleja el riesgo asociado al modelo de venta de productos premium y alimentos a través de un canal online.
 
 Se proyectaron flujos de caja a 5 años, considerando tres escenarios: pesimista, conservador y optimista, incorporando variaciones en la demanda.
@@ -100,6 +117,8 @@ A partir de ello, se obtiene el payback en cada escenario, así como el Valor Ac
 ## Análisis de sensibilidad
 
 **[Slide 22]**
+> ⚠️ Por precisar: el eje X (Impacto en el VAN, M$) y las magnitudes de las barras son **placeholder**; falta el tornado real (Ilustración 7). Además, hoy es un tornado simplificado (una barra por variable, no bidireccional).
+
 Ahora, como el proyecto depende de supuestos con alta incertidumbre, hicimos un análisis de sensibilidad para entender qué variables realmente mueven el resultado. Sensibilizamos el ingreso anual por hogar, la tasa de fuga, la adopción, el nivel de interés y el WACC.
 
 El principal hallazgo es que la rentabilidad depende sobre todo del ingreso anual por hogar, la tasa de fuga y el comportamiento efectivo de la demanda. Esto es clave porque se trata de variables difíciles de estimar con precisión en un negocio que todavía cuenta con poca información histórica.
@@ -116,6 +135,8 @@ El análisis muestra que no todos los productos tienen el mismo potencial. Huevo
 ## Análisis de flexibilidad
 
 **[Slide 24]**
+> ⚠️ Por precisar: el gatillo "120-130 hogares" es una estimación; confirmar.
+
 Si bien el análisis de márgenes muestra que existen espacios para mejorar el VAN, especialmente en productos como café y vino, estos ajustes no eliminan la incertidumbre principal del proyecto: la capacidad real de Conpro para sostener una base creciente de clientes. Por eso, además de evaluar cómo mejorar la rentabilidad del proyecto, también analizamos una segunda decisión clave: el momento óptimo para invertir.
 
 En ese contexto, evaluamos la flexibilidad de esperar antes de lanzar la plataforma. La pregunta era: ¿qué pasa si Conpro no invierte inmediatamente, sino que primero opera bajo el CBO, valida demanda y acumula una base más grande de hogares activos?
@@ -128,8 +149,19 @@ Esto ocurre porque partir con más hogares activos acelera toda la curva de crec
 DE igual manera, esta modelacion implica muchos supuestos debido a la falta de datos solidos del negocio para realizar proyecciones certeras sobre la demanda, por lo que Un analisis estrategico resulta sumamente importante. Así se identificaron las principales fortalezas amenazas oportunidad y debilidades de conpro.
 
 **[Slide 27]**
+> ⚠️ Por precisar: falta el cálculo de cuántos hogares hacen viable el proyecto (define el "gatillo").
+
 INtegrando ambos analisis, las recomendaciones para este negocio son las siguientes:
 
 - No realizar el proyecto, si bien el VAN es positivo, este es inferior al VAN asociado al Caso Base Optimizado. Esto implica que, aunque el escalamiento podría generar valor económico, no constituye la alternativa más conveniente desde el punto de vista financiero, ya que una opción de menor inversión, menor complejidad operativa y menor exposición al riesgo permite capturar un mayor valor esperado.
 
 Hacer un calculo de cuantos hogares se necesitan para que sea viable
+
+---
+
+## Por precisar — slides sin diálogo
+
+Estas slides no tienen texto en el diálogo, pero igual hay cosas que afinar:
+
+- **Slide 1 (Portada):** confirmar nombres del Grupo 06 (orden, tildes y abreviaciones).
+- **Slide 25 (Proyecto vs CBO):** confirmar que la comparación de VAN sea sobre la **misma base** (proyecto con valor terminal $2,39 M vs CBO sin valor terminal $2,41 M); hoy se comparan en bases distintas.
