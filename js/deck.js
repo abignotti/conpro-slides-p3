@@ -107,17 +107,8 @@ function buildPicker() {
   });
   picker.appendChild(fsBtn);
 
-  // Descargar PDF: abre el deck en modo print-pdf (nativo de reveal) en una
-  // pestaña nueva; ahí se abre el diálogo de impresión → "Guardar como PDF".
-  const pdfBtn = document.createElement('button');
-  pdfBtn.className = 'pk-btn';
-  pdfBtn.type = 'button';
-  pdfBtn.innerHTML = '⬇ PDF';
-  pdfBtn.title = 'Exportar a PDF (Guardar como PDF en el diálogo de impresión)';
-  pdfBtn.addEventListener('click', () => {
-    window.open(location.pathname + '?print-pdf', '_blank');
-  });
-  picker.appendChild(pdfBtn);
+  // Botón de PDF retirado temporalmente: el export ?print-pdf se ve mal.
+  // Reactivar cuando se arregle (ver docs/devlog.md y memoria de pendientes).
 
   const hint = document.createElement('span');
   hint.className = 'hint';
