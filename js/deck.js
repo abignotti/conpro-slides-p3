@@ -35,6 +35,15 @@ const CHART_CONFIGS = {
     keyIndex: 1, yMax: 24, yStep: 8,
     threshold: 12, thresholdLabel: 'Exigido 12%',
   }),
+
+  // --- Deck real (presentacion/) ---
+  // TODO Fase 3: con varios gráficos por molde reutilizado, volver esto
+  // data-driven (id único por slide) en vez de un map fijo por id.
+  'chart-esperar': (cv) => Charts.bar(cv, {
+    labels: ['Ahora', 'Esperar 1 año', 'Esperar 2 años', 'Esperar 3 años'],
+    data: [2.39, 4.07, 5.66, 6.11],
+    keyIndex: 3, yMax: 7, yStep: 1, yTitle: 'VAN al presente (M$)', valueLabel: true,
+  }),
 };
 
 /* ---- Selector de previsualización ----------------------------------- */
