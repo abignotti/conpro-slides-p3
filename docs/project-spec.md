@@ -1,7 +1,7 @@
 # Escalamiento de Conpro
 
-Deck de presentación para la evaluación de un proyecto de Ingeniería Comercial: el
-escalamiento de **Conpro**, una iniciativa de comercio comunitario que actúa como
+Deck de presentación para la evaluación de un proyecto: el escalamiento de
+**Conpro**, una iniciativa de comercio comunitario que actúa como
 intermediario entre proveedores (que ofrecen descuentos por volumen) y una demanda
 minorista agregada — múltiples consumidores coordinan compras conjuntas para acceder
 a mejores precios y repartir el costo de despacho. Hoy opera de manera informal vía
