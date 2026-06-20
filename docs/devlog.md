@@ -4,6 +4,16 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-20] — Planificación del deck real: fuentes, mapa y framing
+Qué hice:
+- Importé 9 docs de contenido/diseño + el Informe 3 (PDF) + el Molde Base PPT (claude design). Moví los 9 `.md` a `docs/fuentes/` (versionados). Binarios fuera de git (`*.pdf` en .gitignore; viven en `.context/`, ya ignorado).
+- Creé `docs/mapa-deck.md`: las **28 slides** en orden (29 del esqueleto − agenda), cada una con molde + contenido conciso (del guion) + estado del dato + TODOs.
+Decisiones/bugs:
+- Tema = **Mostaza claro** (el oscuro de los docs quedó desactualizado); selector se mantiene. Sin agenda (revisar). Cero "Defensa". Framing: la presentación **vende y defiende** el hallazgo (CBO ≈ VAN del proyecto con ~1/8 de inversión → no invertir ya; plataforma **diferida, no descartada**).
+- `Molde Base PPT.pptx` es **NATIVO/EDITABLE** (auto-shapes + texto, 22 moldes, 20×11.25in) → base ideal para el hito de PPTX editable (Fase 5), en vez de imagen-por-slide.
+- Datos no finales: avanzar con placeholders + comentario TODO (ver `mapa-deck.md` → "TODO de datos").
+Próximo paso: **Fase 2** — prototipo de 3-4 slides reales en `presentacion/` (Mostaza claro), screenshot y PARAR para aprobación del look.
+
 ## [2026-06-20] — Estructura: moldes/ (recurso) vs presentacion/ (deck real)
 Qué hice:
 - Renombré `slides/` → `moldes/` (biblioteca reutilizable de los 22 templates).

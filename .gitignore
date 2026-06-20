@@ -5,3 +5,6 @@
 # OS / editor cruft
 .DS_Store
 *.swp
+
+# Reference binaries (kept out of git — live in .context/, which is ignored)
+*.pdf
