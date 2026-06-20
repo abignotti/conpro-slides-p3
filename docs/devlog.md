@@ -7,6 +7,8 @@ Lo nuevo arriba. No edites entradas viejas.
 ## [2026-06-20] — Deck real COMPLETO: 28 slides en presentacion/
 Qué hice:
 - Construí las **28 slides** del deck real (Apertura · 5 bloques con divisores que integran la agenda · Cierre), reusando y adaptando los moldes.
+- **Proceso:** prototipo de 4 slides (portada, divisor+agenda, stat grid, barras) aprobado primero; luego construido **bloque por bloque** (Apertura+B1 → B2 → B3 → B4 → B5+cierre) con screenshot de validación y commit en cada bloque.
+- **Rondas de feedback aplicadas:** quitar profesores de la portada; eliminar captions densas al pie (contexto → notas); bullets sobre párrafos; marcadores de bullet uniformes en acento; eliminar em-dashes; selector probado arriba-derecha y devuelto a abajo-centro; botón PDF retirado.
 - Gráficos Chart.js nuevos: `chart-precios` (barGroup), `chart-demanda` (línea), `chart-ganancias` (barras), `chart-tornado` (barH horizontal), `chart-margenes` (barras), `chart-esperar`. Extendí `charts.js` con `barGroup` y `barH`; etiquetas de valor con coma es-CL.
 - Feedback aplicado en todo el deck: bullets > párrafos con marcadores uniformes en acento; sin em-dashes ("—"); sin captions chicas al pie (contexto → notas del orador); portada solo con los 6 integrantes; botón PDF retirado.
 Decisiones/bugs:

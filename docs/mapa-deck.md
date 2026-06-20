@@ -15,6 +15,8 @@ muestran la lista de las 5 secciones con la actual destacada (molde 21 + 10). 5 
 inversión → **no invertir ya**; operar el CBO, validar demanda, gatillo de hogares.
 La plataforma queda **diferida, no descartada**.
 
+**Estado:** las 28 slides están **CONSTRUIDAS** en `presentacion/` (datos placeholder donde faltan cifras; ver "TODO de datos" al final).
+
 **Estado del dato:** ✅ tengo el dato · ⚠️ placeholder / por verificar · ❓ falta (TODO)
 
 ---

@@ -21,7 +21,7 @@ diseño tokenizado), deploy a Vercel; export a PDF y a PPTX editable como respal
 ## Hitos
 1. Moldes — biblioteca de 22 templates tokenizados (9 temas × 7 typesets) + tooling de build — hecho
 2. Docs y flujo de trabajo — CLAUDE.md, project-spec, devlog, .gitignore, scripts versionados — hecho
-3. Deck real — armar la presentación con el contenido y las cifras reales sobre los moldes (en `presentacion/`)
+3. Deck real — 28 slides construidas en `presentacion/` con el contenido del guion — hecho (faltan completar datos reales: ver TODOs en `mapa-deck.md` y devlog)
 4. Pulido visual — mejorar diseño + animaciones/transiciones con skills (Emil Kowalski + otras vía `find skills`)
 5. Deploy a Vercel — entregable "pro" que se diferencie del resto de los compañeros
 6. Export a PPTX editable-nativo — versión de contenido (sin animaciones/diseño complejo) para que las compañeras editen en PowerPoint y luego se pase a code
