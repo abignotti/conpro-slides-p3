@@ -4,6 +4,17 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-20] — PPT editable nativo + deck en Corporativo + PDF del diálogo
+Qué hice:
+- Deck web cambiado a **Mostaza claro + Corporativo** (Montserrat/Inter) + Completo (`build.py` parametrizado por `typeset`; `presentacion` → Corporativo, `moldes` sigue Editorial).
+- **`scripts/build_pptx.py`**: genera `Escalamiento-Conpro.pptx` NATIVO/EDITABLE (28 slides) replicando el deck web. Mapea el lienzo 1920×1080 → 13.333×7.5in (1px=6350 EMU, fuente ×0.5pt), colores Mostaza claro; texto, tablas, tarjetas y formas son nativas/editables. Los gráficos van como imagen fiel capturada del canvas del deck. Verificado renderizando con LibreOffice (`soffice --convert-to pdf`).
+- `docs/dialogo-por-slide.pdf` exportado (pandoc → HTML → Chrome PDF).
+Decisiones/bugs:
+- Gráficos del PPT = imagen (no nativos) para máxima fidelidad visual; el resto editable. Se pueden volver nativos si las compañeras necesitan editar los datos del gráfico.
+- Fuentes Montserrat/Inter: si PowerPoint no las tiene, sustituye (el deck web las carga de Google Fonts). Para portabilidad total habría que embeber fuentes.
+- `Escalamiento-Conpro.pptx` y `docs/*.pdf` están gitignored (artefactos); se regeneran con los scripts.
+Próximo paso: completar datos reales; animaciones (Emil Kowalski); deploy Vercel; (opcional) gráficos nativos en el PPT.
+
 ## [2026-06-20] — Doc: diálogo por slide
 Qué hice:
 - Creé `docs/dialogo-por-slide.md`: mapea cada una de las 28 slides con su parte del diálogo (texto verbatim de `docs/fuentes/guion.md`), por sección y por slide, para revisar la correspondencia y ensayar. Slides estructurales (portada, divisores) marcadas como transición.

@@ -31,9 +31,9 @@ def collect(src_dir):
     return files, parts
 
 
-def shell(title, slides_html):
+def shell(title, slides_html, typeset="Editorial"):
     return f'''<!DOCTYPE html>
-<html lang="es" data-theme="Mostaza claro" data-typeset="Editorial">
+<html lang="es" data-theme="Mostaza claro" data-typeset="{typeset}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,13 +64,13 @@ def shell(title, slides_html):
 '''
 
 
-def build(src_dir, out_file, title):
+def build(src_dir, out_file, title, typeset="Editorial"):
     src = os.path.join(ROOT, src_dir)
     files, parts = collect(src)
     if not parts:
         print(f"⚠  {src_dir}/ vacío — no se genera {out_file} (sin slides todavía)")
         return
-    doc = shell(title, "\n\n".join(parts))
+    doc = shell(title, "\n\n".join(parts), typeset=typeset)
     out = os.path.join(ROOT, out_file)
     open(out, "w", encoding="utf-8").write(doc)
     print(f"✔  {out_file}: {len(doc)} chars, {len(parts)} slides desde {src_dir}/")
@@ -80,4 +80,4 @@ def build(src_dir, out_file, title):
 
 if __name__ == "__main__":
     build("moldes", "moldes.html", "Moldes — Escalamiento de Conpro")
-    build("presentacion", "index.html", "Escalamiento de Conpro")
+    build("presentacion", "index.html", "Escalamiento de Conpro", typeset="Corporativo")
