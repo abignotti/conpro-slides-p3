@@ -1,0 +1,36 @@
+<section class="slide" data-label="Split 2 col" data-speaker-notes="Tornado: ingreso por hogar y tasa de fuga mandan. No basta atraer usuarios; deben comprar seguido y mantenerse. Eje desde cero." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">22 / 28</span>
+  </header>
+
+  <div style="flex:1;display:grid;grid-template-columns:0.95fr 1.05fr;gap:80px;align-items:center;">
+    <div>
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+        <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Análisis de sensibilidad</span>
+      </div>
+      <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:36px;">Dos variables mandan el resultado</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:620px;">
+        <div style="display:flex;align-items:flex-start;gap:18px;">
+          <span style="width:16px;height:16px;flex:none;margin-top:9px;border-radius:4px;background:var(--color-accent);"></span>
+          <span style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text);">El ingreso por hogar y la tasa de fuga explican casi todo el VAN.</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:18px;">
+          <span style="width:16px;height:16px;flex:none;margin-top:9px;border-radius:4px;background:var(--color-accent);"></span>
+          <span style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text);">No basta atraer usuarios: deben comprar seguido y mantenerse activos.</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:40px 44px 36px;display:flex;flex-direction:column;gap:20px;">
+      <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Impacto de cada variable en el VAN</span>
+      <div class="chart-wrap" style="height:380px;"><canvas id="chart-tornado"></canvas></div>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Variables sensibilizadas: ingreso por hogar, tasa de fuga, adopción, nivel de interés y WACC. Refuerza avanzar con cautela y usar el CBO como etapa previa. Magnitudes del tornado: placeholder, verificar.</aside>
+</section>

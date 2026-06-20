@@ -4,6 +4,16 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-20] — Deck real COMPLETO: 28 slides en presentacion/
+Qué hice:
+- Construí las **28 slides** del deck real (Apertura · 5 bloques con divisores que integran la agenda · Cierre), reusando y adaptando los moldes.
+- Gráficos Chart.js nuevos: `chart-precios` (barGroup), `chart-demanda` (línea), `chart-ganancias` (barras), `chart-tornado` (barH horizontal), `chart-margenes` (barras), `chart-esperar`. Extendí `charts.js` con `barGroup` y `barH`; etiquetas de valor con coma es-CL.
+- Feedback aplicado en todo el deck: bullets > párrafos con marcadores uniformes en acento; sin em-dashes ("—"); sin captions chicas al pie (contexto → notas del orador); portada solo con los 6 integrantes; botón PDF retirado.
+Decisiones/bugs:
+- Lección: cuerpo `flex-start` en slides con mucho contenido (evita el choque con el header).
+- DATOS PLACEHOLDER + TODO (marcados en las slides): curva de demanda (17), tabla de ganancias (19), payback por escenario (20), magnitudes del tornado (22), precios exactos Ilustración 1 (5), x% del mercado (17), gatillo de hogares (27), $16.700/h y $310.000 (verificar guion vs informe).
+Próximo paso: revisar el deck completo; completar datos reales; luego animaciones (skill Emil Kowalski, idea: timeline 1→5) + deploy a Vercel; arreglar export PDF; export PPTX editable.
+
 ## [2026-06-20] — Planificación del deck real: fuentes, mapa y framing
 Qué hice:
 - Importé 9 docs de contenido/diseño + el Informe 3 (PDF) + el Molde Base PPT (claude design). Moví los 9 `.md` a `docs/fuentes/` (versionados). Binarios fuera de git (`*.pdf` en .gitignore; viven en `.context/`, ya ignorado).

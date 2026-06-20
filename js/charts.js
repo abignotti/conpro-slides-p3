@@ -199,5 +199,40 @@ window.Charts = (() => {
     });
   }
 
-  return { token, register, refreshAll, bar, line, barGroup };
+  /* ============================================================
+     BAR H · barras horizontales (p. ej. tornado de sensibilidad).
+     accentIndices: índices de las barras clave (en acento).
+     ============================================================ */
+  function barH(canvas, { labels, data, accentIndices = [], xMax, xStep, xTitle } = {}) {
+    const d = base();
+    const set = new Set(accentIndices);
+    const colors = data.map((_, i) => (set.has(i) ? d.accent : d.gray));
+    return new Chart(canvas, {
+      type: 'bar',
+      data: { labels, datasets: [{
+        data, backgroundColor: colors, borderWidth: 0, borderRadius: 4,
+        maxBarThickness: 46, categoryPercentage: 0.7, barPercentage: 0.92,
+      }] },
+      options: {
+        indexAxis: 'y',
+        responsive: true, maintainAspectRatio: false,
+        animation: { duration: 600, easing: 'easeOutCubic' },
+        plugins: { legend: { display: false }, tooltip: { enabled: false } },
+        scales: {
+          x: {
+            beginAtZero: true, max: xMax,
+            grid: { color: d.grid, lineWidth: 1 }, border: { display: false },
+            ticks: { color: d.muted, font: { family: d.family, size: FONT }, stepSize: xStep },
+            title: xTitle ? { display: true, text: xTitle, color: d.muted, font: { family: d.family, size: FONT } } : undefined,
+          },
+          y: {
+            grid: { display: false }, border: { color: d.muted },
+            ticks: { color: d.text, font: { family: d.family, size: FONT } },
+          },
+        },
+      },
+    });
+  }
+
+  return { token, register, refreshAll, bar, line, barGroup, barH };
 })();

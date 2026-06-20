@@ -58,6 +58,17 @@ const CHART_CONFIGS = {
     data: [0.5, 1.6, 2.8, 3.9, 5.0],
     keyIndex: 4, yMax: 6, yStep: 2, yTitle: 'Ganancia (M$)', valueLabel: true,
   }),
+  // TODO datos: magnitudes del tornado (placeholder). Orden e ingreso/hogar+fuga sí son del informe.
+  'chart-tornado': (cv) => Charts.barH(cv, {
+    labels: ['Ingreso por hogar', 'Tasa de fuga', 'Adopción', 'Nivel de interés', 'WACC'],
+    data: [4.5, 3.8, 2.4, 1.6, 1.1],
+    accentIndices: [0, 1], xMax: 5, xStep: 1, xTitle: 'Impacto en el VAN (M$)',
+  }),
+  'chart-margenes': (cv) => Charts.bar(cv, {
+    labels: ['Café', 'Vino', 'Aceite'],
+    data: [6.2, 5.2, 1.2],
+    keyIndex: 0, yMax: 8, yStep: 2, yTitle: 'ΔVAN (M$)', valueLabel: true,
+  }),
   // TODO datos: precios exactos del Informe 3 (Ilustración 1). Valores aprox.
   'chart-precios': (cv) => Charts.barGroup(cv, {
     labels: ['Huevos', 'Café', 'Aceite', 'Miel', 'Queso'],
