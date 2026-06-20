@@ -4,6 +4,17 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-20] — Estructura: moldes/ (recurso) vs presentacion/ (deck real)
+Qué hice:
+- Renombré `slides/` → `moldes/` (biblioteca reutilizable de los 22 templates).
+- Creé `presentacion/` para el deck real; sembrada con `01-portada.html` (cover placeholder).
+- Unifiqué el build en `scripts/build.py`: genera `moldes.html` (galería de referencia, desde `moldes/`) e `index.html` (deck real, entrypoint para Vercel, desde `presentacion/`). Eliminé `scripts/build_index.py`.
+- Verifiqué: las 22 secciones de `moldes.html` son idénticas al `index.html` anterior; `index.html` ahora es un deck de 1 slide.
+Decisiones/bugs:
+- `index.html` = deck real (lo que se deploya); `moldes.html` = recurso/catálogo. Un molde se copia a `presentacion/` y puede repetirse en varios slides.
+- ⚠️ A tener en cuenta en hito 3: los moldes de gráfico (7/8/14) usan ids fijos de canvas (`chart-barras`/`chart-lineas`/`chart-combo`) mapeados en `CHART_CONFIGS` de `deck.js`. Si en `presentacion/` se reutiliza un molde de gráfico más de una vez, los ids chocarían (id duplicado → solo inicializa el primero). Al armar el deck real habrá que dar ids únicos por slide y volver `CHART_CONFIGS` data-driven.
+Próximo paso: infraestructura de animación genérica; integrar los documentos que pasará el usuario; armar el contenido real en `presentacion/`. Rama `reimport-deck-redo`.
+
 ## [2026-06-20] — Hitos 1–2: Moldes, tooling y docs
 Qué hice:
 - Biblioteca de moldes completa: 22 templates tokenizados (9 temas × 7 typesets) en reveal.js + Chart.js, con selector de tema/typeset/chrome, pantalla completa sin bandas blancas, y botones de PDF/PPTX. (Fixes agrupados de sesiones previas: espaciado vertical de los 22 moldes, letterbox full-bleed, bandas de la portada que copian el fondo real del slide, eliminación de todo "Defensa", guiones de kicker.)

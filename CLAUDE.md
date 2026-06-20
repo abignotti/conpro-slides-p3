@@ -5,10 +5,12 @@ el *dónde* vamos, en `docs/devlog.md`. Este archivo es solo reglas.
 
 ## Convenciones (reglas duras — estructura/proceso)
 - **1 archivo por slide.** Los moldes (biblioteca reutilizable de 22 templates)
-  viven en `slides/NN-molde.html`; el deck real se armará en `presentacion/`.
-  Para cambiar un slide: editar su partial y correr el build. **Nunca editar
-  `index.html` a mano** — se genera.
-- **Build:** `python3 scripts/build_index.py` regenera `index.html` desde `slides/`.
+  viven en `moldes/NN-molde.html`; el deck real se arma en `presentacion/`
+  (un molde puede copiarse y usarse en varios slides). Para cambiar un slide:
+  editar su partial y correr el build. **Nunca editar `index.html`/`moldes.html`
+  a mano** — se generan.
+- **Build:** `python3 scripts/build.py` regenera `moldes.html` (desde `moldes/`)
+  e `index.html` (el deck real, desde `presentacion/`).
 - **Diseño tokenizado:** colores/escala/espaciado viven como variables CSS en
   `css/tokens.css` (9 temas × 7 typesets, combinables vía `<html data-theme
   data-typeset>`). Usa `var(--token)`; si necesitas un valor nuevo, **agrega un
@@ -30,8 +32,8 @@ el *dónde* vamos, en `docs/devlog.md`. Este archivo es solo reglas.
   (documentados en `docs/devlog.md` y en la memoria del proyecto).
 
 ## Cierre de sesión
-Cuando diga "cierra la sesión": corre el build (`python3 scripts/build_index.py`)
-y verifica que `index.html` abra sin errores en el server local
+Cuando diga "cierra la sesión": corre el build (`python3 scripts/build.py`)
+y verifica que el deck abra sin errores en el server local
 (`python3 -m http.server 8753`). Si todo bien, agrega una entrada NUEVA arriba en
 `docs/devlog.md` (fecha, hito, qué hice, decisiones/bugs, próximo paso) y haz
 commit. Si algo falla, arréglalo o avísame antes de commitear. Nunca edites
