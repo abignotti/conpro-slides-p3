@@ -44,6 +44,20 @@ const CHART_CONFIGS = {
     data: [2.39, 4.07, 5.66, 6.11],
     keyIndex: 3, yMax: 7, yStep: 1, yTitle: 'VAN al presente (M$)', valueLabel: true,
   }),
+  // TODO datos: curva de ingreso bruto (placeholder). Base: 60 hogares -> ~$37 MM al año 5 (diálogo).
+  'chart-demanda': (cv) => Charts.line(cv, {
+    labels: ['Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5'],
+    yMax: 40, yStep: 10,
+    series: [
+      { label: 'Ingreso bruto', role: 'key', data: [10, 16, 24, 31, 37] },
+    ],
+  }),
+  // TODO datos: ganancia anual años 1-5 (placeholder, falta en el informe leído).
+  'chart-ganancias': (cv) => Charts.bar(cv, {
+    labels: ['Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5'],
+    data: [0.5, 1.6, 2.8, 3.9, 5.0],
+    keyIndex: 4, yMax: 6, yStep: 2, yTitle: 'Ganancia (M$)', valueLabel: true,
+  }),
   // TODO datos: precios exactos del Informe 3 (Ilustración 1). Valores aprox.
   'chart-precios': (cv) => Charts.barGroup(cv, {
     labels: ['Huevos', 'Café', 'Aceite', 'Miel', 'Queso'],

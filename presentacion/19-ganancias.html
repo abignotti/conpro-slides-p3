@@ -1,0 +1,40 @@
+<!-- TODO datos: ganancia anual años 1-5 (placeholder; falta la tabla del informe) -->
+<section class="slide" data-label="Tabla + gráfico" data-speaker-notes="Ganancia anual proyectada años 1-5. Tabla + barras. Año 5 destacado. Eje desde cero. DATOS PLACEHOLDER." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">19 / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+      <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Ganancias proyectadas</span>
+    </div>
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:48px;">La ganancia crece con la escala</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;">
+      <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;">
+        <thead>
+          <tr>
+            <th style="text-align:left;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 18px;border-bottom:1px solid var(--color-grid);">Año</th>
+            <th style="text-align:right;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 18px;border-bottom:1px solid var(--color-grid);">Ganancia (M$)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="text-align:left;font-size:28px;color:var(--color-text);padding:22px 0;border-bottom:1px solid var(--color-grid);">Año 1</td><td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:22px 0;border-bottom:1px solid var(--color-grid);">0,5</td></tr>
+          <tr><td style="text-align:left;font-size:28px;color:var(--color-text);padding:22px 0;border-bottom:1px solid var(--color-grid);">Año 2</td><td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:22px 0;border-bottom:1px solid var(--color-grid);">1,6</td></tr>
+          <tr><td style="text-align:left;font-size:28px;color:var(--color-text);padding:22px 0;border-bottom:1px solid var(--color-grid);">Año 3</td><td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:22px 0;border-bottom:1px solid var(--color-grid);">2,8</td></tr>
+          <tr><td style="text-align:left;font-size:28px;color:var(--color-text);padding:22px 0;border-bottom:1px solid var(--color-grid);">Año 4</td><td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:22px 0;border-bottom:1px solid var(--color-grid);">3,9</td></tr>
+          <tr><td style="text-align:left;font-size:28px;font-weight:600;color:var(--color-on-accent);padding:22px 18px;background:var(--color-accent);border-radius:var(--radius) 0 0 var(--radius);">Año 5</td><td style="text-align:right;font-size:28px;font-weight:600;color:var(--color-on-accent);padding:22px 18px;background:var(--color-accent);border-radius:0 var(--radius) var(--radius) 0;">5,0</td></tr>
+        </tbody>
+      </table>
+
+      <div class="chart-wrap" style="height:360px;"><canvas id="chart-ganancias"></canvas></div>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">DATOS PLACEHOLDER: la tabla de ganancias anuales no está en el informe leído; reemplazar por las cifras reales (años 1-5).</aside>
+</section>
