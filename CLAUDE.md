@@ -57,4 +57,6 @@ entradas viejas.
 ## Lecciones
 <!-- Vacío al inicio. Cuando me corrijas (tecla #) o salga una lección durable del
      "Decisiones/bugs" del devlog, queda acá y no se repite. -->
-- (aún sin entradas)
+- **Slides con mucho contenido → usar `justify-content:flex-start` en el cuerpo, no
+  `center`.** Con `center`, el contenido que excede la región desborda hacia ARRIBA y
+  se monta sobre el header; `fitSlide` solo detecta/escala el desborde hacia abajo.

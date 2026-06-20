@@ -25,6 +25,7 @@ window.Charts = (() => {
   }
 
   const FONT = 24; // piso de texto
+  const fmtNum = (v) => Number(v).toLocaleString('es-CL'); // 6.11 -> "6,11"
 
   function scales(d, { yMax, yTitle, yStep } = {}) {
     return {
@@ -113,7 +114,7 @@ window.Charts = (() => {
     const d = base();
     const colors = data.map((_, i) => (i === keyIndex ? d.accent : d.gray));
     const plugins = [];
-    if (valueLabel) plugins.push(valueLabelPlugin(keyIndex));
+    if (valueLabel) plugins.push(valueLabelPlugin(keyIndex, fmtNum));
     if (threshold != null) plugins.push(thresholdPlugin(threshold, thresholdLabel));
 
     return new Chart(canvas, {
@@ -163,5 +164,40 @@ window.Charts = (() => {
     });
   }
 
-  return { token, register, refreshAll, bar, line };
+  /* ============================================================
+     BAR GROUP · barras agrupadas multi-serie (p. ej. min/Conpro/máx).
+     series: [{label, data, role: 'key'|'base'|'muted'}]
+     Leyenda mínima arriba (necesaria para distinguir series).
+     ============================================================ */
+  function barGroup(canvas, { labels, series, yMax, yStep, yTitle, legend = true } = {}) {
+    const d = base();
+    const s3 = token('--chart-series-3') || d.gray;
+    const colorFor = (role) => role === 'key' ? d.accent : role === 'muted' ? s3 : d.gray;
+    const datasets = series.map((s) => ({
+      label: s.label,
+      data: s.data,
+      backgroundColor: colorFor(s.role),
+      borderWidth: 0, borderRadius: 4,
+      categoryPercentage: 0.7, barPercentage: 0.92, maxBarThickness: 64,
+    }));
+    return new Chart(canvas, {
+      type: 'bar',
+      data: { labels, datasets },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        animation: { duration: 600, easing: 'easeOutCubic' },
+        layout: { padding: { top: 12 } },
+        plugins: {
+          legend: legend
+            ? { display: true, position: 'top', align: 'end',
+                labels: { color: d.muted, font: { family: d.family, size: 22 }, boxWidth: 14, boxHeight: 14, usePointStyle: true, pointStyle: 'rectRounded' } }
+            : { display: false },
+          tooltip: { enabled: false },
+        },
+        scales: scales(d, { yMax, yTitle, yStep }),
+      },
+    });
+  }
+
+  return { token, register, refreshAll, bar, line, barGroup };
 })();

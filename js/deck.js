@@ -44,6 +44,16 @@ const CHART_CONFIGS = {
     data: [2.39, 4.07, 5.66, 6.11],
     keyIndex: 3, yMax: 7, yStep: 1, yTitle: 'VAN al presente (M$)', valueLabel: true,
   }),
+  // TODO datos: precios exactos del Informe 3 (Ilustración 1). Valores aprox.
+  'chart-precios': (cv) => Charts.barGroup(cv, {
+    labels: ['Huevos', 'Café', 'Aceite', 'Miel', 'Queso'],
+    yMax: 70000, yStep: 20000, yTitle: 'CLP',
+    series: [
+      { label: 'Mínimo mercado', role: 'muted', data: [9000, 28000, 35000, 6000, 10000] },
+      { label: 'Conpro', role: 'key', data: [8500, 30000, 60000, 7000, 12000] },
+      { label: 'Máximo mercado', role: 'base', data: [12000, 58000, 67000, 13000, 15000] },
+    ],
+  }),
 };
 
 /* ---- Selector de previsualización ----------------------------------- */
