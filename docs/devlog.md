@@ -4,6 +4,10 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-20] — Doc: diálogo por slide
+Qué hice:
+- Creé `docs/dialogo-por-slide.md`: mapea cada una de las 28 slides con su parte del diálogo (texto verbatim de `docs/fuentes/guion.md`), por sección y por slide, para revisar la correspondencia y ensayar. Slides estructurales (portada, divisores) marcadas como transición.
+
 ## [2026-06-20] — Deck real COMPLETO: 28 slides en presentacion/
 Qué hice:
 - Construí las **28 slides** del deck real (Apertura · 5 bloques con divisores que integran la agenda · Cierre), reusando y adaptando los moldes.
