@@ -24,6 +24,9 @@ el *dónde* vamos, en `docs/devlog.md`. Este archivo es solo reglas.
 - Gráficos: heredan tokens, ejes desde cero, sin gridlines pesadas, leyendas
   redundantes ni sombras.
 - Texto ≥ 24px (a escala 1920×1080), salvo que algo puntual pida otra cosa.
+- **Nada de líneas de caption/nota chicas y densas al pie de la slide** — no se leen
+  al proyectar. El dato clave va GRANDE dentro de la slide; el contexto/detalle va en
+  las notas del orador (`aside.notes`), no en texto chico.
 
 ## Skills
 - ANTES de usar una skill (la de animaciones de **Emil Kowalski**, o cualquiera
