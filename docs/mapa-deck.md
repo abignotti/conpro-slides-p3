@@ -3,11 +3,14 @@
 > Orden definitivo de la **presentación final** (proyecto de título, ICS3913).
 > Derivado de `fuentes/esqueleto-deck.md` (orden + molde) + `fuentes/guion.md`
 > y `fuentes/datos-clave.md` (contenido/cifras) + el Informe 3.
-> **Apruébalo antes de construir.** El texto de cada slide es conciso (no es el
-> guion hablado); una idea por slide; un solo acento.
+> **Apruébalo antes de construir.** El texto de cada slide es **breve pero no
+> telegráfico** (una o dos frases está bien; no es el guion hablado); una idea por
+> slide; un solo acento. Densidad calibrada con "Presentación 2": bullets cortos +
+> una frase/dato clave resaltado, datos reales en tablas/gráficos.
 
 **Tema:** Mostaza claro · Editorial (selector activo). **Total: 28 slides** (29 del
-esqueleto − agenda). 5 divisores, sin agenda (decisión a revisar).
+esqueleto, sin slide de agenda aparte). Los **5 divisores integran la agenda**:
+muestran la lista de las 5 secciones con la actual destacada (molde 21 + 10). 5 divisores, sin agenda (decisión a revisar).
 **Tesis del deck:** el CBO logra un VAN casi igual al del proyecto con ~1/8 de la
 inversión → **no invertir ya**; operar el CBO, validar demanda, gatillo de hogares.
 La plataforma queda **diferida, no descartada**.
@@ -24,7 +27,7 @@ La plataforma queda **diferida, no descartada**.
 ## Bloque 1 — El cliente y el negocio
 | # | Título | Molde | Contenido (conciso) | Dato |
 |---|---|---|---|---|
-| 2 | Divisor "El cliente y el negocio" | 21 · Divisor | Nº 01 + nombre de sección | ✅ |
+| 2 | Divisor "El cliente y el negocio" | 21 · Divisor + agenda | Nº 01 + nombre de sección | ✅ |
 | 3 | Juan, el cliente | 17 · Split imagen | Juan, 40, Providencia, 2 hijos, ingreso medio-alto. Dilema: **calidad/origen/confianza vs. precio** de lo premium | ✅ (foto ❓) |
 | 4 | Conpro + propuesta de valor | 15 · Cita | Intermediario hogares↔proveedores de calidad → **precios justos** donde calidad y precio no suelen conciliarse | ✅ |
 | 5 | Análisis de mercado | 5 · Split | No compite con súper/mayoristas (más baratos, menor calidad); compite con **naturistas/especializadas a mejor precio**. Gráfico rangos de precio | ⚠️ valores aprox (Inf. Ilustr. 1) |
@@ -35,7 +38,7 @@ La plataforma queda **diferida, no descartada**.
 ## Bloque 2 — Caso Base Optimizado (CBO)
 | # | Título | Molde | Contenido (conciso) | Dato |
 |---|---|---|---|---|
-| 9 | Divisor "Caso Base Optimizado" | 21 · Divisor | Nº 02 | ✅ |
+| 9 | Divisor "Caso Base Optimizado" | 21 · Divisor + agenda | Nº 02 | ✅ |
 | 10 | Qué es el CBO | 5 · Split | Mantener WhatsApp + **automatizar pagos (Fintoc, vía Make)**. Libera ~2,5 h/sem. Dato hero **$295.000** (marca + T&C) | ✅ |
 | 11 | Resultados del CBO | 11 · KPI cards | ~$126.850/mes (**▲20%**) · ingreso/hora $5.500→**$7.930** · WACC 27% · (VAN $2.405.096, payback año 1) | ✅ |
 | 12 | Pero hay un techo | 15 · Cita | "Mejora la operación, pero no resuelve lo estructural." Techo ~180 hogares (año 7) | ✅ |
@@ -43,14 +46,14 @@ La plataforma queda **diferida, no descartada**.
 ## Bloque 3 — El proyecto de escalamiento
 | # | Título | Molde | Contenido (conciso) | Dato |
 |---|---|---|---|---|
-| 13 | Divisor "El proyecto de escalamiento" | 21 · Divisor | Nº 03 | ✅ |
+| 13 | Divisor "El proyecto de escalamiento" | 21 · Divisor + agenda | Nº 03 | ✅ |
 | 14 | La plataforma B2C | 9 · Timeline | Compra colectiva en plataforma: grupos por producto → se cierran al mínimo → pago → transferencia única. Menos dependiente de Ricardo. Objetivos: automatizar, ampliar red, reducir dependencia | ✅ |
 | 15 | ¿Vale la pena invertir? | 15 · Cita | La pregunta ancla que abre el modelo financiero | ✅ |
 
 ## Bloque 4 — Modelo financiero
 | # | Título | Molde | Contenido (conciso) | Dato |
 |---|---|---|---|---|
-| 16 | Divisor "Modelo financiero" | 21 · Divisor | Nº 04 | ✅ |
+| 16 | Divisor "Modelo financiero" | 21 · Divisor + agenda | Nº 04 | ✅ |
 | 17 | La demanda | 8 · Líneas | Modelo logístico de difusión (boca a boca, marketing, fuga). 60 hogares → ingreso $10MM → ~$37MM año 5 = **x%** del mercado RM. Gráfico líneas por escenario | ❓ x% y dataset por escenario |
 | 18 | Costos | 3 · Stat grid | **Inversión $2.445.000** ($1,6MM plataforma + legales) · fijos ~$310.000/año · variables (marketing reinversión + costo por venta) | ⚠️ ($310.000 por verificar) |
 | 19 | Ganancias proyectadas | 14 · Tabla + gráfico | Ganancia anual años 1-5 (tabla + barras) | ❓ valores (Inf. pp.13-20) |
@@ -59,7 +62,7 @@ La plataforma queda **diferida, no descartada**.
 ## Bloque 5 — Robustez y decisión
 | # | Título | Molde | Contenido (conciso) | Dato |
 |---|---|---|---|---|
-| 21 | Divisor "Robustez y decisión" | 21 · Divisor | Nº 05 | ✅ |
+| 21 | Divisor "Robustez y decisión" | 21 · Divisor + agenda | Nº 05 | ✅ |
 | 22 | Análisis de sensibilidad | 5 · Split | Tornado: **ingreso/hogar > tasa de fuga** > adopción > interés. Insight: no basta atraer, deben comprar seguido y mantenerse | ❓ valores tornado |
 | 23 | Análisis de márgenes | 7 · Barras | ΔVAN por producto: **café +$6,2MM** · vino +$5,2MM · aceite +$1,2MM (huevos/queso al límite) | ✅ |
 | 24 | La opción de esperar | 7 · Barras ascendentes | Invertir hoy $2.386.311 → 1 año $4.073.470 → 2 años $5.662.917 → **3 años $6.109.830** (peak, 2,6×). Gatillo 120-130 hogares | ✅ |
@@ -73,6 +76,16 @@ La plataforma queda **diferida, no descartada**.
 | 28 | Síntesis / cierre | 15 · Cita | La recomendación en una frase + cierre/gracias. Plataforma **diferida, no descartada** | ✅ |
 
 ---
+
+## Agenda (integrada en los divisores)
+Las 5 secciones que cada divisor lista (con la actual destacada):
+1. El cliente y el negocio (S2) · 2. Caso Base Optimizado (S9) · 3. El proyecto de
+escalamiento (S13) · 4. Modelo financiero (S16) · 5. Robustez y decisión (S21).
+
+## Estilo (calibrado con "Presentación 2")
+- Paleta = Mostaza claro (amarillo + carbón + crema): es la identidad ya usada.
+- **Etiqueta de sección vertical** en el borde izquierdo (sello del grupo) → sumarla como detalle.
+- Densidad media: bullets cortos + una frase/dato clave resaltado en amarillo · tablas con header de color · íconos two-tone (carbón+amarillo) · títulos en versalitas con tracking.
 
 ## Notas de implementación
 - **Gráficos (6) → ids únicos de canvas** (resuelve el choque de ids; `CHART_CONFIGS` pasa a data-driven):
@@ -91,5 +104,5 @@ La plataforma queda **diferida, no descartada**.
 - S27: cálculo de "cuántos hogares para que sea viable".
 
 ## Decisiones registradas
-- **Sin agenda** por ahora (revisar luego). · **Nombres** del grupo pendientes de confirmar.
+- **Agenda integrada en los divisores** (no hay slide de agenda aparte). · **FODA incluido** (slide 26; fácil de quitar si se decide). · **Nombres** del grupo pendientes de confirmar.
 - **PPTX editable (Fase 5):** partir de `Molde Base PPT.pptx` (claude design, nativo/editable, 22 moldes) en vez de imagen-por-slide.
