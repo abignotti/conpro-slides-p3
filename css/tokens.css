@@ -1,0 +1,133 @@
+/* ============================================================
+   Escalamiento de Conpro — Design Tokens
+   Sistema de moldes para defensa académica (deck 1920×1080).
+
+   Uso en Code:
+   - El bloque :root define el tema y typeset por DEFECTO
+     (Mostaza claro · Editorial) además de escala, espaciado,
+     gráficos y movimiento (compartidos por todos los temas).
+   - Para cambiar de tema:    <html data-theme="Ácido">
+     Para cambiar de fuentes: <html data-typeset="Impacto">
+     (o aplica los data-attrs al contenedor del deck).
+   - Todo el deck referencia var(--token); nunca valores fijos.
+   ============================================================ */
+
+:root {
+  /* ---- Escala tipográfica (afinada para lienzo 1920) ---- */
+  --scale-hero: 168px;
+  --scale-h1: 72px;
+  --scale-h2: 40px;
+  --scale-stat: 66px;
+  --scale-body: 26px;
+  --scale-caption: 24px;
+  --scale-kicker: 24px;
+  --weight-display: 700;
+
+  /* ---- Espaciado / layout ---- */
+  --space-unit: 8px;
+  --slide-padding: 80px;
+  --content-max: 1100px;
+  --radius: 12px;
+
+  /* ---- Gráficos ---- */
+  --chart-series-1: var(--color-accent);   /* serie clave  */
+  --chart-bar-width: 60%;
+  --chart-line-weight: 3px;
+
+  /* ---- Movimiento ---- */
+  --motion-duration: 600ms;
+  --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --count-duration: 1200ms;
+
+  /* ---- Tema por defecto: Mostaza claro ---- */
+  --color-bg: #FBFAF7;
+  --color-bg-alt: #F2EEE4;
+  --color-text: #1A1A17;
+  --color-text-muted: #76726A;
+  --color-accent: #FCCE4E;
+  --color-on-accent: #1A1A17;     /* texto SOBRE el acento (clave para legibilidad) */
+  --color-negative: #C46B5A;      /* serie "mala" en gráficos (escenario pesimista) */
+  --color-grid: #E4DECF;
+  --chart-series-2: #C2BCAD;
+  --chart-series-3: #9A9486;
+
+  /* ---- Typeset por defecto: Editorial ---- */
+  --font-display: "Fraunces", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* ===========================================================
+   TEMAS DE COLOR  ·  <html data-theme="…">
+   Cada tema reescribe SOLO los tokens de color + series 2/3.
+   El par accent / on-accent garantiza contraste de texto
+   sobre los bloques de acento en cualquier tema.
+   =========================================================== */
+
+[data-theme="Mostaza claro"] {
+  --color-bg: #FBFAF7; --color-bg-alt: #F2EEE4; --color-text: #1A1A17;
+  --color-text-muted: #76726A; --color-accent: #FCCE4E; --color-on-accent: #1A1A17;
+  --color-negative: #C46B5A; --color-grid: #E4DECF;
+  --chart-series-2: #C2BCAD; --chart-series-3: #9A9486;
+}
+[data-theme="Mostaza oscuro"] {
+  --color-bg: #0F0F0F; --color-bg-alt: #161616; --color-text: #F5F5F5;
+  --color-text-muted: #9A9A9A; --color-accent: #FCCE4E; --color-on-accent: #0F0F0F;
+  --color-negative: #C46B5A; --color-grid: #2A2A2A;
+  --chart-series-2: #6B7280; --chart-series-3: #3F4654;
+}
+[data-theme="Crema editorial"] {
+  --color-bg: #F4EFE6; --color-bg-alt: #EBE3D6; --color-text: #211D18;
+  --color-text-muted: #847A6B; --color-accent: #C2502E; --color-on-accent: #FFFFFF;
+  --color-negative: #7C7468; --color-grid: #DDD3C2;
+  --chart-series-2: #CDC2AE; --chart-series-3: #A2937C;
+}
+[data-theme="Grafito mono"] {
+  --color-bg: #FAFAFA; --color-bg-alt: #EFEFEF; --color-text: #141414;
+  --color-text-muted: #6E6E6E; --color-accent: #141414; --color-on-accent: #FFFFFF;
+  --color-negative: #9A6A5E; --color-grid: #E2E2E2;
+  --chart-series-2: #C8C8C8; --chart-series-3: #9A9A9A;
+}
+[data-theme="Cobalto"] {
+  --color-bg: #0B1020; --color-bg-alt: #131A30; --color-text: #EEF1FA;
+  --color-text-muted: #8E97B5; --color-accent: #3D5AFE; --color-on-accent: #FFFFFF;
+  --color-negative: #E5604D; --color-grid: #1F273F;
+  --chart-series-2: #44507A; --chart-series-3: #2A3354;
+}
+[data-theme="Ácido"] {
+  --color-bg: #0E0E0E; --color-bg-alt: #181818; --color-text: #F4F4F0;
+  --color-text-muted: #8E8E86; --color-accent: #C6FF00; --color-on-accent: #0E0E0E;
+  --color-negative: #FF5C7A; --color-grid: #262624;
+  --chart-series-2: #4A4A44; --chart-series-3: #34342F;
+}
+[data-theme="Fucsia"] {
+  --color-bg: #FFFFFF; --color-bg-alt: #F7F2F5; --color-text: #16121A;
+  --color-text-muted: #7C7280; --color-accent: #E11D74; --color-on-accent: #FFFFFF;
+  --color-negative: #8A8590; --color-grid: #ECE3E8;
+  --chart-series-2: #D8C8D2; --chart-series-3: #A8929E;
+}
+[data-theme="Naranja brutal"] {
+  --color-bg: #1A1A1A; --color-bg-alt: #232220; --color-text: #F7F4F0;
+  --color-text-muted: #9A938A; --color-accent: #FF5A1F; --color-on-accent: #1A1A1A;
+  --color-negative: #6B7280; --color-grid: #2E2C29;
+  --chart-series-2: #524C45; --chart-series-3: #38332E;
+}
+[data-theme="Klein"] {
+  --color-bg: #F7F7FA; --color-bg-alt: #ECECF2; --color-text: #0E0E14;
+  --color-text-muted: #6B6B78; --color-accent: #2026B2; --color-on-accent: #FFFFFF;
+  --color-negative: #C0563E; --color-grid: #E0E0E8;
+  --chart-series-2: #C8C8D4; --chart-series-3: #9898A6;
+}
+
+/* ===========================================================
+   CONJUNTOS TIPOGRÁFICOS  ·  <html data-typeset="…">
+   Carga las familias en Google Fonts (ver README).
+   Combinables con cualquier tema.
+   =========================================================== */
+
+[data-typeset="Editorial"]    { --font-display: "Fraunces", serif;        --font-body: "Inter", sans-serif; }
+[data-typeset="Clásico"]      { --font-display: "Playfair Display", serif; --font-body: "Source Sans 3", sans-serif; }
+[data-typeset="Moderno"]      { --font-display: "Space Grotesk", sans-serif;--font-body: "Inter", sans-serif; }
+[data-typeset="Geométrico"]   { --font-display: "Archivo", sans-serif;     --font-body: "Inter", sans-serif; }
+[data-typeset="Impacto"]      { --font-display: "Anton", sans-serif;       --font-body: "Inter", sans-serif; }
+[data-typeset="Mono"]         { --font-display: "Space Mono", monospace;   --font-body: "IBM Plex Sans", sans-serif; }
+[data-typeset="Corporativo"]  { --font-display: "Montserrat", sans-serif;  --font-body: "Inter", sans-serif; }

@@ -1,0 +1,7 @@
+# Generated artifacts
+/Escalamiento-Conpro.pptx
+/build/
+
+# OS / editor cruft
+.DS_Store
+*.swp

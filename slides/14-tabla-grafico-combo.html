@@ -1,0 +1,51 @@
+<section class="slide" data-label="Tabla + gráfico" data-speaker-notes="Combo report: tabla compacta a la izquierda + barras a la derecha (hereda el estilo de gráficos). Barra/celda base en amarillo. Eje desde cero." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">14 / 22</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+      <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Resumen por escenario</span>
+    </div>
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:48px;">Escenarios de un vistazo</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;">
+      <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;">
+        <thead>
+          <tr>
+            <th style="text-align:left;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 18px;border-bottom:1px solid var(--color-grid);">Escenario</th>
+            <th style="text-align:right;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 18px;border-bottom:1px solid var(--color-grid);">VAN</th>
+            <th style="text-align:right;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 18px;border-bottom:1px solid var(--color-grid);">TIR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align:left;font-size:28px;color:var(--color-text);padding:26px 0;border-bottom:1px solid var(--color-grid);">Pesimista</td>
+            <td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:26px 0;border-bottom:1px solid var(--color-grid);">−$0,18 M</td>
+            <td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:26px 0;border-bottom:1px solid var(--color-grid);">8,1%</td>
+          </tr>
+          <tr>
+            <td style="text-align:left;font-size:28px;font-weight:600;color:var(--color-text);padding:26px 16px 26px 18px;background:var(--color-accent);border-radius:var(--radius) 0 0 var(--radius);">Base</td>
+            <td style="text-align:right;font-size:28px;font-weight:600;color:var(--color-on-accent);padding:26px 16px;background:var(--color-accent);">$2,39 M</td>
+            <td style="text-align:right;font-size:28px;font-weight:600;color:var(--color-on-accent);padding:26px 18px 26px 16px;background:var(--color-accent);border-radius:0 var(--radius) var(--radius) 0;">16,4%</td>
+          </tr>
+          <tr>
+            <td style="text-align:left;font-size:28px;color:var(--color-text);padding:26px 0;border-bottom:1px solid var(--color-grid);">Optimista</td>
+            <td style="text-align:right;font-size:28px;color:var(--color-text);padding:26px 0;border-bottom:1px solid var(--color-grid);">$4,91 M</td>
+            <td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:26px 0;border-bottom:1px solid var(--color-grid);">23,7%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="chart-wrap" style="height:340px;"><canvas id="chart-combo"></canvas></div>
+      </div>
+    <span style="font-size:var(--scale-caption);color:var(--color-text-muted);margin-top:28px;">TIR por escenario (%). El umbral exigido es 12%.</span>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Combo report: tabla compacta a la izquierda + barras a la derecha (hereda el estilo de gráficos). Barra/celda base en amarillo. Eje desde cero.</aside>
+</section>

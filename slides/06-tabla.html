@@ -1,0 +1,54 @@
+<section class="slide" data-label="Tabla" data-speaker-notes="Tabla pulida: cabecera muted en versalitas, filas con hairlines, números tabulares alineados a la derecha. Fila clave (Base) con fondo bg-alt y su VAN en amarillo. VAN negativo en texto plano, sin segundo color." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">06 / 22</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+      <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Resultados por escenario</span>
+    </div>
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:48px;">VAN por escenario</h2>
+
+    <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;">
+      <thead>
+        <tr>
+          <th style="text-align:left;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 20px;border-bottom:1px solid var(--color-grid);">Escenario</th>
+          <th style="text-align:right;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 20px;border-bottom:1px solid var(--color-grid);">Inversión</th>
+          <th style="text-align:right;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 20px;border-bottom:1px solid var(--color-grid);">VAN</th>
+          <th style="text-align:right;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 20px;border-bottom:1px solid var(--color-grid);">TIR</th>
+          <th style="text-align:right;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 20px;border-bottom:1px solid var(--color-grid);">Decisión</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:left;font-size:28px;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">Pesimista</td>
+          <td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:30px 0;border-bottom:1px solid var(--color-grid);">$1.250.000</td>
+          <td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:30px 0;border-bottom:1px solid var(--color-grid);">−$180.420</td>
+          <td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:30px 0;border-bottom:1px solid var(--color-grid);">8,1%</td>
+          <td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:30px 0;border-bottom:1px solid var(--color-grid);">Rechazar</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;font-size:28px;font-weight:600;color:var(--color-text);padding:30px 24px 30px 28px;background:var(--color-bg-alt);border-bottom:1px solid var(--color-grid);border-radius:var(--radius) 0 0 var(--radius);">Base</td>
+          <td style="text-align:right;font-size:28px;color:var(--color-text);padding:30px 24px;background:var(--color-bg-alt);border-bottom:1px solid var(--color-grid);">$1.250.000</td>
+          <td style="text-align:right;font-size:28px;font-weight:600;color:var(--color-on-accent);padding:30px 24px;background:var(--color-accent);border-bottom:1px solid var(--color-grid);">$2.386.311</td>
+          <td style="text-align:right;font-size:28px;color:var(--color-text);padding:30px 24px;background:var(--color-bg-alt);border-bottom:1px solid var(--color-grid);">16,4%</td>
+          <td style="text-align:right;font-size:28px;color:var(--color-text);padding:30px 28px 30px 24px;background:var(--color-bg-alt);border-bottom:1px solid var(--color-grid);border-radius:0 var(--radius) var(--radius) 0;">Aceptar</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;font-size:28px;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">Optimista</td>
+          <td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:30px 0;border-bottom:1px solid var(--color-grid);">$1.250.000</td>
+          <td style="text-align:right;font-size:28px;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">$4.910.870</td>
+          <td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:30px 0;border-bottom:1px solid var(--color-grid);">23,7%</td>
+          <td style="text-align:right;font-size:28px;color:var(--color-text-muted);padding:30px 0;border-bottom:1px solid var(--color-grid);">Aceptar</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Tabla pulida: cabecera muted en versalitas, filas con hairlines, números tabulares alineados a la derecha. Fila clave (Base) con fondo bg-alt y su VAN en amarillo. VAN negativo en texto plano, sin segundo color.</aside>
+</section>
