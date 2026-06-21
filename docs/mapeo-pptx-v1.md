@@ -8,6 +8,30 @@
 >
 > Última actualización: 2026-06-21.
 
+## ⚠️ Delta de la versión recibida 2026-06-21 (editada por compañeras)
+Llegó un PPTX nuevo (`.context/attachments/.../Conpro-P3-v1.pptx`, 35 slides,
+mismo nombre). Estructura casi idéntica a la ya mapeada, pero con **4 cambios
+reales** respecto del deck web actual:
+
+1. **🆕 `25 · ¿Puede Conpro sostener esa rentabilidad…?`** — pregunta-ancla nueva
+   (no existe en la web). Iría antes del bloque de robustez.
+2. **🆕 `26 · Análisis de Sustentación`** — slide nueva: Imitación / Sustitución
+   (interés −7,5% → VAN −55%; −12,5% → −83%) / Expropiación de renta. *(El PPTX
+   trae un emoji azul placeholder encima del texto — WIP.)*
+3. **🔄 `20 · Mercado alcanzable · "El desafío no es mercado, es captación"`** —
+   **rediseñada**: pasó del gráfico de ingresos (web `17b`) a una grilla de 4 KPIs
+   (Ingreso/hogar $201.061 · Hogares año 5 = 161 · Penetración 0,19% · Mercado
+   86.770) + frase "el límite no es quedarse sin clientes, sino captarlos más
+   rápido".
+4. **➖ Ganancias proyectadas eliminada** — el PPTX salta la página 19; la web aún
+   tiene `19-ganancias`. Decidir si se quita o se mantiene.
+
+Lo demás (Juan buyer-persona, propuesta 2 tarjetas, cómo-funciona título+diagrama,
+costos con torta, duplicados viejos de sensibilidad/márgenes/flexibilidad,
+nombres de sección, "conservador" vs "base", TIR) ya estaba registrado abajo y
+**no cambió** respecto de la versión anterior. El slide 16 del PPTX es el
+**screenshot del demo** (= web `14b`), no la explicación de plataforma.
+
 ## Qué es el PPTX v1
 Versión **intermedia / de transición**, **no** el deck web actual. Señales:
 1. **Tiene duplicados**: trae la versión vieja y verbosa de
