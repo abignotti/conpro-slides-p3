@@ -4,6 +4,22 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Botón "Descargar PDF": export headless on-demand (idéntico a la web)
+Qué hice:
+- **Reactivé el export a PDF** (estaba retirado por verse mal) con un enfoque nuevo: render **headless** que produce un PDF **idéntico** a la web, respetando el **tema/tipografía activos** al apretar el botón.
+- **Causa raíz del bug viejo:** reveal 5.x NO tiene un `pdf.css` aparte (vive dentro de `dist/reveal.css`, ya enlazado); su modo print fuerza `display:block!important` y `padding:0!important` en cada `<section>`, rompiendo el layout flex (header/cuerpo/pie) y borrando el `--slide-padding` (80px). Fix en `css/deck.css` bajo `html.reveal-print`: repone flex + `padding:var(--slide-padding)` + oculta selector/controles + `print-color-adjust:exact`. El slide demo (`data-label="Demo plataforma"`) queda exceptuado a `padding:0` (full-bleed a sangre).
+- **Arquitectura (decisión del usuario): serverless on-demand en Vercel.** `api/pdf.js` (puppeteer-core + @sparticuz/chromium) abre el propio deployment con `?print-pdf&theme=…&typeset=…`, espera `window.__deckPrintReady` y devuelve `page.pdf()` a 1920×1080 como descarga. `vercel.json`: `maxDuration 60`, `memory 1024` (entran en el plan gratuito). Botón "⤓ Descargar PDF" repuesto en `buildPicker` (deck.js): lee `data-theme`/`data-typeset` actuales, hace `fetch('/api/pdf?…')` y descarga el blob; muestra "Generando…".
+- **deck.js:** aplica `?theme=`/`?typeset=` de la URL (validados) antes de `Reveal.initialize`; agrega `pdfMaxPagesPerSlide:1`; la rama `isPrint` ya no llama `window.print()`.
+- **`scripts/export-pdf.mjs`** (verificación local con el Chrome del sistema, sin Vercel) + `package.json` (deps).
+Decisiones/bugs:
+- **Lección (timers en headless):** en print headless los `setTimeout`/`requestAnimationFrame` de la página **se congelan**, así que `__deckPrintReady` NUNCA se seteaba si dependía de ellos (export colgado a 45s). Solución: marcar la señal **síncrona** en la página y mover las esperas (fuentes vía `document.fonts.ready`, asentado de gráficos ~900ms) al **lado Node**, donde los timers sí corren.
+- **Lección (worktrees + puerto):** el `localhost:8753` lo tenía tomado un server de OTRO workspace (`lahore`), así que las pruebas pegaban contra otro deck. Para verificar, levantar el server de ESTE worktree en un puerto propio y pasar `--base` al script. (Los `.git` de cada workspace son worktrees del mismo repo: comparten objetos/refs/remoto, pero cada uno tiene su working dir y su rama; CLAUDE.md/devlog son archivos versionados normales — se pushean y mergean por rama.)
+- Verificado local 3/3 estable: 31 págs, 1920×1080, ~2 MB, fuentes embebidas (texto vectorial), gráficos Chart.js y slide demo (iframe) renderizan completos.
+- No se commitea el PDF generado (`*.pdf` ya ignorado); se agregó `node_modules/` y `.vercel/` a `.gitignore`.
+Próximo paso: probar el botón en Vercel (`vercel dev` o deploy preview) — el `/api/pdf` no corre bajo `python3 -m http.server`. Cold start ~5-10s la primera vez.
+
+---
+
 ## [2026-06-21] — Alineación con el PPTX v2 (36 slides): 3 slides nuevas + split ingresos/captación
 Qué hice (tras mapear `.context/new-deck-v2.pptx`; ver "Delta v2" en `docs/mapeo-pptx-v1.md`):
 - 🆕 **`17b-ingresos-demanda.html` = "Ingresos según la demanda"** (NUEVA): tarjeta acento $201.061 + tarjeta "Despacho · Mixto (domicilio + pick up)" + tabla por año (Hogares 60→161, Ingresos $13M→$37M, Año 5 destacado). Reemplaza al `17b` viejo (que era la captación). [PPTX 20]
@@ -77,7 +93,6 @@ Decisiones/bugs:
 Próximo paso: ver en proyección 16:9 real (donde no hay letterbox) que el demo se vea idéntico; seguir con animaciones (skill Emil Kowalski) y deploy.
 
 ---
-
 ## [2026-06-21] — Cierre de sesión: demo plataforma + numeración auto (commit/push)
 Qué hice:
 - Cierre de la sesión del **demo de la plataforma** y la **numeración automática**. Build OK (31 slides), server local 200, demo verificado en browser. Commit + push de `reimport-deck-redo` con todo el trabajo acumulado en el working tree (esta sesión + la de "datos reales" de la otra sesión).

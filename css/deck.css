@@ -125,4 +125,40 @@ html, body { background: var(--color-bg); }
   cursor: pointer;
 }
 .theme-picker .pk-btn:hover { background: #383838; }
+.theme-picker .pk-btn[disabled] { opacity: 0.55; cursor: progress; }
 .theme-picker .hint { font-size: 10px; color: #6e6e6e; max-width: 70px; line-height: 1.3; margin-left: 6px; padding-left: 14px; border-left: 1px solid #3a3a3a; align-self: stretch; display: flex; align-items: center; }
+
+/* ============================================================
+   EXPORT PDF  ·  vista print de reveal 5.x
+   reveal entra en "print view" con ?print-pdf y agrega las clases
+   html.reveal-print / .print-pdf, además de forzar
+   section{ display:block!important } — lo que ROMPE el layout
+   flex (header/cuerpo/pie) de cada slide. Acá lo reponemos. Las
+   reglas son inertes en la web normal (esas clases solo existen en
+   print) y ganan por orden: deck.css se carga DESPUÉS de reveal.css.
+   ============================================================ */
+html.reveal-print .reveal .slides section.slide {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box !important;
+  width: 1920px !important;
+  height: 1080px !important;
+  /* reveal fuerza padding:0!important en print, borrando el --slide-padding
+     (80px) que el deck sí tiene en la web → el contenido topaba los bordes.
+     Lo reponemos para que el PDF respete el mismo margen interno. */
+  padding: var(--slide-padding) !important;
+  overflow: hidden;
+}
+/* el slide demo es full-bleed (iframe a sangre): mantener padding 0 */
+html.reveal-print .reveal .slides section.slide[data-label="Demo plataforma"] {
+  padding: 0 !important;
+}
+html.reveal-print .reveal .slides section.slide > div { min-height: 0; }
+/* el selector y los controles de reveal nunca van al PDF */
+html.reveal-print .theme-picker,
+html.reveal-print .reveal .controls,
+html.reveal-print .reveal .progress { display: none !important; }
+/* asegurar que fondos/acentos del tema se impriman */
+html.reveal-print *,
+.print-pdf * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }

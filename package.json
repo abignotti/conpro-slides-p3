@@ -1,0 +1,15 @@
+{
+  "name": "escalamiento-conpro",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Deck reveal.js de Conpro + export PDF headless (Vercel serverless).",
+  "scripts": {
+    "build": "python3 scripts/build.py",
+    "export-pdf": "node scripts/export-pdf.mjs"
+  },
+  "dependencies": {
+    "@sparticuz/chromium": "^149.0.0",
+    "puppeteer-core": "^25.1.0"
+  }
+}
