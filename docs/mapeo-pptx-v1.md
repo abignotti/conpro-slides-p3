@@ -8,6 +8,34 @@
 >
 > Última actualización: 2026-06-21.
 
+## ⚠️ Delta v2 (recibida 2026-06-21 · 36 slides · 9,9 MB)
+Llegó otra versión más nueva (`.context/new-deck-v2.pptx`, **36 slides**, +1 vs
+la anterior). Casi idéntica a la v1 de abajo, pero con un cambio estructural en
+la zona ingresos/captación + confirma hacia dónde van:
+
+1. **🆕 Slide 20 "Ingresos según Demanda"** (NUEVA, no estaba en v1): tabla de
+   ingresos por año (Año 1-5: 60/93/122/143/161 hogares → $13M/$21M/$28M/$33M/$37M)
+   + tarjeta **Ingreso por hogar $201.061** + tarjeta **Ingresos por despacho:
+   Mixto**. → la web **no la tiene** (hay que crearla).
+2. **🔄 Slide 21 "Mercado alcanzable / captación"**: bajó de **4 a 3 KPIs**
+   (Hogares año 5 161 · Penetración 0,19% · Mercado potencial 86.770). El
+   **$201.061 se movió** a la slide 20. → la web `17b` hoy tiene 4 KPIs (incl.
+   $201.061): hay que **sacarle esa tarjeta** y dejar 3.
+3. **✏️ Techo (slide 14)**: ahora dice "no rompe el **techo operacional**"
+   (antes "el techo"). Minor.
+4. **✅ Confirma alineación**: sección 05 = "Resultados y recomendaciones", VAN
+   sin TIR, Demanda "conservador", Resultados CBO 3 tarjetas — todo lo que ya
+   apliqué en el lote 1 coincide con esta v2.
+
+Siguen pendientes (ya conocidos de v1, aún sin integrar): 🆕 "¿Puede Conpro
+sostener…?" (slide 26) y 🆕 "Análisis de Sustentación" (slide 27). Y siguen los
+duplicados viejos de sensibilidad/márgenes/flexibilidad (slides 24/25/28) +
+ganancias eliminada del PPTX (la web aún la tiene en `19-ganancias`).
+
+**Acciones para alinear la web a v2:** crear 3 slides (Ingresos según Demanda,
+pregunta-ancla, Análisis de Sustentación), recortar `17b` a 3 KPIs, y el minor de
+"techo operacional". Decidir ganancias.
+
 ## ⚠️ Delta de la versión recibida 2026-06-21 (editada por compañeras)
 Llegó un PPTX nuevo (`.context/attachments/.../Conpro-P3-v1.pptx`, 35 slides,
 mismo nombre). Estructura casi idéntica a la ya mapeada, pero con **4 cambios
