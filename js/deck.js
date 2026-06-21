@@ -44,18 +44,21 @@ const CHART_CONFIGS = {
     data: [2.39, 4.07, 5.66, 6.11],
     keyIndex: 3, yMax: 7, yStep: 1, yTitle: 'VAN al presente (M$)', valueLabel: true,
   }),
+  // VAN por escenario (M$). Conservador (keyIndex 1) en acento. Sin TIR.
+  'chart-van': (cv) => Charts.bar(cv, {
+    labels: ['Pesimista', 'Conservador', 'Optimista'],
+    data: [1.12, 2.39, 3.97],
+    keyIndex: 1, yMax: 4.5, yStep: 1, yTitle: 'VAN (M$)', valueLabel: true, valueLabelAll: true,
+    valueLabelFmt: (v) => '$' + v.toLocaleString('es-CL') + ' M', stagger: true,
+  }),
   // TODO datos: curva de ingreso bruto (placeholder). Base: 60 hogares -> ~$37 MM al año 5 (diálogo).
+  // Barras con rampa de opacidad (clara año 1 -> opaca año 5), número sobre
+  // cada barra y aparición escalonada desde la base (año 1 -> año 5).
   'chart-demanda': (cv) => Charts.bar(cv, {
     labels: ['Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5'],
     data: [60, 93, 122, 143, 161],
-    keyIndex: 4, yMax: 180, yStep: 60, yTitle: 'Hogares', valueLabel: true,
-  }),
-  // Ingresos (CLP) según hogares atendidos. Eje X = hogares; valueLabel usa
-  // fmtNum (es-CL: separador de miles con punto) -> "$37.374.912" vía valueLabelPrefix.
-  'chart-ingresos': (cv) => Charts.bar(cv, {
-    labels: ['60', '93', '122', '143', '161'],
-    data: [13895145, 21493276, 28154459, 33063850, 37374912],
-    keyIndex: 4, yMax: 40000000, yStep: 10000000, yTitle: 'Ingresos (CLP)', valueLabel: true,
+    yMax: 180, yStep: 60, yTitle: 'Hogares', valueLabel: true, valueLabelAll: true,
+    colorRamp: true, stagger: true,
   }),
   // TODO datos: ganancia anual años 1-5 (placeholder, falta en el informe leído).
   'chart-ganancias': (cv) => Charts.bar(cv, {
@@ -252,9 +255,13 @@ function syncDemoFill(slide) {
 function initChartsIn(slide) {
   if (!slide || !window.Charts) return;
   slide.querySelectorAll('canvas[id]').forEach((cv) => {
-    if (cv.dataset.inited || !CHART_CONFIGS[cv.id]) return;
-    cv.dataset.inited = '1';
-    Charts.register(cv, CHART_CONFIGS[cv.id]);
+    if (!CHART_CONFIGS[cv.id]) return;
+    if (cv.dataset.inited) {
+      Charts.replay(cv);   // re-dispara la animación de entrada al volver a la slide
+    } else {
+      cv.dataset.inited = '1';
+      Charts.register(cv, CHART_CONFIGS[cv.id]);
+    }
   });
 }
 
@@ -341,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // gráficos y ajustar TODAS (no solo la actual), sin animar el hero.
       document.querySelectorAll('section.slide').forEach((s) => { initChartsIn(s); fitSlide(s); });
       drawIcons(); setTimeout(drawIcons, 400);
-      setTimeout(() => window.print(), 1300);
+      setTimeout(() => window.print(), 1900);   // margen para la animación escalonada (demanda)
     } else {
       setupDemoFill();   // saca el iframe del demo del lienzo escalado
       onSlide(e.currentSlide); setTimeout(drawIcons, 400);
