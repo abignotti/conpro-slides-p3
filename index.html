@@ -86,33 +86,76 @@
   <aside class="notes">Divisor de sección con agenda integrada: número gigante + sección actual + lista de las 5 secciones (actual destacada).</aside>
 </section>
 
-<section data-sid="03-juan" class="slide" data-label="Split imagen" data-speaker-notes="Abrir con la historia, sin números. El dilema calidad vs precio es el gancho. Único acento: el marcador del primer punto." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+<section data-sid="03-juan" class="slide" data-label="Buyer persona" data-speaker-notes="Abrir con la historia de Juan, sin números. El dilema calidad vs precio es el gancho. Único acento: los íconos y el separador del dolor." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
   <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
     <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
     <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">03 / 28</span>
   </header>
 
-  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
-    <div>
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
-        <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">El cliente</span>
-      </div>
-      <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:28px;">Juan, el cliente objetivo</h2>
-      <p style="font-size:var(--scale-body);line-height:1.55;color:var(--color-text-muted);margin-bottom:40px;max-width:620px;">40 años, vive en Providencia y es papá de dos hijos. Un hogar de ingresos medios-altos que planifica sus compras y busca optimizar el gasto.</p>
-      <div style="display:flex;flex-direction:column;gap:24px;">
-        <div style="display:flex;align-items:flex-start;gap:20px;">
-          <span style="width:18px;height:18px;flex:none;margin-top:8px;border-radius:4px;background:var(--color-accent);"></span>
-          <span style="font-size:var(--scale-body);line-height:1.45;color:var(--color-text);">Valora la calidad, el origen y la confianza de lo que lleva a su casa</span>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:20px;">
-          <span style="width:18px;height:18px;flex:none;margin-top:8px;border-radius:4px;background:var(--color-accent);"></span>
-          <span style="font-size:var(--scale-body);line-height:1.45;color:var(--color-text);">Pero lo premium es caro: termina eligiendo entre pagar de más o resignar calidad</span>
-        </div>
-      </div>
-    </div>
+  <div style="flex:1;display:flex;flex-direction:column;padding-top:24px;padding-bottom:32px;">
+    <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:12px;">El cliente</span>
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:0.98;letter-spacing:-0.02em;color:var(--color-text);">Juan, el cliente objetivo</h2>
+    <p style="font-size:28px;line-height:1.4;color:var(--color-text-muted);margin-top:12px;max-width:1100px;">Hogar urbano de ingresos medios-altos que quiere comprar mejor, sin pagar de más.</p>
 
-    <div style="height:580px;">
-      <div class="image-slot">Foto · Juan (cliente objetivo)</div>
+    <div style="flex:1;display:grid;grid-template-columns:440px 1fr;gap:40px;margin-top:10px;">
+
+      <!-- Persona card -->
+      <div style="border:2px dashed var(--color-grid);border-radius:18px;background:var(--color-bg-alt);overflow:hidden;display:flex;flex-direction:column;">
+        <div style="position:relative;flex:1;min-height:158px;overflow:hidden;">
+          <img src="assets/juan.png" alt="Juan con sus dos hijos" style="position:absolute;left:50%;transform:translateX(-50%);margin-left:-22px;bottom:0;height:178px;width:auto;display:block;">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;padding:22px 34px 28px;">
+          <span style="font-family:var(--font-display);font-weight:800;font-size:36px;letter-spacing:0.04em;color:var(--color-text);">JUAN</span>
+          <span style="font-size:28px;line-height:1.4;color:var(--color-text-muted);">40 años · Papá de 2 hijos · Providencia</span>
+        </div>
+      </div>
+
+      <!-- Right region -->
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+
+          <!-- Perfil de compra -->
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:16px;">
+            <h3 style="font-family:var(--font-display);font-weight:700;font-size:42px;letter-spacing:-0.01em;color:var(--color-text);">Perfil de compra</h3>
+
+            <div style="display:flex;align-items:center;gap:24px;">
+              <span style="flex:none;width:74px;height:74px;border-radius:50%;background:var(--color-accent);display:flex;align-items:center;justify-content:center;color:var(--color-on-accent);">
+                <i data-lucide="clipboard-list" style="width:42px;height:42px;"></i>
+              </span>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--color-text);">Compra planificada</span>
+                <span style="font-size:28px;line-height:1.4;color:var(--color-text-muted);">Planifica y compara opciones.</span>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:24px;">
+              <span style="flex:none;width:74px;height:74px;border-radius:50%;background:var(--color-accent);display:flex;align-items:center;justify-content:center;color:var(--color-on-accent);">
+                <i data-lucide="shield-check" style="width:42px;height:42px;"></i>
+              </span>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--color-text);">Valora la confianza</span>
+                <span style="font-size:28px;line-height:1.4;color:var(--color-text-muted);">Calidad, origen y seguridad.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Su dolor -->
+          <div style="display:flex;align-items:stretch;gap:0;">
+            <div style="flex:none;width:92px;background:var(--color-accent);border-radius:var(--radius) 0 0 var(--radius);display:flex;align-items:center;justify-content:center;">
+              <span style="font-family:var(--font-display);font-weight:800;font-size:74px;line-height:1;color:var(--color-on-accent);">!</span>
+            </div>
+            <div style="flex:1;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-left:none;border-radius:0 var(--radius) var(--radius) 0;padding:24px 30px;display:flex;flex-direction:column;justify-content:center;gap:10px;">
+              <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--color-text);">Su dolor</span>
+              <span style="font-size:28px;line-height:1.45;color:var(--color-text-muted);">Quiere productos de mejor calidad, pero el precio limita su decisión.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Takeaway strip -->
+        <div style="background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:22px 44px;">
+          <span style="font-family:var(--font-display);font-weight:800;font-size:34px;line-height:1.15;letter-spacing:-0.01em;color:var(--color-text);">Juan no busca lo más barato; busca comprar de forma inteligente.</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -120,21 +163,108 @@
     <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
   </footer>
 
-  <aside class="notes">Abrir con la historia, sin números. El dilema calidad vs precio es el gancho.</aside>
+  <aside class="notes">Juan: 40 años, Providencia, papá de dos hijos, ingresos medios-altos. Compra planificada y valora la confianza (calidad, origen, seguridad). Su dolor: quiere mejor calidad pero el precio lo limita. Cierre: no busca lo más barato, busca comprar inteligente → enlaza con la propuesta de valor de Conpro.</aside>
 </section>
 
-<section data-sid="04-propuesta" class="slide" data-label="Cita" data-speaker-notes="La propuesta de valor en una frase. Barra amarilla vertical como único acento." style="background:var(--color-bg-alt);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+<section data-sid="04-propuesta" class="slide" data-label="Diagrama" data-speaker-notes="Qué es Conpro en una imagen: agrega la demanda de muchos hogares (consumidores) para negociar con proveedores de calidad. La propuesta de valor: precios más justos donde calidad y precio rara vez conviven." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
   <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
     <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
     <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">04 / 28</span>
   </header>
 
-  <div style="flex:1;display:flex;align-items:center;">
-    <div style="display:flex;gap:48px;align-items:stretch;max-width:1500px;">
-      <div style="width:6px;flex:none;background:var(--color-accent);border-radius:999px;"></div>
-      <div>
-        <p style="font-family:var(--font-display);font-weight:600;font-size:64px;line-height:1.18;letter-spacing:-0.01em;color:var(--color-text);text-wrap:pretty;margin-bottom:40px;">Conpro agrega la demanda de muchos hogares para acceder a productos de calidad a un precio justo: el que cada uno, por separado, no alcanzaría.</p>
-        <span style="font-size:var(--scale-body);letter-spacing:0.06em;text-transform:uppercase;color:var(--color-text-muted);">Propuesta de valor</span>
+  <div style="flex:1;display:flex;flex-direction:column;padding-top:24px;padding-bottom:32px;">
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;color:var(--color-text);margin:0;">¿Qué es Conpro?</h2>
+
+    <!-- Diagrama: Consumidores -> Conpro -> Proveedores -->
+    <div style="background:var(--color-bg-alt);border-radius:var(--radius);margin-top:60px;padding:44px 60px 40px 60px;display:flex;align-items:center;justify-content:space-between;">
+
+      <!-- Consumidores -->
+      <div style="display:flex;flex-direction:column;align-items:center;width:440px;">
+        <svg width="300" height="190" viewBox="0 0 300 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 178 V120" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round"></path>
+          <path d="M40 138 C18 134 8 120 8 100 C30 102 42 116 40 138 Z" fill="var(--color-accent)"></path>
+          <path d="M40 120 C62 116 72 102 72 82 C50 84 38 98 40 120 Z" fill="var(--color-accent)"></path>
+          <path d="M70 92 L160 38 L250 92" stroke="var(--color-text)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path>
+          <path d="M230 64 V46 H247 V79" stroke="var(--color-text)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path>
+          <rect x="86" y="92" width="148" height="86" stroke="var(--color-text)" stroke-width="3" stroke-linejoin="round"></rect>
+          <rect x="146" y="62" width="34" height="34" rx="2" fill="var(--color-accent)" stroke="var(--color-text)" stroke-width="3"></rect>
+          <line x1="163" y1="62" x2="163" y2="96" stroke="var(--color-text)" stroke-width="3"></line>
+          <line x1="146" y1="79" x2="180" y2="79" stroke="var(--color-text)" stroke-width="3"></line>
+          <rect x="98" y="120" width="34" height="58" fill="var(--color-accent)" stroke="var(--color-text)" stroke-width="3"></rect>
+          <circle cx="125" cy="150" r="3" fill="var(--color-text)"></circle>
+          <g stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="172" cy="118" r="12" fill="var(--color-bg)"></circle>
+            <path d="M156 178 V150 C156 138 188 138 188 150 V178" fill="var(--color-accent)"></path>
+            <circle cx="210" cy="120" r="12" fill="var(--color-bg)"></circle>
+            <path d="M194 178 V152 C194 140 226 140 226 152 V178" fill="var(--color-bg)"></path>
+            <circle cx="150" cy="142" r="9" fill="var(--color-bg)"></circle>
+            <path d="M138 178 V160 C138 150 162 150 162 160 V178" fill="var(--color-bg)"></path>
+            <circle cx="195" cy="144" r="9" fill="var(--color-bg)"></circle>
+            <path d="M183 178 V162 C183 152 207 152 207 162 V178" fill="var(--color-bg)"></path>
+          </g>
+          <line x1="78" y1="178" x2="244" y2="178" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round"></line>
+        </svg>
+        <div style="font-family:var(--font-display);font-weight:700;font-size:30px;letter-spacing:2px;color:var(--color-text);margin-top:14px;">CONSUMIDORES</div>
+        <div style="font-size:24px;color:var(--color-text-muted);margin-top:8px;">Hogares como el de Juan</div>
+      </div>
+
+      <!-- flechas izquierda -->
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <svg width="150" height="20" viewBox="0 0 150 20" fill="none"><path d="M2 10 H140 M124 2 L142 10 L124 18" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <svg width="150" height="20" viewBox="0 0 150 20" fill="none"><path d="M148 10 H10 M26 2 L8 10 L26 18" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+
+      <!-- Conpro -->
+      <div style="width:300px;height:300px;border-radius:50%;background:var(--color-accent);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;">
+        <svg width="150" height="130" viewBox="0 0 150 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 12 H30 L46 84 H118 L132 34 H40" stroke="var(--color-on-accent)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+          <path d="M46 84 L40 34 H132 L118 84 Z" fill="var(--color-on-accent)"></path>
+          <circle cx="56" cy="108" r="11" fill="var(--color-on-accent)"></circle>
+          <circle cx="108" cy="108" r="11" fill="var(--color-on-accent)"></circle>
+        </svg>
+        <div style="font-family:var(--font-display);font-weight:800;font-size:38px;letter-spacing:2px;color:var(--color-on-accent);margin-top:6px;">CONPRO</div>
+      </div>
+
+      <!-- flechas derecha -->
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <svg width="150" height="20" viewBox="0 0 150 20" fill="none"><path d="M2 10 H140 M124 2 L142 10 L124 18" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <svg width="150" height="20" viewBox="0 0 150 20" fill="none"><path d="M148 10 H10 M26 2 L8 10 L26 18" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+
+      <!-- Proveedores -->
+      <div style="display:flex;flex-direction:column;align-items:center;width:440px;">
+        <svg width="320" height="190" viewBox="0 0 320 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 80 L160 30 L280 80" stroke="var(--color-text)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path>
+          <path d="M64 80 V178 M256 80 V178" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round"></path>
+          <path d="M86 80 L160 50 L234 80" stroke="var(--color-text)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path>
+          <g stroke="var(--color-text)" stroke-width="3" stroke-linejoin="round">
+            <rect x="104" y="128" width="46" height="50" fill="var(--color-accent)"></rect>
+            <rect x="150" y="128" width="46" height="50" fill="var(--color-accent)"></rect>
+            <rect x="127" y="92" width="46" height="36" fill="var(--color-accent)"></rect>
+            <line x1="127" y1="128" x2="173" y2="128" stroke="var(--color-text)" stroke-width="3"></line>
+            <line x1="150" y1="92" x2="150" y2="110" stroke="var(--color-text)" stroke-width="3"></line>
+          </g>
+          <g stroke="var(--color-text)" stroke-width="3" stroke-linejoin="round">
+            <rect x="270" y="138" width="40" height="40" fill="var(--color-accent)"></rect>
+            <line x1="290" y1="138" x2="290" y2="158" stroke="var(--color-text)" stroke-width="3"></line>
+          </g>
+          <line x1="36" y1="178" x2="312" y2="178" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round"></line>
+        </svg>
+        <div style="font-family:var(--font-display);font-weight:700;font-size:30px;letter-spacing:2px;color:var(--color-text);margin-top:14px;">PROVEEDORES</div>
+        <div style="font-size:24px;color:var(--color-text-muted);margin-top:8px;">De productos de calidad</div>
+      </div>
+
+    </div>
+
+    <!-- Propuesta de valor -->
+    <div style="margin-top:56px;">
+      <div style="display:inline-block;">
+        <div style="font-family:var(--font-display);font-weight:700;font-size:28px;letter-spacing:5px;color:var(--color-text-muted);">PROPUESTA DE VALOR</div>
+        <div style="height:4px;width:200px;background:var(--color-accent);margin-top:12px;border-radius:2px;"></div>
+      </div>
+
+      <div style="margin-top:40px;display:flex;justify-content:center;">
+        <p style="max-width:1300px;text-align:center;font-size:38px;line-height:1.5;color:var(--color-text-muted);margin:0;text-wrap:pretty;"><strong style="color:var(--color-text);font-weight:700;">Precios más justos</strong> en categorías donde normalmente el equilibrio entre calidad y precio parece difícil de alcanzar.</p>
       </div>
     </div>
   </div>
@@ -143,7 +273,7 @@
     <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
   </footer>
 
-  <aside class="notes">La propuesta de valor en una frase. Doble: para el consumidor, precio por volumen sin comprar grandes cantidades; para el proveedor, demanda agregada y estable.</aside>
+  <aside class="notes">Conpro en una imagen: agrega la demanda de muchos hogares (consumidores) y la canaliza hacia proveedores de productos de calidad. Al juntar volumen, negocia mejores condiciones. Propuesta de valor: precios más justos en categorías donde calidad y precio rara vez conviven.</aside>
 </section>
 
 <section data-sid="05-mercado" class="slide" data-label="Split 2 col" data-speaker-notes="Conpro no compite con súper/mayoristas (más baratos, menor calidad); compite con naturistas/especializadas a mejor precio. Eje desde cero." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
@@ -152,31 +282,27 @@
     <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">05 / 28</span>
   </header>
 
-  <div style="flex:1;display:grid;grid-template-columns:1.05fr 0.95fr;gap:80px;align-items:center;">
-    <div>
+  <div style="flex:1;display:grid;grid-template-columns:0.92fr 1.08fr;gap:72px;align-items:stretch;padding:24px 0;">
+    <div style="display:flex;flex-direction:column;justify-content:center;">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
-        <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Análisis de mercado</span>
+        <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Análisis de mercado y competencia</span>
       </div>
-      <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:36px;">Compite con las especializadas, no con el supermercado</h2>
-      <div style="display:flex;flex-direction:column;gap:22px;max-width:640px;">
+      <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:40px;">Conpro compite con tiendas naturistas y especializadas</h2>
+      <div style="display:flex;flex-direction:column;gap:28px;max-width:640px;">
         <div style="display:flex;align-items:flex-start;gap:18px;">
           <span style="width:16px;height:16px;flex:none;margin-top:9px;border-radius:4px;background:var(--color-accent);"></span>
-          <span style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text);">Súper y mayoristas: más baratos, pero de menor calidad (no son competencia).</span>
+          <span style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text);"><strong style="font-weight:700;">Supermercado y mayoristas:</strong> más económicos, pero de menor calidad (no son competencia).</span>
         </div>
         <div style="display:flex;align-items:flex-start;gap:18px;">
           <span style="width:16px;height:16px;flex:none;margin-top:9px;border-radius:4px;background:var(--color-accent);"></span>
-          <span style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text);">Naturistas y especializadas: calidad similar, pero más caras.</span>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:18px;">
-          <span style="width:16px;height:16px;flex:none;margin-top:9px;border-radius:4px;background:var(--color-accent);"></span>
-          <span style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text);">Conpro: la misma calidad, a un precio más conveniente.</span>
+          <span style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text);"><strong style="font-weight:700;">Naturistas y especializadas:</strong> calidad similar, pero en general a precios más elevados.</span>
         </div>
       </div>
     </div>
 
     <div style="background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:40px 44px 36px;display:flex;flex-direction:column;gap:20px;">
       <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Precio por producto · Conpro vs mercado</span>
-      <div class="chart-wrap" style="height:420px;"><canvas id="chart-precios"></canvas></div>
+      <div class="chart-wrap" style="flex:1;min-height:0;"><canvas id="chart-precios"></canvas></div>
     </div>
   </div>
 
@@ -952,30 +1078,75 @@
   <aside class="notes">Cada hogar deja ~$201.061 al año. Los 161 hogares del año 5 son apenas el 0,19% de los ~86.770 hogares del mercado potencial alcanzable: el cuello de botella no es el tamaño del mercado sino la velocidad a la que el boca a boca, el marketing y la retención logran captarlo. Queda casi todo por captar.</aside>
 </section>
 
-<section data-sid="18-costos" class="slide" data-label="Stat grid" data-speaker-notes="Inversión acotada como número ancla; fijos livianos; variables por reinversión. Acento en la inversión." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+<section data-sid="18-costos" class="slide" data-label="Inversión y costos" data-speaker-notes="Inversión inicial acotada como número ancla; el desglose (plataforma 65%, marca 10%, legal 25%) en el pie; a la derecha los tres tipos de costo. Acento en los montos." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
   <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
     <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
     <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">18 / 28</span>
   </header>
 
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
-      <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Costos</span>
-    </div>
-    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:56px;">Una inversión acotada, costos livianos</h2>
+  <div style="flex:1;display:flex;flex-direction:column;padding-top:20px;">
+    <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:8px;">Costos</span>
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.0;letter-spacing:-0.02em;color:var(--color-text);padding-bottom:16px;border-bottom:1px solid var(--color-grid);">Estructura de inversión y costos del proyecto</h2>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--color-grid);border-top:1px solid var(--color-grid);border-bottom:1px solid var(--color-grid);">
-      <div style="background:var(--color-accent);padding:48px 44px 44px;display:flex;flex-direction:column;gap:18px;">
-        <span style="font-family:var(--font-body);font-weight:600;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-on-accent);">$2.445.000</span>
-        <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-on-accent);opacity:0.72;">Inversión inicial: plataforma ($1,6 M) y gastos legales</span>
+    <div style="flex:1;display:grid;grid-template-columns:0.92fr 1.08fr;gap:64px;padding-top:24px;">
+
+      <!-- Left: stat + pie -->
+      <div style="display:flex;flex-direction:column;">
+        <span style="font-family:var(--font-display);font-weight:800;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-text);">$2.445.000</span>
+        <span style="font-size:var(--scale-body);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);margin-top:4px;padding-bottom:20px;border-bottom:1px solid var(--color-grid);">Inversión inicial total</span>
+
+        <div style="flex:1;min-height:0;overflow:hidden;display:flex;align-items:center;gap:36px;padding-top:14px;">
+          <svg viewBox="0 0 360 360" style="flex:0 0 auto;width:460px;height:460px;display:block;">
+            <path d="M 180,180 L 180,20 A 160,160 0 1,1 50.6,274.1 Z" style="fill:var(--color-accent);"></path>
+            <path d="M 180,180 L 50.6,274.1 A 160,160 0 0,1 20,180 Z" style="fill:var(--color-text);"></path>
+            <path d="M 180,180 L 20,180 A 160,160 0 0,1 180,20 Z" style="fill:var(--chart-series-2);"></path>
+            <text x="274" y="228" text-anchor="middle" dominant-baseline="middle" font-weight="800" font-size="30" style="font-family:var(--font-display);fill:var(--color-on-accent);">65%</text>
+            <text x="80" y="212" text-anchor="middle" dominant-baseline="middle" font-weight="800" font-size="24" style="font-family:var(--font-display);fill:var(--color-bg);">10%</text>
+            <text x="106" y="106" text-anchor="middle" dominant-baseline="middle" font-weight="800" font-size="28" style="font-family:var(--font-display);fill:var(--color-text);">25%</text>
+          </svg>
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:20px;">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="flex:none;width:18px;height:18px;border-radius:4px;background:var(--color-accent);"></span>
+              <span style="font-size:24px;line-height:1.25;color:var(--color-text);">Desarrollo<br>plataforma</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="flex:none;width:18px;height:18px;border-radius:4px;background:var(--color-text);"></span>
+              <span style="font-size:24px;line-height:1.25;color:var(--color-text);">Registro de marca</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="flex:none;width:18px;height:18px;border-radius:4px;background:var(--chart-series-2);"></span>
+              <span style="font-size:24px;line-height:1.25;color:var(--color-text);">Asesoramiento<br>legal</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="background:var(--color-bg);padding:48px 44px 44px;display:flex;flex-direction:column;gap:18px;">
-        <span style="font-family:var(--font-body);font-weight:600;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-text);">$310.000</span>
-        <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">Costos fijos al año: patente, hosting y servidor</span>
-      </div>
-      <div style="background:var(--color-bg);padding:48px 44px 44px;display:flex;flex-direction:column;gap:18px;">
-        <span style="font-family:var(--font-body);font-weight:600;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-text);">50%</span>
-        <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">De las utilidades reinvertidas en marketing (etapa inicial)</span>
+
+      <!-- Right: cost rows -->
+      <div style="display:flex;flex-direction:column;border-left:1px solid var(--color-grid);padding-left:56px;">
+
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;padding-bottom:28px;border-bottom:1px solid var(--color-grid);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;">
+            <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--color-text);">Costos fijos</span>
+            <span style="font-family:var(--font-display);font-weight:800;font-size:28px;color:var(--color-on-accent);background:var(--color-accent);padding:4px 16px;border-radius:6px;white-space:nowrap;font-variant-numeric:tabular-nums;">$310.000 / año</span>
+          </div>
+          <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">Patente, hosting y servidor de la plataforma.</span>
+        </div>
+
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:28px 0;border-bottom:1px solid var(--color-grid);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;">
+            <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--color-text);">Costos variables — marketing</span>
+            <span style="font-family:var(--font-display);font-weight:800;font-size:28px;color:var(--color-on-accent);background:var(--color-accent);padding:4px 16px;border-radius:6px;white-space:nowrap;">50% al inicio</span>
+          </div>
+          <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">Inversión en posicionamiento, financiada con reinversión de utilidades, decreciente en el tiempo.</span>
+        </div>
+
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;padding-top:28px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;">
+            <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--color-text);">Costo por venta</span>
+            <span style="font-family:var(--font-display);font-weight:800;font-size:28px;color:var(--color-on-accent);background:var(--color-accent);padding:4px 16px;border-radius:6px;white-space:nowrap;">Variable según producto</span>
+          </div>
+          <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">Monto pagado al proveedor por cada producto comercializado.</span>
+        </div>
       </div>
     </div>
   </div>
@@ -984,7 +1155,7 @@
     <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
   </footer>
 
-  <aside class="notes">Inversión inicial $2.445.000 ($1.600.000 plataforma + legales). Fijos ~$310.000/año. Variables: marketing por reinversión (50% inicial, decreciente) + costo por venta al proveedor.</aside>
+  <aside class="notes">Inversión inicial $2.445.000, desglosada en desarrollo de plataforma (65%), registro de marca (10%) y asesoramiento legal (25%). Costos fijos ~$310.000/año (patente, hosting, servidor). Variables: marketing 50% al inicio por reinversión de utilidades (decreciente) + costo por venta pagado al proveedor según producto.</aside>
 </section>
 
 <section data-sid="19-ganancias" class="slide" data-label="Tabla + gráfico" data-speaker-notes="Ganancia anual proyectada años 1-5. Tabla + barras. Año 5 destacado. Eje desde cero." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">

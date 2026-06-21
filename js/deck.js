@@ -130,12 +130,13 @@ const CHART_CONFIGS = {
   }),
   // TODO datos: precios exactos del Informe 3 (Ilustración 1). Valores aprox.
   'chart-precios': (cv) => Charts.barGroup(cv, {
-    labels: ['Huevos', 'Café', 'Aceite', 'Miel', 'Queso'],
-    yMax: 70000, yStep: 20000, yTitle: 'CLP',
+    labels: ['Huevos', 'Café', ['Aceite de', 'oliva'], 'Miel', 'Queso'],
+    yMax: 80000, yStep: 10000, legendPosition: 'bottom',
+    yFmt: (v) => '$' + Number(v).toLocaleString('es-CL'),
     series: [
-      { label: 'Mínimo mercado', role: 'muted', data: [9000, 28700, 61000, 7000, 12600] },
-      { label: 'Conpro', role: 'key', data: [9490, 29670, 34990, 6990, 10573] },
-      { label: 'Máximo mercado', role: 'base', data: [11990, 58000, 67776, 13000, 14990] },
+      { label: 'Precio mínimo', role: 'muted', data: [9490, 29670, 34990, 6990, 10573] },
+      { label: 'Conpro', role: 'key', data: [9000, 28700, 61000, 7000, 12600] },
+      { label: 'Precio máximo', role: 'base', data: [11990, 58000, 67776, 13000, 14990] },
     ],
   }),
 };
