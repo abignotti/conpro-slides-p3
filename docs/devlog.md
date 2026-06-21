@@ -4,6 +4,33 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Fix del gráfico de precios (slide 05) + bullets
+Qué hice:
+- **Bug encontrado:** en `chart-precios` las series **"Mínimo mercado" y "Conpro"
+  estaban intercambiadas** (p. ej. Aceite mostraba mín 61k / Conpro 35k cuando
+  debía ser mín 35k / Conpro 61k). Verificado contra la slide de referencia del
+  usuario: al swapear los `data` de esas dos series coinciden exactamente. Corregido.
+- Ajusté el gráfico a la referencia: eje **$0–$80.000 paso $10.000** con formato
+  `$` (es-CL, punto de miles), **leyenda abajo**, labels **"Precio mínimo / Conpro
+  / Precio máximo"**, quité el título de eje "CLP", y "Aceite de oliva" en 2 líneas
+  horizontales (label array) para que no se incline.
+- `js/charts.js`: agregué opciones `yFmt` (callback de formato del eje) y
+  `legendPosition` a `barGroup`/`scales` — con defaults que no afectan a los demás
+  gráficos (`chart-precios` es el único `barGroup`).
+- `05-mercado.html`: bullets de 3 → **2** con lead-in en negrita ("Supermercado y
+  mayoristas" / "Naturistas y especializadas"), kicker a "Análisis de mercado y
+  competencia", y ensanché la columna del gráfico (`0.92fr 1.08fr`) para que el
+  título del panel no se parta en dos líneas.
+- Nota de caché: los `<script src="js/*.js">` no se refrescan con `?r=N` (eso solo
+  busta el HTML); para ver cambios de JS hay que hard-reload (Cmd+Shift+R).
+Decisiones:
+- Dejé el **título** de la slide como estaba ("Compite con las especializadas, no
+  con el supermercado"); la referencia traía otro ("Conpro compite con tiendas
+  naturistas y especializadas") pero el usuario solo pidió cambiar los bullets.
+Próximo paso: confirmar título con el usuario; crear el PR.
+
+---
+
 ## [2026-06-21] — Slide 04 → "¿Qué es Conpro?" (diagrama) con la skill
 Qué hice:
 - Reemplacé `04-propuesta.html` (antes "Cita / Propuesta de valor") por el nuevo
