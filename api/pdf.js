@@ -46,6 +46,14 @@ export default async function handler(req, res) {
       headless: chromium.headless,
     });
     const page = await browser.newPage();
+    // Si el deployment está protegido (Vercel Authentication), la función no
+    // hereda la sesión del navegador del usuario: al pedir su PROPIA URL recibe
+    // el muro de SSO en vez del deck. Con "Protection Bypass for Automation"
+    // activado, Vercel expone VERCEL_AUTOMATION_BYPASS_SECRET; lo mandamos como
+    // header en CADA request (documento + subrecursos same-origin: css/js/assets)
+    // para que la función pueda leer el deck. Si no está, no se manda (inerte).
+    const bypass = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+    if (bypass) await page.setExtraHTTPHeaders({ 'x-vercel-protection-bypass': bypass });
     await page.goto(url, { waitUntil: 'networkidle0', timeout: 45000 });
     await page.waitForFunction('window.__deckPrintReady === true', { timeout: 45000 });
     // Esperas en el lado Node (timers confiables): fuentes + asentado de los
