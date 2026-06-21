@@ -4,8 +4,8 @@
     <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">05 / 28</span>
   </header>
 
-  <div style="flex:1;display:grid;grid-template-columns:0.92fr 1.08fr;gap:72px;align-items:center;">
-    <div>
+  <div style="flex:1;display:grid;grid-template-columns:0.92fr 1.08fr;gap:72px;align-items:stretch;padding:24px 0;">
+    <div style="display:flex;flex-direction:column;justify-content:center;">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
         <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Análisis de mercado y competencia</span>
       </div>
@@ -24,7 +24,7 @@
 
     <div style="background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:40px 44px 36px;display:flex;flex-direction:column;gap:20px;">
       <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Precio por producto · Conpro vs mercado</span>
-      <div class="chart-wrap" style="height:420px;"><canvas id="chart-precios"></canvas></div>
+      <div class="chart-wrap" style="flex:1;min-height:0;"><canvas id="chart-precios"></canvas></div>
     </div>
   </div>
 
