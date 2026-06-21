@@ -19,6 +19,11 @@ export default async function handler(req, res) {
   const q = req.query || {};
   const theme = THEMES.includes(q.theme) ? q.theme : 'Mostaza claro';
   const typeset = TYPESETS.includes(q.typeset) ? q.typeset : 'Corporativo';
+  // Slides a excluir del PDF: data-sid separados por coma. Se sanea a tokens
+  // tipo slug (espejo del formato que inyecta build.py) para no propagar basura.
+  const hidden = String(q.hidden || '')
+    .split(',').map((s) => s.trim())
+    .filter((s) => /^[a-z0-9-]+$/i.test(s));
 
   // URL absoluta del propio deployment (prod, preview o `vercel dev`).
   const host = req.headers['x-forwarded-host'] || req.headers.host || process.env.VERCEL_URL;
@@ -28,8 +33,9 @@ export default async function handler(req, res) {
   }
   const proto = req.headers['x-forwarded-proto']
     || (/^(localhost|127\.)/.test(host) ? 'http' : 'https');
-  const url = `${proto}://${host}/index.html?print-pdf`
+  let url = `${proto}://${host}/index.html?print-pdf`
     + `&theme=${encodeURIComponent(theme)}&typeset=${encodeURIComponent(typeset)}`;
+  if (hidden.length) url += `&hidden=${encodeURIComponent(hidden.join(','))}`;
 
   let browser;
   try {

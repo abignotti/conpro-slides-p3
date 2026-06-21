@@ -4,6 +4,23 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Control de visibilidad de slides (ocultar/mostrar en vivo)
+Qué hice:
+- **Panel "☰ Slides"** nuevo en `buildPicker` (deck.js): lista las 34 slides (número + título tomado del `h1/h2`, con fallback `data-label`/`data-sid`) y un botón "ojo" por fila para **ocultar/mostrar cada slide en vivo**. Al ocultar, la numeración de las visibles se **recalcula sola** (sin huecos) y la navegación las **salta**. Se abre/cierra con el botón y se oculta junto al chrome con la tecla **T**.
+- **Persistencia en `localStorage`** (`conpro-hidden-slides`, set de `data-sid`): el estado oculto sobrevive a la recarga.
+- **PDF excluye las ocultas:** el botón "Descargar PDF" agrega `&hidden=sid,sid` al fetch; `api/pdf.js` lo sanea (slug `[a-z0-9-]`) y lo reenvía a `index.html?print-pdf&hidden=…`. En print, las ocultas se sacan antes de inicializar → no salen en el PDF.
+- **IDs estables:** `scripts/build.py` ahora inyecta `data-sid="<archivo>"` (p. ej. `03-juan`) en cada `<section>`, para referenciar slides sin depender de la posición (no se duplica si ya existe).
+Decisiones/bugs:
+- **`data-visibility="hidden"` de reveal NO sirve:** verificado en vivo que reveal 5.1 igual navega a la slide (no la excluye de `getTotalSlides`/navegación). **Mecanismo elegido: sacar la `<section>` del DOM** y llamar `Reveal.sync()` + `Reveal.layout()` → recalcula total, navegación y barra de progreso. Se reinserta en su posición usando `SLIDE_ORDER` (orden canónico capturado al cargar) y `el.isConnected` como indicador de "oculta".
+- **Bug de idempotencia en `numberSlides`:** tras la 1ª pasada el span queda como "04" (sin "/ 28"), así que la regex `NN / NN` ya no lo reencontraba en las re-pasadas. Fix: al ubicarlo la 1ª vez se le marca `data-page`, que las pasadas siguientes usan directo.
+- **Recordatorio (worktrees + puerto):** otra vez el `localhost:8753` lo tenía tomado OTRO workspace (`yokohama`); verifiqué en un puerto propio (8760). Mismo aprendizaje que la entrada del PDF.
+- Verificado en navegador: ocultar 2 slides → total 34→32 y renumeración (06→04); navegación salta las ocultas; mostrar → vuelve a 34; persistencia tras recarga; tecla T oculta picker+panel; URL del PDF lleva `&hidden=…`; print mode (`?print-pdf&hidden=07-dependencia`) excluye la slide (33 págs).
+- **Mensaje de error del PDF aclarado:** el botón daba un `alert` genérico en voseo ("Revisá la consola") al pegar contra el server estático local, donde `/api/pdf` da 404 (la función serverless solo corre en Vercel). Ahora detecta el 404 y muestra mensaje neutro y claro ("necesita el entorno Vercel — deploy o `vercel dev`"); para export local sin Vercel queda `node scripts/export-pdf.mjs`. No era un bug del feature.
+- **Rebase a main:** `HEAD` ya estaba en `origin/main` (`ca37dc4`); `reimport-deck-redo` es un ancestro más viejo. No había nada que rebasar ni conflictos; ninguna entrada de devlog en riesgo.
+Próximo paso: probar el PDF real con las ocultas en `vercel dev`/deploy (el `/api/pdf` no corre bajo `http.server`).
+
+---
+
 ## [2026-06-21] — Botón "Descargar PDF": export headless on-demand (idéntico a la web)
 Qué hice:
 - **Reactivé el export a PDF** (estaba retirado por verse mal) con un enfoque nuevo: render **headless** que produce un PDF **idéntico** a la web, respetando el **tema/tipografía activos** al apretar el botón.
