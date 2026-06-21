@@ -4,6 +4,32 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Auto-resolución de conflictos de PR (gitattributes + merge driver)
+Qué hice (para no rehacer la resolución manual de conflictos en cada PR/sesión):
+- **`.gitattributes`** nuevo:
+  - `docs/devlog.md merge=union` → git conserva las entradas de AMBOS lados al
+    mergear (built-in, sin setup). Automatiza la regla "INTEGRAR, nunca descartar".
+  - `index.html` / `moldes.html` `merge=deck-rebuild` → driver custom que **regenera**
+    los decks desde los partials en vez de mezclar HTML a mano.
+- **`scripts/git-merge-deck.sh`**: el merge driver. Corre `scripts/build.py` y usa su
+  salida como resultado; **aborta (exit 1) si algún partial tiene marcadores** de
+  conflicto (no enmascara conflictos de contenido reales).
+- **`scripts/setup-git.sh`**: registra el driver en la config de git (una vez por
+  repo; los worktrees de Conductor comparten config). El `union` no necesita setup.
+- **CLAUDE.md**: sección nueva "PRs sin conflictos (regla dura)"; punteros desde las
+  notas viejas (devlog + workspaces).
+Decisiones/bugs:
+- **Probado end-to-end:** dos ramas que tocan devlog (top) + index.html → el merge
+  **se auto-resolvió sin conflictos**; el devlog conservó las dos entradas y el
+  index.html se regeneró limpio (0 marcadores). Ramas temporales, restauradas.
+- **Por qué un driver y no quitar el HTML del repo:** Vercel sirve el `index.html`
+  committeado (sin build step), así que los generados deben seguir versionados;
+  regenerarlos en el merge es la vía limpia.
+- Flujo recomendado: `git fetch && git merge origin/main` ANTES de abrir el PR.
+Próximo paso: en un clon/worktree nuevo, correr `sh scripts/setup-git.sh` una vez.
+
+---
+
 ## [2026-06-21] — Control de visibilidad de slides (ocultar/mostrar en vivo)
 Qué hice:
 - **Panel "☰ Slides"** nuevo en `buildPicker` (deck.js): lista las 34 slides (número + título tomado del `h1/h2`, con fallback `data-label`/`data-sid`) y un botón "ojo" por fila para **ocultar/mostrar cada slide en vivo**. Al ocultar, la numeración de las visibles se **recalcula sola** (sin huecos) y la navegación las **salta**. Se abre/cierra con el botón y se oculta junto al chrome con la tecla **T**.
