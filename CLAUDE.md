@@ -29,7 +29,7 @@ el *dónde* vamos, en `docs/devlog.md`. Este archivo es solo reglas.
   `js/deck.js` (`numberSlides`) según la **posición real** del slide en el deck.
   **Nunca lo hardcodees ni renumeres a mano**: al agregar/quitar/reordenar
   slides, se recalcula solo (por eso no hay que tocar todos los archivos en cada
-  iteración). En un slide nuevo, dejá en el header el `<span>` placeholder
+  iteración). En un slide nuevo, deja en el header el `<span>` placeholder
   (`NN / 28`, o un `data-page` vacío) y el JS lo sobrescribe. Slides a pantalla
   completa sin header (p. ej. el demo) quedan sin número, pero igual cuentan la
   posición. El total ("/ 28") se omite a propósito.
@@ -108,7 +108,7 @@ entradas viejas.
 
 ## Lecciones
 <!-- Vacío al inicio. Cuando me corrijas (tecla #) o salga una lección durable del
-     "Decisiones/bugs" del devlog, queda acá y no se repite. -->
+     "Decisiones/bugs" del devlog, queda aquí y no se repite. -->
 - **Slides con mucho contenido → usar `justify-content:flex-start` en el cuerpo, no
   `center`.** Con `center`, el contenido que excede la región desborda hacia ARRIBA y
   se monta sobre el header; `fitSlide` solo detecta/escala el desborde hacia abajo.

@@ -4,6 +4,14 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Regla de comunicación concisa + normalización a español neutro
+Qué hice:
+- `CLAUDE.md` → Comunicación: nueva regla **"conciso pero completo"** (bullets/tablas/diagramas, conclusión primero, sin relleno; el usuario pregunta si algo no queda claro). También en memoria (`user-comms-concise`).
+- Normalicé el voseo restante a español neutro: `CLAUDE.md` ("dejá"→"deja", "acá"→"aquí"). El devlog ya estaba en neutro (sin formas voseo). Solo cambió el dialecto, no el contenido; el voseo de los ejemplos citados (línea "vos tenés", "fijate") se deja a propósito.
+Próximo paso: mergear PR #1 (incluye demo + estas reglas).
+
+---
+
 ## [2026-06-21] — Reglas nuevas en CLAUDE.md (idioma, PRs, workspaces)
 Qué hice:
 - Documenté tres reglas en `CLAUDE.md`:
