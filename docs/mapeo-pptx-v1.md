@@ -8,6 +8,71 @@
 >
 > Última actualización: 2026-06-21.
 
+## ⚠️ Delta v2 (recibida 2026-06-21 · 36 slides · 9,9 MB)
+Llegó otra versión más nueva (`.context/new-deck-v2.pptx`, **36 slides**, +1 vs
+la anterior). Casi idéntica a la v1 de abajo, pero con un cambio estructural en
+la zona ingresos/captación + confirma hacia dónde van:
+
+1. **🆕 Slide 20 "Ingresos según Demanda"** (NUEVA, no estaba en v1): tabla de
+   ingresos por año (Año 1-5: 60/93/122/143/161 hogares → $13M/$21M/$28M/$33M/$37M)
+   + tarjeta **Ingreso por hogar $201.061** + tarjeta **Ingresos por despacho:
+   Mixto**. → la web **no la tiene** (hay que crearla).
+2. **🔄 Slide 21 "Mercado alcanzable / captación"**: bajó de **4 a 3 KPIs**
+   (Hogares año 5 161 · Penetración 0,19% · Mercado potencial 86.770). El
+   **$201.061 se movió** a la slide 20. → la web `17b` hoy tiene 4 KPIs (incl.
+   $201.061): hay que **sacarle esa tarjeta** y dejar 3.
+3. **✏️ Techo (slide 14)**: ahora dice "no rompe el **techo operacional**"
+   (antes "el techo"). Minor.
+4. **✅ Confirma alineación**: sección 05 = "Resultados y recomendaciones", VAN
+   sin TIR, Demanda "conservador", Resultados CBO 3 tarjetas — todo lo que ya
+   apliqué en el lote 1 coincide con esta v2.
+
+Siguen pendientes (ya conocidos de v1, aún sin integrar): 🆕 "¿Puede Conpro
+sostener…?" (slide 26) y 🆕 "Análisis de Sustentación" (slide 27). Y siguen los
+duplicados viejos de sensibilidad/márgenes/flexibilidad (slides 24/25/28) +
+ganancias eliminada del PPTX (la web aún la tiene en `19-ganancias`).
+
+**✅ Implementado (2026-06-21):** la web ya está alineada con la v2 en esta zona:
+- 🆕 `presentacion/17b-ingresos-demanda.html` — **"Ingresos según la demanda"**:
+  tarjeta $201.061 + tarjeta "Despacho · Mixto (domicilio + pick up)" + tabla por
+  año (60→161 hogares · $13M→$37M). [PPTX 20]
+- 🔄 `presentacion/17c-mercado-alcanzable.html` — la captación (antes `17b`)
+  **renombrada** y recortada a **3 KPIs** (161 · 0,19% · 86.770) + barra de
+  holgura. [PPTX 21]
+- 🆕 `presentacion/20b-pregunta-sostener.html` — pregunta-ancla "¿Puede Conpro
+  sostener…?", antes del divisor de robustez. [PPTX 26]
+- 🆕 `presentacion/21b-sustentacion.html` — "Análisis de Sustentación" (Imitación
+  / Sustitución / Expropiación de renta), primer tema de robustez. [PPTX 27]
+- ✏️ `12-techo` — "no rompe el **techo operacional**". [PPTX 14]
+
+**Pendiente / decisión:** `19-ganancias` **se mantiene por ahora** (el PPTX v2 la
+eliminó; decisión de revisar más adelante). Siguen como están los rediseños
+"formato distinto" (Juan, Propuesta, Cómo funciona, Costos-torta).
+
+## ⚠️ Delta de la versión recibida 2026-06-21 (editada por compañeras)
+Llegó un PPTX nuevo (`.context/attachments/.../Conpro-P3-v1.pptx`, 35 slides,
+mismo nombre). Estructura casi idéntica a la ya mapeada, pero con **4 cambios
+reales** respecto del deck web actual:
+
+1. **🆕 `25 · ¿Puede Conpro sostener esa rentabilidad…?`** — pregunta-ancla nueva
+   (no existe en la web). Iría antes del bloque de robustez.
+2. **🆕 `26 · Análisis de Sustentación`** — slide nueva: Imitación / Sustitución
+   (interés −7,5% → VAN −55%; −12,5% → −83%) / Expropiación de renta. *(El PPTX
+   trae un emoji azul placeholder encima del texto — WIP.)*
+3. **🔄 `20 · Mercado alcanzable · "El desafío no es mercado, es captación"`** —
+   **rediseñada**: pasó del gráfico de ingresos (web `17b`) a una grilla de 4 KPIs
+   (Ingreso/hogar $201.061 · Hogares año 5 = 161 · Penetración 0,19% · Mercado
+   86.770) + frase "el límite no es quedarse sin clientes, sino captarlos más
+   rápido".
+4. **➖ Ganancias proyectadas eliminada** — el PPTX salta la página 19; la web aún
+   tiene `19-ganancias`. Decidir si se quita o se mantiene.
+
+Lo demás (Juan buyer-persona, propuesta 2 tarjetas, cómo-funciona título+diagrama,
+costos con torta, duplicados viejos de sensibilidad/márgenes/flexibilidad,
+nombres de sección, "conservador" vs "base", TIR) ya estaba registrado abajo y
+**no cambió** respecto de la versión anterior. El slide 16 del PPTX es el
+**screenshot del demo** (= web `14b`), no la explicación de plataforma.
+
 ## Qué es el PPTX v1
 Versión **intermedia / de transición**, **no** el deck web actual. Señales:
 1. **Tiene duplicados**: trae la versión vieja y verbosa de

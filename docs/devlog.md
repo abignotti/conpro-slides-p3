@@ -20,6 +20,47 @@ Próximo paso: probar el botón en Vercel (`vercel dev` o deploy preview) — el
 
 ---
 
+## [2026-06-21] — Alineación con el PPTX v2 (36 slides): 3 slides nuevas + split ingresos/captación
+Qué hice (tras mapear `.context/new-deck-v2.pptx`; ver "Delta v2" en `docs/mapeo-pptx-v1.md`):
+- 🆕 **`17b-ingresos-demanda.html` = "Ingresos según la demanda"** (NUEVA): tarjeta acento $201.061 + tarjeta "Despacho · Mixto (domicilio + pick up)" + tabla por año (Hogares 60→161, Ingresos $13M→$37M, Año 5 destacado). Reemplaza al `17b` viejo (que era la captación). [PPTX 20]
+- 🔄 **`17c-mercado-alcanzable.html`** (= la captación, `git mv` desde `17b`): recortada de 4 a **3 KPIs** (161 · 0,19% · 86.770); el $201.061 se movió a la slide de ingresos. [PPTX 21]
+- 🆕 **`20b-pregunta-sostener.html`** = pregunta-ancla "¿Puede Conpro sostener esa rentabilidad…?" (molde cita, igual que `15-vale-la-pena`), antes del divisor de robustez. [PPTX 26]
+- 🆕 **`21b-sustentacion.html`** = "Análisis de Sustentación" → 01 Imitación (acento) · 02 Sustitución · 03 Expropiación de renta (molde bullets, igual que recomendaciones). Primer tema de robustez. [PPTX 27]
+- ✏️ **`12-techo`**: "no rompe el **techo operacional**". [PPTX 14]
+- Build OK (34 slides). QA visual a 1920×1080 (playwright) de las 5 slides: sin desbordes ni solapes. Numeración automática reacomodó todo (no se tocó a mano).
+Decisiones/bugs:
+- **`19-ganancias` se mantiene** por ahora (el PPTX v2 la eliminó; el usuario decide revisarlo después). No se borró contenido.
+- "Despacho Mixto" = **domicilio + pick up** (confirmado por el usuario; primero había puesto "retiro en conserjería").
+- Colocación: pregunta-ancla antes del divisor de robustez (paralelo a `15-vale-la-pena`); Sustentación como primer tema de la sección.
+- Orden por nombre de archivo: `17b` < `17c`; `20-van` < `20b`; `21-divisor` < `21b` → quedan en la posición correcta sin renumerar.
+Próximo paso: decidir definitivamente ganancias; ¿adoptar los rediseños "formato distinto" del PPTX (Juan buyer-persona, Propuesta 2 tarjetas, Cómo funciona, Costos con torta)?; deploy.
+
+## [2026-06-21] — Ajustes lote 1 del PPTX nuevo (compañeras) → deck web
+Qué hice (al portar el `Conpro-P3-v1.pptx` re-editado; ver delta en `docs/mapeo-pptx-v1.md`):
+- **Sección 05 renombrada** "Robustez y decisión" → **"Resultados y recomendaciones"** en los 5 divisores (`02/09/13/16/21-divisor*`), alineando al PPTX. En `21` cambia también el h2 y las notas.
+- **`17-demanda`**: caption del gráfico "escenario base" → **"escenario conservador"** (corrige inconsistencia interna: notas y VAN ya decían conservador).
+- **B · `11-resultados-cbo`**: de 4 tarjetas a **3** (se quita "Inversión $295.000"; el dato vive en `10-que-es-cbo`). Grid `repeat(4,1fr)`→`repeat(3,1fr)`.
+- **A · `20-van-payback`**: rediseño — se reemplaza la **tabla con TIR** por un **gráfico de barras** (`chart-van`: Pesimista 1,12 · Conservador 2,39 acento · Optimista 3,97 M$), conservando los chips WACC 29,59% + Payback base 3 años. Sin TIR (sigue al PPTX). Nuevo config `chart-van` en `js/deck.js`.
+- **C · `17b-ingresos-demanda`**: rediseño completo "**El desafío no es mercado, es captación**" — grilla de 4 KPIs ($201.061/hogar · 161 · 0,19% · 86.770) + **barra de holgura** (track muteado con sliver acento 0,19% + "161 captados" / "≈ 86.600 por captar"). Reemplaza el gráfico de ingresos; se quita el config `chart-ingresos` de `js/deck.js`.
+
+Refinamientos (feedback del usuario, mismo lote):
+- **`js/charts.js` · `bar()` con 3 opciones nuevas** (reutilizables): `valueLabelAll` (rotula TODAS las barras, no solo la clave), `colorRamp` (rampa de opacidad del acento vía nuevo helper `withAlpha`: clara la 1ª → opaca la última) y `stagger` (cada barra crece **desde la base** con retardo `dataIndex*220ms`, año 1→5). El plugin `valueLabel` ahora omite la etiqueta mientras la barra sigue pegada a la base, para que el número aparezca junto con la barra.
+- **VAN (`chart-van`)**: `valueLabelAll` → número sobre las 3 barras (1,12 / 2,39 / 3,97).
+- **Demanda (`chart-demanda`)**: `valueLabelAll` + `colorRamp` + `stagger` → número en cada barra, amarillo de claro (año 1) a oscuro (año 5) y aparición escalonada desde el eje X. Verificado frame-a-frame con playwright.
+- **17b**: sliver de la barra de holgura 0,19%→**6%** (pedido: que no se vea tan vacía, aunque no sea representativo) y la frase "captarlos más rápido" en **una sola línea** (`white-space:nowrap`, quité el `max-width`).
+- **Animación de gráficos cada vez que se entra a la slide** (pedido): `Charts.replay(canvas)` (reconstruye el gráfico, mismo camino que el cambio de tema) + `initChartsIn` ahora hace `replay` si el canvas ya estaba `inited` (antes solo animaba en la 1ª visita). Aplica a todos los gráficos (consistente con el count-up del hero). Bug encontrado y corregido: `replay` no estaba en el `return` del IIFE de `charts.js` → `Charts.replay is not a function`; verificado con playwright que la barra del año 5 espera su delay (~880ms) y luego crece desde la base. Subí el timeout de impresión PDF a 1900ms para dar margen al stagger.
+- **VAN · unidad por barra** (pedido): nuevo `valueLabelFmt` en `bar()`; `chart-van` rotula `$1,12 M / $2,39 M / $3,97 M` (no solo el eje Y).
+- **Barras desde abajo hacia arriba en Demanda y VAN** (pedido): `chart-van` ahora también `stagger: true` → las barras crecen desde la base (eje X), escalonadas Pesimista→Conservador→Optimista, igual que Demanda. Verificado por probe (alturas de barra suben de 0 al valor final).
+Verificación:
+- `build.py` OK; sin "Robustez y decisión" ni `chart-ingresos` residuales. QA visual a 1920×1080 (playwright) de las 5 slides tocadas: sin desbordes ni solapes.
+- **Server local en 8753 estaba ocupado por la workspace `nashville`** (servía contenido viejo y confundió el primer QA). Levanté esta workspace en **8755**. Ojo a futuro: verificar el cwd del server (`lsof`) antes de confiar en el link.
+Decisiones/bugs:
+- El elemento visual de C (barra de holgura) queda **estático pero "animation-ready"** (count-up 0→161 / crecimiento del sliver) para el pase de animaciones (skill Emil), no ahora.
+- `chart-van` usa M$ con `valueLabel` (sólo rotula la barra clave, patrón del deck).
+Próximo paso (plan aparte): 2 slides **nuevas** del PPTX — pregunta-ancla "¿Puede Conpro sostener…?" y "Análisis de Sustentación" (Imitación/Sustitución/Expropiación). Pendiente decisión: quitar o no `19-ganancias` (el PPTX la eliminó).
+
+---
+
 ## [2026-06-21] — Regla de comunicación concisa + normalización a español neutro
 Qué hice:
 - `CLAUDE.md` → Comunicación: nueva regla **"conciso pero completo"** (bullets/tablas/diagramas, conclusión primero, sin relleno; el usuario pregunta si algo no queda claro). También en memoria (`user-comms-concise`).
