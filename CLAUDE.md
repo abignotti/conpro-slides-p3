@@ -16,6 +16,9 @@ el *dónde* vamos, en `docs/devlog.md`. Este archivo es solo reglas.
   repetir lo ya dicho. Da la conclusión/recomendación primero; el detalle
   después, solo si suma. Si algo queda incompleto u oscuro, el usuario
   preguntará — no infles la respuesta por las dudas.
+- **Ante cualquier decisión, entrega siempre tu recomendación.** No solo listes
+  opciones: di cuál eliges tú y por qué, en una línea. En las preguntas con
+  opciones, marca la recomendada ("(recomendado)"). (Pedido explícito del usuario.)
 
 ## Convenciones (reglas duras — estructura/proceso)
 - **1 archivo por slide.** Los moldes (biblioteca reutilizable de 22 templates)
@@ -76,6 +79,12 @@ entradas viejas.
   recuérdaselo al cerrar la sesión.
 - **Devlog continuo:** además del cierre, escribe una entrada después de cada
   feature/implementación (agrupando varios fixes en una sola entrada).
+- **Conflictos de merge en `docs/devlog.md` → INTEGRAR, nunca descartar.** Como cada
+  sesión/rama agrega su entrada arriba, las ramas chocan en el mismo lugar. Al
+  resolver, **conservar TODAS las entradas de ambos lados** (las tuyas y las de otras
+  sesiones), concatenándolas, lo nuevo arriba. Nunca quedarse con un solo lado ni
+  perder una entrada. Verificar después que no falte ninguna ni haya duplicados
+  (p. ej. `comm`/`uniq` sobre los encabezados `## [...]`).
 
 ## Git
 - Commits **en inglés**.

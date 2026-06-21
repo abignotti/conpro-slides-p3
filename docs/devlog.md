@@ -59,6 +59,61 @@ Decisiones/bugs:
 - `chart-van` usa M$ con `valueLabel` (sólo rotula la barra clave, patrón del deck).
 Próximo paso (plan aparte): 2 slides **nuevas** del PPTX — pregunta-ancla "¿Puede Conpro sostener…?" y "Análisis de Sustentación" (Imitación/Sustitución/Expropiación). Pendiente decisión: quitar o no `19-ganancias` (el PPTX la eliminó).
 
+## [2026-06-21] — Animaciones (piloto): sistema de entradas + timeline 1→5
+Qué hice:
+- **Skills de Emil Kowalski instaladas** (`.agents/skills/`): `emil-design-eng`
+  (criterio de motion) y `review-animations` (QA). Leídas antes de usar. El criterio
+  guía el "feel"; el motor sigue siendo CSS + reveal.js + Chart.js (sin GSAP).
+- **`js/anim.js` (nuevo) — orquestador genérico de entradas.** En cada cambio de slide
+  (enganchado en `deck.js::onSlide`) hace un *stagger* de los hijos directos del cuerpo
+  (`.slide > div`) con `opacity` + `translateY`, easing ease-out fuerte
+  (`--ease-out: cubic-bezier(0.23,1,0.32,1)`), `--anim-enter: 460ms`,
+  `--anim-stagger: 55ms`. **Sin tocar los 31 partials.** Solo transform/opacity (GPU),
+  con transiciones (interrumpibles). Respeta `prefers-reduced-motion` (mantiene opacity,
+  sin movimiento). Excluye el demo (`data-no-anim` en `14b`) y el modo `?print-pdf`.
+- **Momento firmado slide 06 (timeline 1→5):** el paso activo se resalta en acento y
+  avanza 1→5 con **flecha o clic** (fragments invisibles `[data-seq-marker]` →
+  `paintSequence` pinta activo/completado/reposo). Línea de progreso con `scaleX` (GPU).
+  Idea original del usuario.
+- **Count-up de KPIs:** marqué `data-hero` en los 3 stats del slide 08 (activa el
+  `animateHero` ya existente, es-CL). Los gráficos Chart.js ya animaban (600ms easeOut).
+- **Bullets secuenciales (pedido del usuario):** `paintBullets` en `anim.js` + marcas
+  `[data-seq-bullets]`/`[data-seq-bullet]` (con `class="fragment"`) en el slide 27. Los
+  bullets aparecen de a uno (flecha/clic); el activo queda a plena opacidad y los ya
+  mostrados se atenúan (0.4). Al mostrar TODOS, vuelven todos a opacidad 1 (estado final
+  uniforme → respeta el feedback de "bullets parejos"). Aplicado a slides **27 y 07**
+  (en 07 unifiqué los marcadores 02/03 a acento, antes en gris → además cumple el
+  feedback de "marcadores todos en acento"). FODA (26) excluido a pedido del usuario.
+  Verificado en browser (puerto 8761).
+- Nuevos tokens de motion en `tokens.css`; `anim.js` añadido al shell del build.
+- Regla nueva (pedido del usuario) en `CLAUDE.md` + memoria: **ante cualquier decisión,
+  entregar siempre mi recomendación.**
+Decisiones/bugs:
+- **Auto-QA con criterio `review-animations`:** corregí 2 hallazgos antes de cerrar —
+  (1) la línea de progreso animaba `width` (layout) → pasada a `transform: scaleX()`;
+  (2) `paintSequence` no respetaba reduced-motion → ahora omite el `scale` (mantiene el
+  color, que ayuda a comprender).
+- Entrada de **460ms** (>300ms del bar de UI): excepción justificada para deck
+  proyectado/explicativo, visto una vez por la audiencia (el bar permite "longer" en
+  marketing/explanatory).
+- Verificado en browser (slides 06, 08, 27): sin errores de consola; timeline y bullets
+  avanzan con flecha y clic; KPIs con valor final correcto; demo sin animación.
+- **Caché del server local:** el browser sirve `index.html` cacheado; usar cache-buster
+  (`?v=N`) o hard-reload tras cada rebuild para ver los cambios (ya estaba documentado).
+- **Conflicto con rama `map-pptx-vs-web-slides`** (revisado, 1 commit por delante de main,
+  "chart animations"): toca `js/charts.js` (yo NO lo toqué → sin choque; sus animaciones
+  de barras y mi entrada de slide son capas independientes) y `js/deck.js` (sus cambios en
+  `CHART_CONFIGS`/`initChartsIn`/print vs mi 1 línea en `onSlide` → hunks separados,
+  auto-merge). Conflictos triviales solo en `docs/devlog.md` e `index.html` (regenerado).
+  Recomendación: mergear map a main primero, luego rebasar esta rama; evitar editar por-slide
+  los archivos que map tocó (divisores 02/09/13/16/21, 11, 17, 17b, 20) — la entrada genérica
+  ya los anima sin tocarlos.
+- **Puerto por workspace:** el server local quedó en **8761** (no 8753): el 8753 es la
+  convención pero choca cuando hay varios workspaces en paralelo (cada uno con su server).
+  Otros workspaces estaban en 8755/8757.
+Próximo paso: rollout restante → `data-hero` en KPIs (15; 11/20 tras mergear map);
+afinar entrada en slides densas vs `fitSlide`. Commit pendiente de OK.
+
 ---
 
 ## [2026-06-21] — Regla de comunicación concisa + normalización a español neutro
