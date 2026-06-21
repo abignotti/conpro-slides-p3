@@ -4,6 +4,18 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Reglas nuevas en CLAUDE.md (idioma, PRs, workspaces)
+Qué hice:
+- Documenté tres reglas en `CLAUDE.md`:
+  - **Comunicación (sí o sí):** hablar y escribir siempre en español latino neutro, no argentino (sin voseo ni modismos rioplatenses). Aplica a mensajes, comentarios, docs y devlog; los commits de git siguen en inglés. También guardado en memoria del proyecto (`user-language-spanish`).
+  - **Git → crear PRs con permisos:** el token activo por defecto es de integración (`ghu_`, vía `GH_TOKEN`) y no puede crear PRs; hay un token OAuth en el keyring (`gho_`) que sí. Workaround: `env -u GH_TOKEN -u GITHUB_TOKEN gh pr create --base main …`. El `git push` normal funciona sin el truco.
+  - **Eficiencia y workspaces (Conductor):** recomendar de forma proactiva trabajar en otro workspace cuando una tarea pueda correr en paralelo y ahorre tiempo, evaluando antes el riesgo de conflictos (los generados se arreglan re-buildeando; los partials solo chocan si dos ramas tocan el mismo archivo).
+Decisiones/bugs:
+- Las entradas viejas del devlog y del propio `CLAUDE.md` quedan en su redacción original (voseo); la regla de español neutro aplica de aquí en adelante, no se reescribe lo previo.
+Próximo paso: mergear el PR del demo (#1) y seguir con animaciones (skill Emil Kowalski).
+
+---
+
 ## [2026-06-21] — Demo: light mode por default, full-bleed real y flechas sobre el iframe
 Qué hice:
 - **Light mode por default** en el demo embebido: cambié el estado inicial de la app (`assets/plataforma-demo.html`, `darkMode:true → false`). El toggle sol/luna sigue funcionando, solo cambia el arranque. Fondo del contenedor en `14b-demo-plataforma.html` de `#0F0F0F` → `#faf9f5` para que no haya flash oscuro.
