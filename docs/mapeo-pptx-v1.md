@@ -32,9 +32,22 @@ sostener…?" (slide 26) y 🆕 "Análisis de Sustentación" (slide 27). Y sigue
 duplicados viejos de sensibilidad/márgenes/flexibilidad (slides 24/25/28) +
 ganancias eliminada del PPTX (la web aún la tiene en `19-ganancias`).
 
-**Acciones para alinear la web a v2:** crear 3 slides (Ingresos según Demanda,
-pregunta-ancla, Análisis de Sustentación), recortar `17b` a 3 KPIs, y el minor de
-"techo operacional". Decidir ganancias.
+**✅ Implementado (2026-06-21):** la web ya está alineada con la v2 en esta zona:
+- 🆕 `presentacion/17b-ingresos-demanda.html` — **"Ingresos según la demanda"**:
+  tarjeta $201.061 + tarjeta "Despacho · Mixto (domicilio + pick up)" + tabla por
+  año (60→161 hogares · $13M→$37M). [PPTX 20]
+- 🔄 `presentacion/17c-mercado-alcanzable.html` — la captación (antes `17b`)
+  **renombrada** y recortada a **3 KPIs** (161 · 0,19% · 86.770) + barra de
+  holgura. [PPTX 21]
+- 🆕 `presentacion/20b-pregunta-sostener.html` — pregunta-ancla "¿Puede Conpro
+  sostener…?", antes del divisor de robustez. [PPTX 26]
+- 🆕 `presentacion/21b-sustentacion.html` — "Análisis de Sustentación" (Imitación
+  / Sustitución / Expropiación de renta), primer tema de robustez. [PPTX 27]
+- ✏️ `12-techo` — "no rompe el **techo operacional**". [PPTX 14]
+
+**Pendiente / decisión:** `19-ganancias` **se mantiene por ahora** (el PPTX v2 la
+eliminó; decisión de revisar más adelante). Siguen como están los rediseños
+"formato distinto" (Juan, Propuesta, Cómo funciona, Costos-torta).
 
 ## ⚠️ Delta de la versión recibida 2026-06-21 (editada por compañeras)
 Llegó un PPTX nuevo (`.context/attachments/.../Conpro-P3-v1.pptx`, 35 slides,

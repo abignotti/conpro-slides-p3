@@ -4,6 +4,21 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Alineación con el PPTX v2 (36 slides): 3 slides nuevas + split ingresos/captación
+Qué hice (tras mapear `.context/new-deck-v2.pptx`; ver "Delta v2" en `docs/mapeo-pptx-v1.md`):
+- 🆕 **`17b-ingresos-demanda.html` = "Ingresos según la demanda"** (NUEVA): tarjeta acento $201.061 + tarjeta "Despacho · Mixto (domicilio + pick up)" + tabla por año (Hogares 60→161, Ingresos $13M→$37M, Año 5 destacado). Reemplaza al `17b` viejo (que era la captación). [PPTX 20]
+- 🔄 **`17c-mercado-alcanzable.html`** (= la captación, `git mv` desde `17b`): recortada de 4 a **3 KPIs** (161 · 0,19% · 86.770); el $201.061 se movió a la slide de ingresos. [PPTX 21]
+- 🆕 **`20b-pregunta-sostener.html`** = pregunta-ancla "¿Puede Conpro sostener esa rentabilidad…?" (molde cita, igual que `15-vale-la-pena`), antes del divisor de robustez. [PPTX 26]
+- 🆕 **`21b-sustentacion.html`** = "Análisis de Sustentación" → 01 Imitación (acento) · 02 Sustitución · 03 Expropiación de renta (molde bullets, igual que recomendaciones). Primer tema de robustez. [PPTX 27]
+- ✏️ **`12-techo`**: "no rompe el **techo operacional**". [PPTX 14]
+- Build OK (34 slides). QA visual a 1920×1080 (playwright) de las 5 slides: sin desbordes ni solapes. Numeración automática reacomodó todo (no se tocó a mano).
+Decisiones/bugs:
+- **`19-ganancias` se mantiene** por ahora (el PPTX v2 la eliminó; el usuario decide revisarlo después). No se borró contenido.
+- "Despacho Mixto" = **domicilio + pick up** (confirmado por el usuario; primero había puesto "retiro en conserjería").
+- Colocación: pregunta-ancla antes del divisor de robustez (paralelo a `15-vale-la-pena`); Sustentación como primer tema de la sección.
+- Orden por nombre de archivo: `17b` < `17c`; `20-van` < `20b`; `21-divisor` < `21b` → quedan en la posición correcta sin renumerar.
+Próximo paso: decidir definitivamente ganancias; ¿adoptar los rediseños "formato distinto" del PPTX (Juan buyer-persona, Propuesta 2 tarjetas, Cómo funciona, Costos con torta)?; deploy.
+
 ## [2026-06-21] — Ajustes lote 1 del PPTX nuevo (compañeras) → deck web
 Qué hice (al portar el `Conpro-P3-v1.pptx` re-editado; ver delta en `docs/mapeo-pptx-v1.md`):
 - **Sección 05 renombrada** "Robustez y decisión" → **"Resultados y recomendaciones"** en los 5 divisores (`02/09/13/16/21-divisor*`), alineando al PPTX. En `21` cambia también el h2 y las notas.
