@@ -24,10 +24,9 @@ Qué hice:
 - Nota de caché: los `<script src="js/*.js">` no se refrescan con `?r=N` (eso solo
   busta el HTML); para ver cambios de JS hay que hard-reload (Cmd+Shift+R).
 Decisiones:
-- Dejé el **título** de la slide como estaba ("Compite con las especializadas, no
-  con el supermercado"); la referencia traía otro ("Conpro compite con tiendas
-  naturistas y especializadas") pero el usuario solo pidió cambiar los bullets.
-Próximo paso: confirmar título con el usuario; crear el PR.
+- **Título** actualizado al de la referencia: "Conpro compite con tiendas
+  naturistas y especializadas" (el usuario lo confirmó después).
+Próximo paso: crear el PR.
 
 ---
 
