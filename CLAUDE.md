@@ -10,6 +10,12 @@ el *dónde* vamos, en `docs/devlog.md`. Este archivo es solo reglas.
   "se puede"). Aplica a TODO: mensajes al usuario, comentarios de código,
   mensajes de commit en español (los de git van en inglés, ver Git), docs y
   entradas del devlog que escribas de ahora en adelante.
+- **Sé lo más conciso posible, pero completo.** El usuario prioriza leer y
+  entender rápido. Usa el formato que más ayude: bullets, tablas, diagramas,
+  bloques de código, negritas para lo clave. Evita párrafos largos, relleno y
+  repetir lo ya dicho. Da la conclusión/recomendación primero; el detalle
+  después, solo si suma. Si algo queda incompleto u oscuro, el usuario
+  preguntará — no infles la respuesta por las dudas.
 
 ## Convenciones (reglas duras — estructura/proceso)
 - **1 archivo por slide.** Los moldes (biblioteca reutilizable de 22 templates)
