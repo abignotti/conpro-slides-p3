@@ -41,7 +41,7 @@ window.Charts = (() => {
     return color;
   }
 
-  function scales(d, { yMax, yTitle, yStep } = {}) {
+  function scales(d, { yMax, yTitle, yStep, yFmt } = {}) {
     return {
       x: {
         grid: { display: false },
@@ -53,7 +53,8 @@ window.Charts = (() => {
         max: yMax,
         grid: { color: d.grid, lineWidth: 1 },
         border: { display: false },
-        ticks: { color: d.muted, font: { family: d.family, size: FONT }, stepSize: yStep },
+        ticks: { color: d.muted, font: { family: d.family, size: FONT }, stepSize: yStep,
+                 callback: yFmt ? (v) => yFmt(v) : undefined },
         title: yTitle
           ? { display: true, text: yTitle, color: d.muted, font: { family: d.family, size: FONT } }
           : undefined,
@@ -205,7 +206,7 @@ window.Charts = (() => {
      series: [{label, data, role: 'key'|'base'|'muted'}]
      Leyenda mínima arriba (necesaria para distinguir series).
      ============================================================ */
-  function barGroup(canvas, { labels, series, yMax, yStep, yTitle, legend = true } = {}) {
+  function barGroup(canvas, { labels, series, yMax, yStep, yTitle, yFmt, legend = true, legendPosition = 'top' } = {}) {
     const d = base();
     const s3 = token('--chart-series-3') || d.gray;
     const colorFor = (role) => role === 'key' ? d.accent : role === 'muted' ? s3 : d.gray;
@@ -225,12 +226,12 @@ window.Charts = (() => {
         layout: { padding: { top: 12 } },
         plugins: {
           legend: legend
-            ? { display: true, position: 'top', align: 'end',
-                labels: { color: d.muted, font: { family: d.family, size: 22 }, boxWidth: 14, boxHeight: 14, usePointStyle: true, pointStyle: 'rectRounded' } }
+            ? { display: true, position: legendPosition, align: legendPosition === 'bottom' ? 'center' : 'end',
+                labels: { color: d.muted, font: { family: d.family, size: 22 }, boxWidth: 14, boxHeight: 14, padding: 18, usePointStyle: true, pointStyle: 'rectRounded' } }
             : { display: false },
           tooltip: { enabled: false },
         },
-        scales: scales(d, { yMax, yTitle, yStep }),
+        scales: scales(d, { yMax, yTitle, yStep, yFmt }),
       },
     });
   }
