@@ -17,7 +17,8 @@ Decisiones/bugs:
 - Verificado en navegador: ocultar 2 slides → total 34→32 y renumeración (06→04); navegación salta las ocultas; mostrar → vuelve a 34; persistencia tras recarga; tecla T oculta picker+panel; URL del PDF lleva `&hidden=…`; print mode (`?print-pdf&hidden=07-dependencia`) excluye la slide (33 págs).
 - **Mensaje de error del PDF aclarado:** el botón daba un `alert` genérico en voseo ("Revisá la consola") al pegar contra el server estático local, donde `/api/pdf` da 404 (la función serverless solo corre en Vercel). Ahora detecta el 404 y muestra mensaje neutro y claro ("necesita el entorno Vercel — deploy o `vercel dev`"); para export local sin Vercel queda `node scripts/export-pdf.mjs`. No era un bug del feature.
 - **Rebase a main:** `HEAD` ya estaba en `origin/main` (`ca37dc4`); `reimport-deck-redo` es un ancestro más viejo. No había nada que rebasar ni conflictos; ninguna entrada de devlog en riesgo.
-Próximo paso: probar el PDF real con las ocultas en `vercel dev`/deploy (el `/api/pdf` no corre bajo `http.server`).
+- **Ajuste Vercel (Node):** `@sparticuz/chromium@149` exige Node `^22.17 || >=24` (campo `engines`), pero `package.json` no fijaba `engines.node` → Vercel podía elegir un Node incompatible y romper el deploy. Se agregó `"engines": { "node": "22.x" }`. Validado: `npm ci` limpio (45 pkgs, 0 vuln) y la función importa OK. `vercel.json` (maxDuration 60, memory 1024) se deja igual. **OJO:** el `/api/pdf` (puppeteer + chromium de Lambda/Linux) **NO se puede probar con `vercel dev` en macOS** (binario Linux-only): se prueba SOLO en un deploy real (preview o prod).
+Próximo paso: deploy preview en Vercel y probar el botón "Descargar PDF" (incl. con slides ocultas → `&hidden=…`).
 
 ---
 

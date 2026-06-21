@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "description": "Deck reveal.js de Conpro + export PDF headless (Vercel serverless).",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "build": "python3 scripts/build.py",
     "export-pdf": "node scripts/export-pdf.mjs"
