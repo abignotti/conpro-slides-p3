@@ -280,7 +280,6 @@
   <aside class="notes">Operación cercana pero con alta dependencia del fundador: si Ricardo falla, la operación se detiene.</aside>
 </section>
 
-<!-- TODO dato: $16.700/h (costo de oportunidad) difiere entre guion e informe; verificar fuente -->
 <section class="slide" data-label="Stat grid" data-speaker-notes="El contraste $5.500/h vs $16.700/h es el mensaje. Acento solo en el costo de oportunidad." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
   <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
     <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
@@ -402,7 +401,165 @@
   <aside class="notes">Primer paso: mejorar lo que más carga genera (pagos), sin rehacer el modelo. Inversión baja, ahorro operativo vía Fintoc.</aside>
 </section>
 
-<!-- TODO datos: VAN CBO $2.405.096 (sin valor terminal), WACC 27,09%, ingreso año 5 $126.850; confirmar -->
+<section class="slide" data-label="Flujo 2 filas" data-speaker-notes="El flujo de automatización del CBO de punta a punta: el pedido entra en Sheets, Make orquesta, Fintoc genera y cobra el link, y el control de venta se actualiza solo. La idea: casi todo corre sin intervención de Ricardo." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">10 / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;gap:22px;">
+
+    <div>
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;">
+        <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Flujo de implementación</span>
+      </div>
+      <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin:0;">Automatización simple</h2>
+    </div>
+
+    <!-- FILA 1 -->
+    <div>
+      <span style="display:inline-block;font-size:22px;font-weight:700;letter-spacing:0.02em;background:var(--color-accent);color:var(--color-on-accent);padding:7px 18px;border-radius:999px;margin-bottom:16px;">Crear y enviar link de pago</span>
+      <div style="display:flex;align-items:stretch;gap:10px;">
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">1</span>
+            <img src="assets/flujo/xlsx.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Pedido</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Se ingresa en Google Sheets</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">2</span>
+            <img src="assets/flujo/make.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Make</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Automatiza el proceso</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">3</span>
+            <img src="assets/flujo/fintoc.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Link de pago</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Creado por Fintoc</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">4</span>
+            <img src="assets/flujo/xlsx.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Link guardado</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">En Google Sheets</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">5</span>
+            <img src="assets/flujo/whatsapp.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">WhatsApp</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Cliente recibe el link</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Transición -->
+    <div style="display:flex;align-items:center;gap:10px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m6 13 6 6 6-6"/></svg>
+      <span style="font-family:var(--font-display);font-weight:700;font-size:24px;">Cliente paga</span>
+    </div>
+
+    <!-- FILA 2 -->
+    <div>
+      <span style="display:inline-block;font-size:22px;font-weight:700;letter-spacing:0.02em;background:var(--color-accent);color:var(--color-on-accent);padding:7px 18px;border-radius:999px;margin-bottom:16px;">Confirmar pago y actualizar control</span>
+      <div style="display:flex;align-items:stretch;gap:10px;">
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">6</span>
+            <img src="assets/flujo/fintoc.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Confirmación</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Por Fintoc</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">7</span>
+            <img src="assets/flujo/make.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Make valida</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Evitando duplicados</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">8</span>
+            <img src="assets/flujo/check.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Actualización</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Estado: pagado</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">9</span>
+            <img src="assets/flujo/folder.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Visualización</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Control de venta</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Flujo de automatización del CBO. Fila 1 (crear y enviar el link): el pedido entra en Sheets, Make orquesta, Fintoc genera el link, se guarda y se envía por WhatsApp. Fila 2 (confirmar y actualizar): Fintoc confirma el pago, Make valida sin duplicar, se actualiza el estado y queda visible en el control de venta. Casi todo corre sin intervención de Ricardo.</aside>
+</section>
+
 <section class="slide" data-label="KPI cards" data-speaker-notes="El CBO captura más valor con baja inversión. Tarjeta clave (VAN/payback) en acento." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
   <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
     <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
@@ -562,6 +719,12 @@
   <aside class="notes">Mantiene el componente comunitario (grupos por producto) pero con operación escalable. Objetivos: automatizar transacciones, ampliar la red de proveedores y reducir la dependencia del fundador.</aside>
 </section>
 
+<section class="slide" data-label="Demo plataforma" data-speaker-notes="Muestra del producto: así se ve la plataforma B2C de compra comunitaria. El iframe corre a un viewport de 1280px y se escala 1.5× para llenar la slide, de modo que el contenido (productos y panel lateral) no quede angosto." style="background:#0F0F0F;color:var(--color-text);font-family:var(--font-body);padding:0;display:flex;overflow:hidden;">
+  <iframe src="assets/plataforma-demo.html" title="Muestra de la plataforma B2C de Conpro" loading="lazy" style="width:1280px;height:720px;border:0;display:block;transform:scale(1.5);transform-origin:top left;"></iframe>
+
+  <aside class="notes">Mockup del producto para que la audiencia visualice la plataforma antes de entrar al modelo financiero. La compra colectiva (grupos por producto, meta de volumen, cierre y pago) ahora vive en una interfaz propia, sin el cuello de botella de Ricardo.</aside>
+</section>
+
 <section class="slide" data-label="Cita" data-speaker-notes="La pregunta ancla que abre el modelo financiero. Pausa antes de los números." style="background:var(--color-bg-alt);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
   <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
     <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
@@ -629,7 +792,7 @@
   <aside class="notes">Divisor sección 04 con agenda integrada (actual: Modelo financiero).</aside>
 </section>
 
-<section class="slide" data-label="Split 2 col" data-speaker-notes="La demanda es la variable más incierta. Modelo logístico de difusión. Base: 60 hogares -> ~$37 MM al año 5. Eje desde cero." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+<section class="slide" data-label="Split 2 col" data-speaker-notes="La demanda es la variable más incierta. Modelo logístico de difusión. Escenario conservador: 60 hogares en el año 1 a 161 hogares al año 5. Eje desde cero." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
   <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
     <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
     <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">17 / 28</span>
@@ -659,7 +822,7 @@
     </div>
 
     <div style="background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:40px 44px 36px;display:flex;flex-direction:column;gap:20px;">
-      <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Ingreso bruto anual · escenario base (M$)</span>
+      <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Proyección de demanda · escenario base (hogares)</span>
       <div class="chart-wrap" style="height:380px;"><canvas id="chart-demanda"></canvas></div>
     </div>
   </div>
@@ -668,10 +831,46 @@
     <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
   </footer>
 
-  <aside class="notes">Base: 60 hogares activos, ingreso bruto ~$10 MM creciendo a ~$37 MM al año 5 (= x% del mercado potencial RM, completar x%). Datos de la curva: placeholder, verificar.</aside>
+  <aside class="notes">Escenario conservador de adopción: la proyección parte de 60 hogares en el año 1 y llega a 161 hogares al año 5, regida por el modelo logístico de difusión (boca a boca, marketing, tasa de fuga).</aside>
 </section>
 
-<!-- TODO dato: costos fijos $310.000/año difiere informe/guion; verificar -->
+<section class="slide" data-label="Split 2 col · gráfico" data-speaker-notes="Ingresos brutos anuales según la demanda de hogares. La barra del escenario base (161 hogares) llega a ~$37,4 MM. Esos 161 hogares son apenas el 0,19% del mercado potencial alcanzable (~86.770 hogares): hay mucho techo para crecer. Eje desde cero." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">17 / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-start;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+      <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Modelo financiero · demanda</span>
+    </div>
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:48px;">Ingresos en base a la demanda</h2>
+
+    <div style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:80px;align-items:center;">
+      <div style="background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:40px 44px 36px;display:flex;flex-direction:column;gap:20px;">
+        <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-text-muted);">Ingresos anuales por cantidad de hogares (CLP)</span>
+        <div class="chart-wrap" style="height:420px;"><canvas id="chart-ingresos"></canvas></div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:28px;">
+        <p style="font-size:var(--scale-h2);line-height:1.32;color:var(--color-text);max-width:560px;margin:0;">
+          Estos <strong style="font-weight:600;">161 hogares</strong> representan apenas
+          <span style="display:inline-block;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;padding:2px 14px;border-radius:var(--radius);">0,19%</span>
+          de los cerca de
+          <span style="display:inline-block;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;padding:2px 14px;border-radius:var(--radius);">86.770</span>
+          hogares del mercado potencial alcanzable.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Ingresos brutos anuales según la demanda de hogares (60 -> 161). En el escenario base, 161 hogares generan ~$37,4 MM al año. Esos 161 hogares son apenas el 0,19% de los ~86.770 hogares del mercado potencial alcanzable: queda mucho techo para escalar. Eje desde cero.</aside>
+</section>
+
 <section class="slide" data-label="Stat grid" data-speaker-notes="Inversión acotada como número ancla; fijos livianos; variables por reinversión. Acento en la inversión." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
   <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
     <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
@@ -707,8 +906,7 @@
   <aside class="notes">Inversión inicial $2.445.000 ($1.600.000 plataforma + legales). Fijos ~$310.000/año. Variables: marketing por reinversión (50% inicial, decreciente) + costo por venta al proveedor.</aside>
 </section>
 
-<!-- TODO datos: ganancia anual años 1-5 (placeholder; falta la tabla del informe) -->
-<section class="slide" data-label="Tabla + gráfico" data-speaker-notes="Ganancia anual proyectada años 1-5. Tabla + barras. Año 5 destacado. Eje desde cero. DATOS PLACEHOLDER." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+<section class="slide" data-label="Tabla + gráfico" data-speaker-notes="Ganancia anual proyectada años 1-5. Tabla + barras. Año 5 destacado. Eje desde cero." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
   <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
     <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
     <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">19 / 28</span>
@@ -745,10 +943,9 @@
     <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
   </footer>
 
-  <aside class="notes">DATOS PLACEHOLDER: la tabla de ganancias anuales no está en el informe leído; reemplazar por las cifras reales (años 1-5).</aside>
+  <aside class="notes">Ganancia anual proyectada años 1-5 (0,5 / 1,6 / 2,8 / 3,9 / 5,0 M$). Año 5 destacado. Eje desde cero.</aside>
 </section>
 
-<!-- TODO dato: payback por escenario (solo tengo base ~3 años). VAN/TIR del informe (con valor terminal) -->
 <section class="slide" data-label="Tabla" data-speaker-notes="VAN y TIR por escenario; conservador destacado. WACC 29,59%, payback base 3 años. Todos los escenarios superan el WACC." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
   <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
     <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
@@ -798,7 +995,7 @@
     <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
   </footer>
 
-  <aside class="notes">VAN con valor terminal por escenario. Las tres TIR (45,7 / 57,9 / 69,3%) superan el WACC de 29,59%. Payback por escenario: solo confirmado el base (3 años), completar los otros.</aside>
+  <aside class="notes">VAN con valor terminal por escenario. Las tres TIR (45,7 / 57,9 / 69,3%) superan el WACC de 29,59%. Payback base 3 años; las tres TIR superan el WACC 29,59%.</aside>
 </section>
 
 <section class="slide" data-label="Divisor" data-speaker-notes="Divisor sección 05 con agenda integrada (actual: Robustez y decisión)." style="background:var(--color-bg-alt);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">

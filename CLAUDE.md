@@ -11,10 +11,23 @@ el *dónde* vamos, en `docs/devlog.md`. Este archivo es solo reglas.
   a mano** — se generan.
 - **Build:** `python3 scripts/build.py` regenera `moldes.html` (desde `moldes/`)
   e `index.html` (el deck real, desde `presentacion/`).
+- **Número de slide = automático.** El número (arriba-derecha) lo calcula
+  `js/deck.js` (`numberSlides`) según la **posición real** del slide en el deck.
+  **Nunca lo hardcodees ni renumeres a mano**: al agregar/quitar/reordenar
+  slides, se recalcula solo (por eso no hay que tocar todos los archivos en cada
+  iteración). En un slide nuevo, dejá en el header el `<span>` placeholder
+  (`NN / 28`, o un `data-page` vacío) y el JS lo sobrescribe. Slides a pantalla
+  completa sin header (p. ej. el demo) quedan sin número, pero igual cuentan la
+  posición. El total ("/ 28") se omite a propósito.
 - **Diseño tokenizado:** colores/escala/espaciado viven como variables CSS en
   `css/tokens.css` (9 temas × 7 typesets, combinables vía `<html data-theme
   data-typeset>`). Usa `var(--token)`; si necesitas un valor nuevo, **agrega un
   token**, no lo hardcodees (si no, se rompe el cambio de tema).
+
+- **Enviar el link tras cada cambio.** Después de cualquier modificación al deck,
+  correr el server local (`python3 -m http.server 8753`) y **mandarle el link** al
+  usuario (`http://localhost:8753/index.html`, con `#/N` si aplica al slide
+  tocado). No esperar a que lo pida.
 
 ## Guías de estilo (punto de partida — iterables, no dogma)
 <!-- Nacieron del handoff de diseño. Ajústalas cuando algo se vea mejor en el
@@ -33,6 +46,10 @@ el *dónde* vamos, en `docs/devlog.md`. Este archivo es solo reglas.
   que sumemos con `find skills`), **lee su SKILL.md**. No escribas su API de memoria.
 - reveal.js y Chart.js no tienen SKILL.md local → usamos los patrones ya probados
   (documentados en `docs/devlog.md` y en la memoria del proyecto).
+- **El demo de la plataforma NO se anima.** Cuando hagamos animaciones, el slide
+  `presentacion/14b-demo-plataforma.html` (y su `assets/plataforma-demo.html`) se
+  deja **tal cual está**: es un producto embebido, no se le aplican transiciones
+  ni efectos de entrada.
 
 ## Cierre de sesión
 Cuando diga "cierra la sesión": corre el build (`python3 scripts/build.py`)
