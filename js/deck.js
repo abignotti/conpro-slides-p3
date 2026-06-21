@@ -210,6 +210,79 @@ function heroOnSlide(slide) {
   if (slide) slide.querySelectorAll('[data-hero]').forEach(animateHero);
 }
 
+/* ---- Navegación con flechas dentro de iframes (demo) ---------------- *
+   Un iframe con foco captura el teclado, así que reveal.js deja de recibir
+   las flechas y no se puede pasar de slide mientras se interactúa con el
+   demo. Como el iframe es same-origin, enganchamos un keydown en SU
+   documento y reenviamos las teclas de navegación a Reveal — salvo cuando
+   se está escribiendo en un campo editable del demo (input/textarea). */
+const NAV_KEYS = {
+  ArrowRight: () => Reveal.right(), ArrowLeft: () => Reveal.left(),
+  ArrowUp: () => Reveal.up(), ArrowDown: () => Reveal.down(),
+  PageDown: () => Reveal.next(), PageUp: () => Reveal.prev(),
+};
+function isEditableTarget(el) {
+  if (!el) return false;
+  const tag = el.tagName;
+  return tag === 'INPUT' || tag === 'TEXTAREA' || el.isContentEditable;
+}
+function bridgeIframeNav(iframe) {
+  if (!iframe) return;
+  const attach = () => {
+    let doc;
+    try { doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document); }
+    catch (e) { return; }            // cross-origin: no se puede enganchar
+    // La marca va en el DOCUMENT, no en el iframe: mover el iframe en el DOM
+    // (o cualquier recarga) genera un contentDocument nuevo y hay que volver
+    // a enganchar; un flag por-iframe dejaría el listener en el doc viejo.
+    if (!doc || doc.__navBridged) return;
+    doc.__navBridged = true;
+    // Fase de captura: corremos ANTES de cualquier handler de teclado del
+    // demo, así nunca nos "come" la tecla (stopPropagation) antes de tiempo.
+    doc.addEventListener('keydown', (e) => {
+      const fn = NAV_KEYS[e.key];
+      if (!fn || isEditableTarget(e.target)) return;
+      e.preventDefault();
+      fn();
+    }, true);
+  };
+  if (!iframe.dataset.navListener) {        // un solo listener de 'load' por iframe
+    iframe.dataset.navListener = '1';
+    iframe.addEventListener('load', attach);  // re-engancha tras cada (re)carga
+  }
+  attach();                                 // …o ya cargó
+}
+function bridgeNavIn(slide) {
+  if (slide) slide.querySelectorAll('iframe').forEach(bridgeIframeNav);
+}
+
+/* ---- Demo a pantalla completa real ---------------------------------- *
+   El demo es un producto embebido que internamente ocupa 100vw/100vh. El
+   deck, en cambio, dibuja un lienzo fijo 16:9 (1920×1080) escalado y
+   centrado dentro de .slides; el espacio sobrante (letterbox) queda como
+   bandas laterales que, con fondo claro, se ven como "bordes blancos".
+   Para que el demo use TODO el espacio sin importar el aspecto de la
+   ventana, sacamos su iframe del lienzo escalado y lo montamos sobre
+   .reveal (que sí cubre toda la ventana), ocupándola al 100%. Así el iframe
+   adopta el tamaño real de la ventana y su contenido (100vw/100vh) llena
+   todo. Se muestra solo cuando su slide está activa. */
+let demoIframe = null, demoSection = null;
+function setupDemoFill() {
+  demoSection = document.querySelector('section.slide[data-label="Demo plataforma"]');
+  const reveal = document.querySelector('.reveal');
+  const iframe = demoSection && demoSection.querySelector('iframe');
+  if (!iframe || !reveal) return;
+  // z-index 6: sobre .slides (auto) pero debajo de controles (11) y barra de
+  // progreso (10), para que las flechas de reveal sigan clickeables.
+  iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;z-index:6;display:none;';
+  reveal.appendChild(iframe);
+  demoIframe = iframe;
+  bridgeIframeNav(iframe);
+}
+function syncDemoFill(slide) {
+  if (demoIframe) demoIframe.style.display = (slide === demoSection) ? 'block' : 'none';
+}
+
 /* ---- Init perezoso de gráficos (Chart.js necesita dimensiones) ------ */
 function initChartsIn(slide) {
   if (!slide || !window.Charts) return;
@@ -304,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
     pdfMaxPagesPerSlide: 1, pdfSeparateFragments: false,
   });
   const onSlide = (slide) => {
-    heroOnSlide(slide); initChartsIn(slide); drawIcons(); setViewportBg(slide);
+    heroOnSlide(slide); initChartsIn(slide); drawIcons(); setViewportBg(slide); bridgeNavIn(slide); syncDemoFill(slide);
     // tras render de fuentes/gráficos, ajustar si desborda
     requestAnimationFrame(() => fitSlide(slide));
     setTimeout(() => fitSlide(slide), 450);
@@ -329,6 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
       drawIcons();
       window.__deckPrintReady = true;
     } else {
+      setupDemoFill();   // saca el iframe del demo del lienzo escalado
       onSlide(e.currentSlide); setTimeout(drawIcons, 400);
     }
   });
