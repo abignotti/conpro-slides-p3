@@ -4,6 +4,53 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Auto-resolución de conflictos de PR (gitattributes + merge driver)
+Qué hice (para no rehacer la resolución manual de conflictos en cada PR/sesión):
+- **`.gitattributes`** nuevo:
+  - `docs/devlog.md merge=union` → git conserva las entradas de AMBOS lados al
+    mergear (built-in, sin setup). Automatiza la regla "INTEGRAR, nunca descartar".
+  - `index.html` / `moldes.html` `merge=deck-rebuild` → driver custom que **regenera**
+    los decks desde los partials en vez de mezclar HTML a mano.
+- **`scripts/git-merge-deck.sh`**: el merge driver. Corre `scripts/build.py` y usa su
+  salida como resultado; **aborta (exit 1) si algún partial tiene marcadores** de
+  conflicto (no enmascara conflictos de contenido reales).
+- **`scripts/setup-git.sh`**: registra el driver en la config de git (una vez por
+  repo; los worktrees de Conductor comparten config). El `union` no necesita setup.
+- **CLAUDE.md**: sección nueva "PRs sin conflictos (regla dura)"; punteros desde las
+  notas viejas (devlog + workspaces).
+Decisiones/bugs:
+- **Probado end-to-end:** dos ramas que tocan devlog (top) + index.html → el merge
+  **se auto-resolvió sin conflictos**; el devlog conservó las dos entradas y el
+  index.html se regeneró limpio (0 marcadores). Ramas temporales, restauradas.
+- **Por qué un driver y no quitar el HTML del repo:** Vercel sirve el `index.html`
+  committeado (sin build step), así que los generados deben seguir versionados;
+  regenerarlos en el merge es la vía limpia.
+- Flujo recomendado: `git fetch && git merge origin/main` ANTES de abrir el PR.
+Próximo paso: en un clon/worktree nuevo, correr `sh scripts/setup-git.sh` una vez.
+
+---
+
+## [2026-06-21] — Control de visibilidad de slides (ocultar/mostrar en vivo)
+Qué hice:
+- **Panel "☰ Slides"** nuevo en `buildPicker` (deck.js): lista las 34 slides (número + título tomado del `h1/h2`, con fallback `data-label`/`data-sid`) y un botón "ojo" por fila para **ocultar/mostrar cada slide en vivo**. Al ocultar, la numeración de las visibles se **recalcula sola** (sin huecos) y la navegación las **salta**. Se abre/cierra con el botón y se oculta junto al chrome con la tecla **T**.
+- **Persistencia en `localStorage`** (`conpro-hidden-slides`, set de `data-sid`): el estado oculto sobrevive a la recarga.
+- **PDF excluye las ocultas:** el botón "Descargar PDF" agrega `&hidden=sid,sid` al fetch; `api/pdf.js` lo sanea (slug `[a-z0-9-]`) y lo reenvía a `index.html?print-pdf&hidden=…`. En print, las ocultas se sacan antes de inicializar → no salen en el PDF.
+- **IDs estables:** `scripts/build.py` ahora inyecta `data-sid="<archivo>"` (p. ej. `03-juan`) en cada `<section>`, para referenciar slides sin depender de la posición (no se duplica si ya existe).
+Decisiones/bugs:
+- **`data-visibility="hidden"` de reveal NO sirve:** verificado en vivo que reveal 5.1 igual navega a la slide (no la excluye de `getTotalSlides`/navegación). **Mecanismo elegido: sacar la `<section>` del DOM** y llamar `Reveal.sync()` + `Reveal.layout()` → recalcula total, navegación y barra de progreso. Se reinserta en su posición usando `SLIDE_ORDER` (orden canónico capturado al cargar) y `el.isConnected` como indicador de "oculta".
+- **Bug de idempotencia en `numberSlides`:** tras la 1ª pasada el span queda como "04" (sin "/ 28"), así que la regex `NN / NN` ya no lo reencontraba en las re-pasadas. Fix: al ubicarlo la 1ª vez se le marca `data-page`, que las pasadas siguientes usan directo.
+- **Recordatorio (worktrees + puerto):** otra vez el `localhost:8753` lo tenía tomado OTRO workspace (`yokohama`); verifiqué en un puerto propio (8760). Mismo aprendizaje que la entrada del PDF.
+- Verificado en navegador: ocultar 2 slides → total 34→32 y renumeración (06→04); navegación salta las ocultas; mostrar → vuelve a 34; persistencia tras recarga; tecla T oculta picker+panel; URL del PDF lleva `&hidden=…`; print mode (`?print-pdf&hidden=07-dependencia`) excluye la slide (33 págs).
+- **Mensaje de error del PDF aclarado:** el botón daba un `alert` genérico en voseo ("Revisá la consola") al pegar contra el server estático local, donde `/api/pdf` da 404 (la función serverless solo corre en Vercel). Ahora detecta el 404 y muestra mensaje neutro y claro ("necesita el entorno Vercel — deploy o `vercel dev`"); para export local sin Vercel queda `node scripts/export-pdf.mjs`. No era un bug del feature.
+- **Rebase a main:** `HEAD` ya estaba en `origin/main` (`ca37dc4`); `reimport-deck-redo` es un ancestro más viejo. No había nada que rebasar ni conflictos; ninguna entrada de devlog en riesgo.
+- **Ajuste Vercel (Node):** `@sparticuz/chromium@149` exige Node `^22.17 || >=24` (campo `engines`), pero `package.json` no fijaba `engines.node` → Vercel podía elegir un Node incompatible y romper el deploy. Se agregó `"engines": { "node": "22.x" }`. Validado: `npm ci` limpio (45 pkgs, 0 vuln) y la función importa OK. `vercel.json` (maxDuration 60, memory 1024) se deja igual. **OJO:** el `/api/pdf` (puppeteer + chromium de Lambda/Linux) **NO se puede probar con `vercel dev` en macOS** (binario Linux-only): se prueba SOLO en un deploy real (preview o prod).
+- **Bug en preview de Vercel — Deployment Protection (RESUELTO):** el primer deploy preview falló el PDF con `TimeoutError: Waiting for function failed` (`__deckPrintReady` nunca true). Causa: el preview tenía **Vercel Authentication** activa → la función, al pedir su PROPIA URL server-to-server (sin la cookie de sesión del usuario), recibía el muro de SSO (`HTTP 401 Authentication Required`, `vercel.com/sso`) en vez del deck. Chromium sí arrancó (el `engines.node:22.x` funcionó). **Resuelto desactivando Vercel Authentication** en Settings → Deployment Protection (los previews quedan públicos; aceptable para este deck) → el PDF se genera OK en el preview.
+- **Red de seguridad (inerte): bypass de protección.** Por si en el futuro se protege producción, `api/pdf.js` manda `VERCEL_AUTOMATION_BYPASS_SECRET` como header `x-vercel-protection-bypass` en cada request (vía `page.setExtraHTTPHeaders`, cubre documento + css/js/assets) **solo si la env var existe**. Hoy no está seteada, así que el código no hace nada; queda listo si se activa "Protection Bypass for Automation".
+- **Lección (Vercel + headless self-fetch):** una función que renderiza su propio deployment con puppeteer NO hereda la sesión del navegador del usuario; si el deployment está protegido, la función ve el SSO. Opciones: previews públicos (Vercel Authentication off) o el secreto de bypass.
+Próximo paso: PR a `main`. Eventualmente, deploy a producción y confirmar el PDF allí (si se protege prod, activar el bypass).
+
+---
+
 ## [2026-06-21] — Fix del gráfico de precios (slide 05) + bullets
 Qué hice:
 - **Bug encontrado:** en `chart-precios` las series **"Mínimo mercado" y "Conpro"

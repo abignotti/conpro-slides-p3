@@ -1,0 +1,16 @@
+# Resolución automática de conflictos recurrentes entre ramas/sesiones.
+# Ver CLAUDE.md → "PRs sin conflictos (regla dura)".
+
+# Devlog: cada rama agrega su entrada arriba → siempre choca. El driver 'union'
+# (built-in de git, no necesita setup) conserva las entradas de AMBOS lados; no
+# se pierde ninguna. Puede intercalar el orden entre ramas (reordenar a mano solo
+# si se quiere "lo nuevo arriba" perfecto).
+docs/devlog.md merge=union
+
+# Decks generados: NUNCA se resuelven a mano, se REGENERAN desde los partials.
+# El driver 'deck-rebuild' (scripts/git-merge-deck.sh) corre scripts/build.py y
+# usa su salida. Requiere registrarlo una vez por repo: `sh scripts/setup-git.sh`
+# (los worktrees de Conductor comparten la config). Si no está registrado, git
+# cae al merge normal (conflicto manual) — no rompe nada.
+index.html  merge=deck-rebuild
+moldes.html merge=deck-rebuild

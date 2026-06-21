@@ -84,7 +84,8 @@ entradas viejas.
   resolver, **conservar TODAS las entradas de ambos lados** (las tuyas y las de otras
   sesiones), concatenándolas, lo nuevo arriba. Nunca quedarse con un solo lado ni
   perder una entrada. Verificar después que no falte ninguna ni haya duplicados
-  (p. ej. `comm`/`uniq` sobre los encabezados `## [...]`).
+  (p. ej. `comm`/`uniq` sobre los encabezados `## [...]`). **Ahora automatizado** por
+  `.gitattributes` (driver `union`) — ver "PRs sin conflictos".
 
 ## Git
 - Commits **en inglés**.
@@ -103,6 +104,33 @@ entradas viejas.
   El `git push` normal sí funciona con el token por defecto; solo `gh pr create`
   necesita el truco.
 
+## PRs sin conflictos (regla dura — automatizado)
+Objetivo: que CUALQUIER sesión abra/mergee PRs sin rehacer a mano la resolución
+de conflictos. Los choques recurrentes (devlog y decks generados) se resuelven
+**solos** vía `.gitattributes`:
+- **`docs/devlog.md` → driver `union`** (built-in de git, sin setup): conserva las
+  entradas de AMBOS lados; no se pierde ninguna. Puede intercalar el orden entre
+  ramas → reordena a mano SOLO si quieres "lo nuevo arriba" perfecto. (Esto
+  automatiza la regla de "INTEGRAR, nunca descartar".)
+- **`index.html` / `moldes.html` → driver `deck-rebuild`** (`scripts/git-merge-deck.sh`):
+  se REGENERAN desde los partials con `scripts/build.py`; nunca se mezclan a mano.
+
+**Flujo recomendado antes de abrir el PR:** sincroniza main primero —
+`git fetch origin && git merge origin/main` (o rebase) — y deja que los drivers
+resuelvan; así el PR nace sin conflictos. Resolver ANTES, no en el botón de merge.
+
+**Setup (una vez por repo): `sh scripts/setup-git.sh`** registra el driver
+`deck-rebuild` en la config de git. Los worktrees de Conductor comparten esa
+config, así que normalmente basta una vez. El `union` del devlog NO necesita setup.
+Si el driver no está registrado, git cae al merge normal (conflicto manual) — no
+rompe nada, solo no auto-resuelve.
+
+**Conflicto REAL de contenido (no mecánico):** si dos ramas tocan el MISMO partial
+(`presentacion/*.html`, `moldes/*.html`), eso SÍ es conflicto de verdad → resuélvelo
+a mano y corre `python3 scripts/build.py`. El driver de los decks aborta solo si
+detecta partials con marcadores (no enmascara conflictos reales). Reparte la
+"propiedad" de slides entre workspaces para minimizar estos choques.
+
 ## Eficiencia y workspaces (Conductor)
 - **Recomienda proactivamente trabajar en otro workspace** cuando una tarea
   pueda correr en paralelo y eso ahorre tiempo o sea más eficiente: tareas
@@ -110,10 +138,9 @@ entradas viejas.
   trabajos largos que no bloqueen el resto, o cosas sin dependencias entre sí.
   Conductor permite varios agentes en paralelo, cada uno en su workspace.
 - Antes de sugerirlo, evalúa el riesgo de conflictos de merge: los archivos
-  generados (`index.html`/`moldes.html`) casi siempre chocan, pero se resuelven
-  re-corriendo `python3 scripts/build.py` al mergear (no a mano); los partials
-  solo chocan si dos ramas tocan el mismo archivo. Reparte la "propiedad" de
-  slides para minimizarlo.
+  generados (`index.html`/`moldes.html`) chocan, pero ahora se **auto-resuelven** al
+  mergear (driver `deck-rebuild`, ver "PRs sin conflictos"); los partials solo chocan
+  si dos ramas tocan el mismo archivo. Reparte la "propiedad" de slides para minimizarlo.
 
 ## Lecciones
 <!-- Vacío al inicio. Cuando me corrijas (tecla #) o salga una lección durable del

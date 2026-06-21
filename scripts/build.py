@@ -27,6 +27,12 @@ def collect(src_dir):
         n = len(re.findall(r'<section\b', s))
         assert n == 1, f"{os.path.basename(f)}: se esperaba 1 <section>, hay {n}"
         assert 'class="slide"' in s, f"{os.path.basename(f)}: falta class=\"slide\""
+        # ID estable por slide = nombre del archivo (sin extensión). Lo usan el
+        # panel de visibilidad y el PDF para referenciar slides sin depender de
+        # la posición (que se desplaza al reordenar). No se duplica si ya existe.
+        stem = os.path.splitext(os.path.basename(f))[0]
+        if "data-sid=" not in s:
+            s = re.sub(r"<section\b", f'<section data-sid="{stem}"', s, count=1)
         parts.append(s)
     return files, parts
 

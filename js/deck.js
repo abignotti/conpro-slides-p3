@@ -13,6 +13,57 @@ const THEMES = ['Mostaza claro', 'Mostaza oscuro', 'Crema editorial', 'Grafito m
 const TYPESETS = ['Editorial', 'Clásico', 'Moderno', 'Geométrico', 'Impacto', 'Mono', 'Corporativo'];
 const CHROMES = ['completo', 'minimo', 'limpio'];
 
+/* ---- Visibilidad de slides (ocultar/mostrar en vivo) ----------------- *
+   Una slide se oculta SACÁNDOLA del DOM (no con data-visibility: reveal 5.1 no
+   excluye ese atributo de la navegación). Al quitarla/reinsertarla se llama
+   Reveal.sync(), que recalcula total, navegación y barra de progreso. El estado
+   se persiste en localStorage por data-sid (ID estable que inyecta build.py) y
+   se reenvía al render del PDF vía URL.
+   - SLIDE_ORDER: orden canónico (todas las slides, incl. ocultas) capturado al
+     cargar, para reinsertar cada una en su posición original.
+   - "oculta" == !el.isConnected (desconectada del DOM). */
+const HIDE_KEY = 'conpro-hidden-slides';
+let SLIDE_ORDER = [];          // [{ sid, el }] en orden de documento
+let slidesParent = null;
+
+function loadHidden() {
+  try {
+    const arr = JSON.parse(localStorage.getItem(HIDE_KEY) || '[]');
+    return new Set(Array.isArray(arr) ? arr : []);
+  } catch (e) { return new Set(); }
+}
+function saveHidden(set) {
+  try { localStorage.setItem(HIDE_KEY, JSON.stringify([...set])); } catch (e) {}
+}
+function sidOf(section) { return section.getAttribute('data-sid') || ''; }
+
+function captureSlides() {
+  slidesParent = document.querySelector('.reveal .slides');
+  SLIDE_ORDER = [...document.querySelectorAll('section.slide')]
+    .map((el) => ({ sid: sidOf(el), el }));
+}
+function hideSlideEl(el) { if (el.isConnected) el.remove(); }
+function showSlideEl(el) {
+  if (el.isConnected || !slidesParent) return;
+  const i = SLIDE_ORDER.findIndex((o) => o.el === el);
+  let ref = null;                 // reinsertar antes de la 1ª slide posterior visible
+  for (let j = i + 1; j < SLIDE_ORDER.length && !ref; j++) {
+    if (SLIDE_ORDER[j].el.isConnected) ref = SLIDE_ORDER[j].el;
+  }
+  slidesParent.insertBefore(el, ref);   // ref null => al final
+}
+
+/* Aplica el estado oculto ANTES de Reveal.initialize() (las ocultas ni llegan a
+   inicializarse). En modo print lee el set de ?hidden=sid,sid; si no, de
+   localStorage. Requiere captureSlides() previo. */
+function applyInitialHidden(isPrint, params) {
+  const sids = isPrint
+    ? new Set((params.get('hidden') || '').split(',').map((s) => s.trim()).filter(Boolean))
+    : loadHidden();
+  if (!sids.size) return;
+  SLIDE_ORDER.forEach((o) => { if (sids.has(o.sid)) hideSlideEl(o.el); });
+}
+
 /* ---- Configs de los gráficos, por id de canvas ---------------------- */
 const CHART_CONFIGS = {
   'chart-barras': (cv) => Charts.bar(cv, {
@@ -90,6 +141,92 @@ const CHART_CONFIGS = {
   }),
 };
 
+/* ---- Panel de visibilidad de slides --------------------------------- *
+   Lista todas las slides (número + título) con un botón "ojo" por fila para
+   ocultarlas/mostrarlas en vivo. Devuelve { panel, render } para que el picker
+   lo enganche (toggle de apertura) y la tecla T lo oculte junto con el chrome. */
+function buildSlideManager() {
+  const panel = document.createElement('div');
+  panel.className = 'slide-manager';
+  const title = document.createElement('div');
+  title.className = 'sm-title';
+  title.textContent = 'Slides — ocultar / mostrar';
+  const list = document.createElement('div');
+  list.className = 'sm-list';
+  panel.appendChild(title);
+  panel.appendChild(list);
+  document.body.appendChild(panel);
+
+  const titleOf = (s) => {
+    const h = s.querySelector('h1, h2');
+    if (h && h.textContent.trim()) return h.textContent.trim();
+    return s.getAttribute('data-label') || sidOf(s) || 'Slide';
+  };
+
+  function toggleSlide(section) {
+    const set = loadHidden();
+    const sid = sidOf(section);
+    const willHide = section.isConnected;
+
+    // Si voy a ocultar la slide actual, primero navego a una visible adyacente
+    // (mientras sigue en el DOM y los índices son válidos).
+    if (willHide && window.Reveal && Reveal.getCurrentSlide() === section) {
+      const i = SLIDE_ORDER.findIndex((o) => o.el === section);
+      let target = null;
+      for (let j = i + 1; j < SLIDE_ORDER.length && !target; j++) if (SLIDE_ORDER[j].el.isConnected) target = SLIDE_ORDER[j].el;
+      for (let j = i - 1; j >= 0 && !target; j--) if (SLIDE_ORDER[j].el.isConnected) target = SLIDE_ORDER[j].el;
+      if (target) { const idx = Reveal.getIndices(target); Reveal.slide(idx.h, idx.v); }
+    }
+
+    if (willHide) { hideSlideEl(section); if (sid) set.add(sid); }
+    else { showSlideEl(section); if (sid) set.delete(sid); }
+    saveHidden(set);
+
+    if (window.Reveal) { Reveal.sync(); Reveal.layout(); }
+    numberSlides();
+    render();
+  }
+
+  function render() {
+    list.innerHTML = '';
+    let n = 0;
+    SLIDE_ORDER.forEach(({ el }) => {
+      const hidden = !el.isConnected;
+      if (!hidden) n += 1;
+      const row = document.createElement('div');
+      row.className = 'sm-row' + (hidden ? ' is-off' : '');
+
+      const eye = document.createElement('button');
+      eye.className = 'sm-eye';
+      eye.type = 'button';
+      eye.title = hidden ? 'Mostrar slide' : 'Ocultar slide';
+      eye.textContent = hidden ? '🚫' : '👁';
+      eye.addEventListener('click', (ev) => { ev.stopPropagation(); toggleSlide(el); });
+
+      const num = document.createElement('span');
+      num.className = 'sm-num';
+      num.textContent = hidden ? '—' : String(n).padStart(2, '0');
+
+      const label = document.createElement('span');
+      label.className = 'sm-label';
+      label.textContent = titleOf(el);
+
+      row.appendChild(eye);
+      row.appendChild(num);
+      row.appendChild(label);
+      // Click en la fila (no en el ojo) → navegar a esa slide, si está visible.
+      row.addEventListener('click', () => {
+        if (!el.isConnected || !window.Reveal) return;
+        const idx = Reveal.getIndices(el);
+        if (idx) Reveal.slide(idx.h, idx.v);
+      });
+      list.appendChild(row);
+    });
+  }
+
+  return { panel, render };
+}
+
 /* ---- Selector de previsualización ----------------------------------- */
 function buildPicker() {
   const root = document.documentElement;
@@ -156,9 +293,17 @@ function buildPicker() {
     pdfBtn.innerHTML = '⏳ Generando…';
     const theme = root.getAttribute('data-theme') || THEMES[0];
     const typeset = root.getAttribute('data-typeset') || TYPESETS[0];
-    const url = `/api/pdf?theme=${encodeURIComponent(theme)}&typeset=${encodeURIComponent(typeset)}`;
+    // Las slides ocultas también se excluyen del PDF: se reenvían sus data-sid.
+    const hiddenSids = SLIDE_ORDER.filter((o) => !o.el.isConnected).map((o) => o.sid).filter(Boolean);
+    let url = `/api/pdf?theme=${encodeURIComponent(theme)}&typeset=${encodeURIComponent(typeset)}`;
+    if (hiddenSids.length) url += `&hidden=${encodeURIComponent(hiddenSids.join(','))}`;
     try {
       const res = await fetch(url);
+      // 404 = la función serverless /api/pdf no existe en este server. Pasa con
+      // el server estático local (python3 -m http.server): el PDF SOLO se genera
+      // en Vercel (deploy o `vercel dev`). Para exportar localmente sin Vercel,
+      // usar `node scripts/export-pdf.mjs`.
+      if (res.status === 404) throw new Error('PDF_NO_API');
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const blob = await res.blob();
       const href = URL.createObjectURL(blob);
@@ -170,14 +315,28 @@ function buildPicker() {
       a.remove();
       setTimeout(() => URL.revokeObjectURL(href), 4000);
     } catch (err) {
-      alert('No se pudo generar el PDF. Revisá la consola.');
       console.error('[PDF]', err);
+      alert(err && err.message === 'PDF_NO_API'
+        ? 'El export PDF necesita el entorno Vercel (deploy o `vercel dev`); no funciona con el server estático local.'
+        : 'No se pudo generar el PDF. Revisa la consola.');
     } finally {
       pdfBtn.disabled = false;
       pdfBtn.innerHTML = label;
     }
   });
   picker.appendChild(pdfBtn);
+
+  // Panel de visibilidad de slides + botón que lo abre/cierra.
+  const mgr = buildSlideManager();
+  const slidesBtn = document.createElement('button');
+  slidesBtn.className = 'pk-btn';
+  slidesBtn.type = 'button';
+  slidesBtn.innerHTML = '☰ Slides';
+  slidesBtn.addEventListener('click', () => {
+    const open = mgr.panel.classList.toggle('open');
+    if (open) mgr.render();
+  });
+  picker.appendChild(slidesBtn);
 
   const hint = document.createElement('span');
   hint.className = 'hint';
@@ -186,7 +345,10 @@ function buildPicker() {
 
   document.body.appendChild(picker);
   document.addEventListener('keydown', (e) => {
-    if (e.key === 't' || e.key === 'T') picker.classList.toggle('is-hidden');
+    if (e.key === 't' || e.key === 'T') {
+      picker.classList.toggle('is-hidden');
+      mgr.panel.classList.toggle('is-hidden');   // el panel se oculta junto al chrome
+    }
   });
 }
 
@@ -327,14 +489,20 @@ function fitSlide(slide) {
    Slides sin ese elemento (portada, demo a pantalla completa) quedan sin
    número impreso, pero igual cuentan para la posición. El total se omite. */
 function numberSlides() {
-  document.querySelectorAll('section.slide').forEach((slide, i) => {
+  // Solo cuenta las visibles: las ocultas se sacan del DOM, así que ni aparecen.
+  let n = 0;
+  document.querySelectorAll('section.slide').forEach((slide) => {
+    n += 1;
     let el = slide.querySelector('[data-page]');
     if (!el) {
       const header = slide.querySelector('[data-chrome="header"]');
       if (header) el = [...header.querySelectorAll('span')]
         .find((s) => /^\s*\d+\s*\/\s*\d+\s*$/.test(s.textContent));
+      // Al rescribir el span perdería el patrón "NN / NN"; lo marcamos con
+      // data-page para que las re-pasadas (al ocultar/mostrar) lo reencuentren.
+      if (el) el.setAttribute('data-page', '');
     }
-    if (el) el.textContent = String(i + 1).padStart(2, '0');
+    if (el) el.textContent = String(n).padStart(2, '0');
   });
 }
 
@@ -370,6 +538,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const qpTypeset = params.get('typeset');
   if (qpTheme && THEMES.includes(qpTheme)) root.setAttribute('data-theme', qpTheme);
   if (qpTypeset && TYPESETS.includes(qpTypeset)) root.setAttribute('data-typeset', qpTypeset);
+
+  // Captura el orden canónico y saca del DOM las slides ocultas (localStorage en
+  // vivo, ?hidden=… en el PDF) ANTES de inicializar reveal, para que ni cuenten.
+  captureSlides();
+  applyInitialHidden(isPrint, params);
 
   if (!isPrint) buildPicker();   // sin selector en el PDF
   Reveal.initialize({

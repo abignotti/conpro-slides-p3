@@ -19,6 +19,11 @@ export default async function handler(req, res) {
   const q = req.query || {};
   const theme = THEMES.includes(q.theme) ? q.theme : 'Mostaza claro';
   const typeset = TYPESETS.includes(q.typeset) ? q.typeset : 'Corporativo';
+  // Slides a excluir del PDF: data-sid separados por coma. Se sanea a tokens
+  // tipo slug (espejo del formato que inyecta build.py) para no propagar basura.
+  const hidden = String(q.hidden || '')
+    .split(',').map((s) => s.trim())
+    .filter((s) => /^[a-z0-9-]+$/i.test(s));
 
   // URL absoluta del propio deployment (prod, preview o `vercel dev`).
   const host = req.headers['x-forwarded-host'] || req.headers.host || process.env.VERCEL_URL;
@@ -28,8 +33,9 @@ export default async function handler(req, res) {
   }
   const proto = req.headers['x-forwarded-proto']
     || (/^(localhost|127\.)/.test(host) ? 'http' : 'https');
-  const url = `${proto}://${host}/index.html?print-pdf`
+  let url = `${proto}://${host}/index.html?print-pdf`
     + `&theme=${encodeURIComponent(theme)}&typeset=${encodeURIComponent(typeset)}`;
+  if (hidden.length) url += `&hidden=${encodeURIComponent(hidden.join(','))}`;
 
   let browser;
   try {
@@ -40,6 +46,14 @@ export default async function handler(req, res) {
       headless: chromium.headless,
     });
     const page = await browser.newPage();
+    // Si el deployment está protegido (Vercel Authentication), la función no
+    // hereda la sesión del navegador del usuario: al pedir su PROPIA URL recibe
+    // el muro de SSO en vez del deck. Con "Protection Bypass for Automation"
+    // activado, Vercel expone VERCEL_AUTOMATION_BYPASS_SECRET; lo mandamos como
+    // header en CADA request (documento + subrecursos same-origin: css/js/assets)
+    // para que la función pueda leer el deck. Si no está, no se manda (inerte).
+    const bypass = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+    if (bypass) await page.setExtraHTTPHeaders({ 'x-vercel-protection-bypass': bypass });
     await page.goto(url, { waitUntil: 'networkidle0', timeout: 45000 });
     await page.waitForFunction('window.__deckPrintReady === true', { timeout: 45000 });
     // Esperas en el lado Node (timers confiables): fuentes + asentado de los
