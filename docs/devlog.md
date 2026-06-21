@@ -106,6 +106,118 @@ Próximo paso: revisar con el usuario; commit/PR si lo pide.
 
 ---
 
+## [2026-06-21] — Botón "Descargar PDF": export headless on-demand (idéntico a la web)
+Qué hice:
+- **Reactivé el export a PDF** (estaba retirado por verse mal) con un enfoque nuevo: render **headless** que produce un PDF **idéntico** a la web, respetando el **tema/tipografía activos** al apretar el botón.
+- **Causa raíz del bug viejo:** reveal 5.x NO tiene un `pdf.css` aparte (vive dentro de `dist/reveal.css`, ya enlazado); su modo print fuerza `display:block!important` y `padding:0!important` en cada `<section>`, rompiendo el layout flex (header/cuerpo/pie) y borrando el `--slide-padding` (80px). Fix en `css/deck.css` bajo `html.reveal-print`: repone flex + `padding:var(--slide-padding)` + oculta selector/controles + `print-color-adjust:exact`. El slide demo (`data-label="Demo plataforma"`) queda exceptuado a `padding:0` (full-bleed a sangre).
+- **Arquitectura (decisión del usuario): serverless on-demand en Vercel.** `api/pdf.js` (puppeteer-core + @sparticuz/chromium) abre el propio deployment con `?print-pdf&theme=…&typeset=…`, espera `window.__deckPrintReady` y devuelve `page.pdf()` a 1920×1080 como descarga. `vercel.json`: `maxDuration 60`, `memory 1024` (entran en el plan gratuito). Botón "⤓ Descargar PDF" repuesto en `buildPicker` (deck.js): lee `data-theme`/`data-typeset` actuales, hace `fetch('/api/pdf?…')` y descarga el blob; muestra "Generando…".
+- **deck.js:** aplica `?theme=`/`?typeset=` de la URL (validados) antes de `Reveal.initialize`; agrega `pdfMaxPagesPerSlide:1`; la rama `isPrint` ya no llama `window.print()`.
+- **`scripts/export-pdf.mjs`** (verificación local con el Chrome del sistema, sin Vercel) + `package.json` (deps).
+Decisiones/bugs:
+- **Lección (timers en headless):** en print headless los `setTimeout`/`requestAnimationFrame` de la página **se congelan**, así que `__deckPrintReady` NUNCA se seteaba si dependía de ellos (export colgado a 45s). Solución: marcar la señal **síncrona** en la página y mover las esperas (fuentes vía `document.fonts.ready`, asentado de gráficos ~900ms) al **lado Node**, donde los timers sí corren.
+- **Lección (worktrees + puerto):** el `localhost:8753` lo tenía tomado un server de OTRO workspace (`lahore`), así que las pruebas pegaban contra otro deck. Para verificar, levantar el server de ESTE worktree en un puerto propio y pasar `--base` al script. (Los `.git` de cada workspace son worktrees del mismo repo: comparten objetos/refs/remoto, pero cada uno tiene su working dir y su rama; CLAUDE.md/devlog son archivos versionados normales — se pushean y mergean por rama.)
+- Verificado local 3/3 estable: 31 págs, 1920×1080, ~2 MB, fuentes embebidas (texto vectorial), gráficos Chart.js y slide demo (iframe) renderizan completos.
+- No se commitea el PDF generado (`*.pdf` ya ignorado); se agregó `node_modules/` y `.vercel/` a `.gitignore`.
+Próximo paso: probar el botón en Vercel (`vercel dev` o deploy preview) — el `/api/pdf` no corre bajo `python3 -m http.server`. Cold start ~5-10s la primera vez.
+
+---
+
+## [2026-06-21] — Alineación con el PPTX v2 (36 slides): 3 slides nuevas + split ingresos/captación
+Qué hice (tras mapear `.context/new-deck-v2.pptx`; ver "Delta v2" en `docs/mapeo-pptx-v1.md`):
+- 🆕 **`17b-ingresos-demanda.html` = "Ingresos según la demanda"** (NUEVA): tarjeta acento $201.061 + tarjeta "Despacho · Mixto (domicilio + pick up)" + tabla por año (Hogares 60→161, Ingresos $13M→$37M, Año 5 destacado). Reemplaza al `17b` viejo (que era la captación). [PPTX 20]
+- 🔄 **`17c-mercado-alcanzable.html`** (= la captación, `git mv` desde `17b`): recortada de 4 a **3 KPIs** (161 · 0,19% · 86.770); el $201.061 se movió a la slide de ingresos. [PPTX 21]
+- 🆕 **`20b-pregunta-sostener.html`** = pregunta-ancla "¿Puede Conpro sostener esa rentabilidad…?" (molde cita, igual que `15-vale-la-pena`), antes del divisor de robustez. [PPTX 26]
+- 🆕 **`21b-sustentacion.html`** = "Análisis de Sustentación" → 01 Imitación (acento) · 02 Sustitución · 03 Expropiación de renta (molde bullets, igual que recomendaciones). Primer tema de robustez. [PPTX 27]
+- ✏️ **`12-techo`**: "no rompe el **techo operacional**". [PPTX 14]
+- Build OK (34 slides). QA visual a 1920×1080 (playwright) de las 5 slides: sin desbordes ni solapes. Numeración automática reacomodó todo (no se tocó a mano).
+Decisiones/bugs:
+- **`19-ganancias` se mantiene** por ahora (el PPTX v2 la eliminó; el usuario decide revisarlo después). No se borró contenido.
+- "Despacho Mixto" = **domicilio + pick up** (confirmado por el usuario; primero había puesto "retiro en conserjería").
+- Colocación: pregunta-ancla antes del divisor de robustez (paralelo a `15-vale-la-pena`); Sustentación como primer tema de la sección.
+- Orden por nombre de archivo: `17b` < `17c`; `20-van` < `20b`; `21-divisor` < `21b` → quedan en la posición correcta sin renumerar.
+Próximo paso: decidir definitivamente ganancias; ¿adoptar los rediseños "formato distinto" del PPTX (Juan buyer-persona, Propuesta 2 tarjetas, Cómo funciona, Costos con torta)?; deploy.
+
+## [2026-06-21] — Ajustes lote 1 del PPTX nuevo (compañeras) → deck web
+Qué hice (al portar el `Conpro-P3-v1.pptx` re-editado; ver delta en `docs/mapeo-pptx-v1.md`):
+- **Sección 05 renombrada** "Robustez y decisión" → **"Resultados y recomendaciones"** en los 5 divisores (`02/09/13/16/21-divisor*`), alineando al PPTX. En `21` cambia también el h2 y las notas.
+- **`17-demanda`**: caption del gráfico "escenario base" → **"escenario conservador"** (corrige inconsistencia interna: notas y VAN ya decían conservador).
+- **B · `11-resultados-cbo`**: de 4 tarjetas a **3** (se quita "Inversión $295.000"; el dato vive en `10-que-es-cbo`). Grid `repeat(4,1fr)`→`repeat(3,1fr)`.
+- **A · `20-van-payback`**: rediseño — se reemplaza la **tabla con TIR** por un **gráfico de barras** (`chart-van`: Pesimista 1,12 · Conservador 2,39 acento · Optimista 3,97 M$), conservando los chips WACC 29,59% + Payback base 3 años. Sin TIR (sigue al PPTX). Nuevo config `chart-van` en `js/deck.js`.
+- **C · `17b-ingresos-demanda`**: rediseño completo "**El desafío no es mercado, es captación**" — grilla de 4 KPIs ($201.061/hogar · 161 · 0,19% · 86.770) + **barra de holgura** (track muteado con sliver acento 0,19% + "161 captados" / "≈ 86.600 por captar"). Reemplaza el gráfico de ingresos; se quita el config `chart-ingresos` de `js/deck.js`.
+
+Refinamientos (feedback del usuario, mismo lote):
+- **`js/charts.js` · `bar()` con 3 opciones nuevas** (reutilizables): `valueLabelAll` (rotula TODAS las barras, no solo la clave), `colorRamp` (rampa de opacidad del acento vía nuevo helper `withAlpha`: clara la 1ª → opaca la última) y `stagger` (cada barra crece **desde la base** con retardo `dataIndex*220ms`, año 1→5). El plugin `valueLabel` ahora omite la etiqueta mientras la barra sigue pegada a la base, para que el número aparezca junto con la barra.
+- **VAN (`chart-van`)**: `valueLabelAll` → número sobre las 3 barras (1,12 / 2,39 / 3,97).
+- **Demanda (`chart-demanda`)**: `valueLabelAll` + `colorRamp` + `stagger` → número en cada barra, amarillo de claro (año 1) a oscuro (año 5) y aparición escalonada desde el eje X. Verificado frame-a-frame con playwright.
+- **17b**: sliver de la barra de holgura 0,19%→**6%** (pedido: que no se vea tan vacía, aunque no sea representativo) y la frase "captarlos más rápido" en **una sola línea** (`white-space:nowrap`, quité el `max-width`).
+- **Animación de gráficos cada vez que se entra a la slide** (pedido): `Charts.replay(canvas)` (reconstruye el gráfico, mismo camino que el cambio de tema) + `initChartsIn` ahora hace `replay` si el canvas ya estaba `inited` (antes solo animaba en la 1ª visita). Aplica a todos los gráficos (consistente con el count-up del hero). Bug encontrado y corregido: `replay` no estaba en el `return` del IIFE de `charts.js` → `Charts.replay is not a function`; verificado con playwright que la barra del año 5 espera su delay (~880ms) y luego crece desde la base. Subí el timeout de impresión PDF a 1900ms para dar margen al stagger.
+- **VAN · unidad por barra** (pedido): nuevo `valueLabelFmt` en `bar()`; `chart-van` rotula `$1,12 M / $2,39 M / $3,97 M` (no solo el eje Y).
+- **Barras desde abajo hacia arriba en Demanda y VAN** (pedido): `chart-van` ahora también `stagger: true` → las barras crecen desde la base (eje X), escalonadas Pesimista→Conservador→Optimista, igual que Demanda. Verificado por probe (alturas de barra suben de 0 al valor final).
+Verificación:
+- `build.py` OK; sin "Robustez y decisión" ni `chart-ingresos` residuales. QA visual a 1920×1080 (playwright) de las 5 slides tocadas: sin desbordes ni solapes.
+- **Server local en 8753 estaba ocupado por la workspace `nashville`** (servía contenido viejo y confundió el primer QA). Levanté esta workspace en **8755**. Ojo a futuro: verificar el cwd del server (`lsof`) antes de confiar en el link.
+Decisiones/bugs:
+- El elemento visual de C (barra de holgura) queda **estático pero "animation-ready"** (count-up 0→161 / crecimiento del sliver) para el pase de animaciones (skill Emil), no ahora.
+- `chart-van` usa M$ con `valueLabel` (sólo rotula la barra clave, patrón del deck).
+Próximo paso (plan aparte): 2 slides **nuevas** del PPTX — pregunta-ancla "¿Puede Conpro sostener…?" y "Análisis de Sustentación" (Imitación/Sustitución/Expropiación). Pendiente decisión: quitar o no `19-ganancias` (el PPTX la eliminó).
+
+## [2026-06-21] — Animaciones (piloto): sistema de entradas + timeline 1→5
+Qué hice:
+- **Skills de Emil Kowalski instaladas** (`.agents/skills/`): `emil-design-eng`
+  (criterio de motion) y `review-animations` (QA). Leídas antes de usar. El criterio
+  guía el "feel"; el motor sigue siendo CSS + reveal.js + Chart.js (sin GSAP).
+- **`js/anim.js` (nuevo) — orquestador genérico de entradas.** En cada cambio de slide
+  (enganchado en `deck.js::onSlide`) hace un *stagger* de los hijos directos del cuerpo
+  (`.slide > div`) con `opacity` + `translateY`, easing ease-out fuerte
+  (`--ease-out: cubic-bezier(0.23,1,0.32,1)`), `--anim-enter: 460ms`,
+  `--anim-stagger: 55ms`. **Sin tocar los 31 partials.** Solo transform/opacity (GPU),
+  con transiciones (interrumpibles). Respeta `prefers-reduced-motion` (mantiene opacity,
+  sin movimiento). Excluye el demo (`data-no-anim` en `14b`) y el modo `?print-pdf`.
+- **Momento firmado slide 06 (timeline 1→5):** el paso activo se resalta en acento y
+  avanza 1→5 con **flecha o clic** (fragments invisibles `[data-seq-marker]` →
+  `paintSequence` pinta activo/completado/reposo). Línea de progreso con `scaleX` (GPU).
+  Idea original del usuario.
+- **Count-up de KPIs:** marqué `data-hero` en los 3 stats del slide 08 (activa el
+  `animateHero` ya existente, es-CL). Los gráficos Chart.js ya animaban (600ms easeOut).
+- **Bullets secuenciales (pedido del usuario):** `paintBullets` en `anim.js` + marcas
+  `[data-seq-bullets]`/`[data-seq-bullet]` (con `class="fragment"`) en el slide 27. Los
+  bullets aparecen de a uno (flecha/clic); el activo queda a plena opacidad y los ya
+  mostrados se atenúan (0.4). Al mostrar TODOS, vuelven todos a opacidad 1 (estado final
+  uniforme → respeta el feedback de "bullets parejos"). Aplicado a slides **27 y 07**
+  (en 07 unifiqué los marcadores 02/03 a acento, antes en gris → además cumple el
+  feedback de "marcadores todos en acento"). FODA (26) excluido a pedido del usuario.
+  Verificado en browser (puerto 8761).
+- Nuevos tokens de motion en `tokens.css`; `anim.js` añadido al shell del build.
+- Regla nueva (pedido del usuario) en `CLAUDE.md` + memoria: **ante cualquier decisión,
+  entregar siempre mi recomendación.**
+Decisiones/bugs:
+- **Auto-QA con criterio `review-animations`:** corregí 2 hallazgos antes de cerrar —
+  (1) la línea de progreso animaba `width` (layout) → pasada a `transform: scaleX()`;
+  (2) `paintSequence` no respetaba reduced-motion → ahora omite el `scale` (mantiene el
+  color, que ayuda a comprender).
+- Entrada de **460ms** (>300ms del bar de UI): excepción justificada para deck
+  proyectado/explicativo, visto una vez por la audiencia (el bar permite "longer" en
+  marketing/explanatory).
+- Verificado en browser (slides 06, 08, 27): sin errores de consola; timeline y bullets
+  avanzan con flecha y clic; KPIs con valor final correcto; demo sin animación.
+- **Caché del server local:** el browser sirve `index.html` cacheado; usar cache-buster
+  (`?v=N`) o hard-reload tras cada rebuild para ver los cambios (ya estaba documentado).
+- **Conflicto con rama `map-pptx-vs-web-slides`** (revisado, 1 commit por delante de main,
+  "chart animations"): toca `js/charts.js` (yo NO lo toqué → sin choque; sus animaciones
+  de barras y mi entrada de slide son capas independientes) y `js/deck.js` (sus cambios en
+  `CHART_CONFIGS`/`initChartsIn`/print vs mi 1 línea en `onSlide` → hunks separados,
+  auto-merge). Conflictos triviales solo en `docs/devlog.md` e `index.html` (regenerado).
+  Recomendación: mergear map a main primero, luego rebasar esta rama; evitar editar por-slide
+  los archivos que map tocó (divisores 02/09/13/16/21, 11, 17, 17b, 20) — la entrada genérica
+  ya los anima sin tocarlos.
+- **Puerto por workspace:** el server local quedó en **8761** (no 8753): el 8753 es la
+  convención pero choca cuando hay varios workspaces en paralelo (cada uno con su server).
+  Otros workspaces estaban en 8755/8757.
+Próximo paso: rollout restante → `data-hero` en KPIs (15; 11/20 tras mergear map);
+afinar entrada en slides densas vs `fitSlide`. Commit pendiente de OK.
+
+---
+
 ## [2026-06-21] — Regla de comunicación concisa + normalización a español neutro
 Qué hice:
 - `CLAUDE.md` → Comunicación: nueva regla **"conciso pero completo"** (bullets/tablas/diagramas, conclusión primero, sin relleno; el usuario pregunta si algo no queda claro). También en memoria (`user-comms-concise`).
@@ -138,7 +250,6 @@ Decisiones/bugs:
 Próximo paso: ver en proyección 16:9 real (donde no hay letterbox) que el demo se vea idéntico; seguir con animaciones (skill Emil Kowalski) y deploy.
 
 ---
-
 ## [2026-06-21] — Cierre de sesión: demo plataforma + numeración auto (commit/push)
 Qué hice:
 - Cierre de la sesión del **demo de la plataforma** y la **numeración automática**. Build OK (31 slides), server local 200, demo verificado en browser. Commit + push de `reimport-deck-redo` con todo el trabajo acumulado en el working tree (esta sesión + la de "datos reales" de la otra sesión).

@@ -58,6 +58,7 @@ def shell(title, slides_html, typeset="Editorial"):
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="js/charts.js"></script>
+  <script src="js/anim.js"></script>
   <script src="js/deck.js"></script>
 </body>
 </html>

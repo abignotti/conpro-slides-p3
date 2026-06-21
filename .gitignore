@@ -2,9 +2,17 @@
 /Escalamiento-Conpro.pptx
 /build/
 
+# Node / Vercel
+node_modules/
+.vercel/
+
 # OS / editor cruft
 .DS_Store
 *.swp
 
 # Reference binaries (kept out of git — live in .context/, which is ignored)
 *.pdf
+
+# Skills instaladas (tooling de agente; se reinstalan con `npx skills add`).
+# El registro liviano de versiones (skills-lock.json) SÍ se versiona.
+.agents/

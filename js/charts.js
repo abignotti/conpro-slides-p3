@@ -27,6 +27,20 @@ window.Charts = (() => {
   const FONT = 24; // piso de texto
   const fmtNum = (v) => Number(v).toLocaleString('es-CL'); // 6.11 -> "6,11"
 
+  /* color del token (#hex o rgb) -> rgba con alfa, para rampas de opacidad. */
+  function withAlpha(color, a) {
+    color = (color || '').trim();
+    if (color[0] === '#') {
+      let h = color.slice(1);
+      if (h.length === 3) h = h.split('').map((c) => c + c).join('');
+      const n = parseInt(h, 16);
+      return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+    }
+    const m = color.match(/rgba?\(([^)]+)\)/);
+    if (m) { const p = m[1].split(',').map((s) => s.trim()); return `rgba(${p[0]},${p[1]},${p[2]},${a})`; }
+    return color;
+  }
+
   function scales(d, { yMax, yTitle, yStep, yFmt } = {}) {
     return {
       x: {
@@ -48,22 +62,28 @@ window.Charts = (() => {
     };
   }
 
-  /* Plugin: etiqueta de valor sobre la barra clave (color-text). */
-  function valueLabelPlugin(keyIndex, fmt) {
+  /* Plugin: etiqueta de valor sobre las barras indicadas (color-text).
+     `indices` = array de índices a rotular. Durante el stagger omite la
+     barra que aún está pegada a la base, para que el número aparezca junto
+     con la barra y no antes. */
+  function valueLabelPlugin(indices, fmt) {
     return {
       id: 'valueLabel',
       afterDatasetsDraw(chart) {
-        if (keyIndex == null) return;
+        if (!indices || !indices.length) return;
         const { ctx } = chart;
         const meta = chart.getDatasetMeta(0);
-        const el = meta.data[keyIndex];
-        if (!el) return;
-        const v = chart.data.datasets[0].data[keyIndex];
+        const y0 = chart.scales.y.getPixelForValue(0);
         ctx.save();
         ctx.fillStyle = token('--color-text');
         ctx.font = '600 28px ' + token('--font-body');
         ctx.textAlign = 'center';
-        ctx.fillText(fmt ? fmt(v) : v, el.x, el.y - 16);
+        indices.forEach((idx) => {
+          const el = meta.data[idx];
+          if (!el || el.y > y0 - 4) return;
+          const v = chart.data.datasets[0].data[idx];
+          ctx.fillText(fmt ? fmt(v) : v, el.x, el.y - 16);
+        });
         ctx.restore();
       },
     };
@@ -107,16 +127,32 @@ window.Charts = (() => {
   function refreshAll() {
     registry.forEach((e) => { if (e.instance) e.instance.destroy(); e.instance = e.build(e.canvas); });
   }
+  /* Re-dispara la animación de entrada de un gráfico ya creado (al volver a
+     entrar a su slide): se reconstruye el gráfico (mismo camino que el cambio
+     de tema), garantizando que la animación de entrada vuelva a correr. */
+  function replay(canvas) {
+    const e = registry.find((x) => x.canvas === canvas);
+    if (e) { if (e.instance) e.instance.destroy(); e.instance = e.build(e.canvas); }
+  }
 
   /* ============================================================
      BAR · estilo base de TODOS los gráficos
      ============================================================ */
-  function bar(canvas, { labels, data, keyIndex = data.length - 1, yMax, yTitle, yStep, valueLabel, threshold, thresholdLabel } = {}) {
+  function bar(canvas, { labels, data, keyIndex = data.length - 1, yMax, yTitle, yStep, valueLabel, valueLabelAll, valueLabelFmt, colorRamp, stagger, threshold, thresholdLabel } = {}) {
     const d = base();
-    const colors = data.map((_, i) => (i === keyIndex ? d.accent : d.gray));
+    const n = data.length;
+    // colorRamp: rampa de opacidad del acento (clara la 1ª -> opaca la última).
+    const colors = colorRamp
+      ? data.map((_, i) => withAlpha(d.accent, 0.4 + 0.6 * (n > 1 ? i / (n - 1) : 1)))
+      : data.map((_, i) => (i === keyIndex ? d.accent : d.gray));
+    const labelIdx = valueLabelAll ? data.map((_, i) => i) : (keyIndex == null ? [] : [keyIndex]);
     const plugins = [];
-    if (valueLabel) plugins.push(valueLabelPlugin(keyIndex, fmtNum));
+    if (valueLabel) plugins.push(valueLabelPlugin(labelIdx, valueLabelFmt || fmtNum));
     if (threshold != null) plugins.push(thresholdPlugin(threshold, thresholdLabel));
+    // stagger: cada barra crece desde la base (eje X) con retardo creciente.
+    const animation = stagger
+      ? { duration: 650, easing: 'easeOutCubic', delay: (ctx) => (ctx.type === 'data' ? ctx.dataIndex * 220 : 0) }
+      : { duration: 600, easing: 'easeOutCubic' };
 
     return new Chart(canvas, {
       type: 'bar',
@@ -126,7 +162,7 @@ window.Charts = (() => {
       }] },
       options: {
         responsive: true, maintainAspectRatio: false,
-        animation: { duration: 600, easing: 'easeOutCubic' },
+        animation,
         layout: { padding: { top: 36 } },
         plugins: { legend: { display: false }, tooltip: { enabled: false } },
         scales: scales(d, { yMax, yTitle, yStep }),
@@ -235,5 +271,5 @@ window.Charts = (() => {
     });
   }
 
-  return { token, register, refreshAll, bar, line, barGroup, barH };
+  return { token, register, refreshAll, replay, bar, line, barGroup, barH };
 })();
