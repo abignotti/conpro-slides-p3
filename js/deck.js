@@ -45,12 +45,17 @@ const CHART_CONFIGS = {
     keyIndex: 3, yMax: 7, yStep: 1, yTitle: 'VAN al presente (M$)', valueLabel: true,
   }),
   // TODO datos: curva de ingreso bruto (placeholder). Base: 60 hogares -> ~$37 MM al año 5 (diálogo).
-  'chart-demanda': (cv) => Charts.line(cv, {
+  'chart-demanda': (cv) => Charts.bar(cv, {
     labels: ['Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5'],
-    yMax: 40, yStep: 10,
-    series: [
-      { label: 'Ingreso bruto', role: 'key', data: [10, 16, 24, 31, 37] },
-    ],
+    data: [60, 93, 122, 143, 161],
+    keyIndex: 4, yMax: 180, yStep: 60, yTitle: 'Hogares', valueLabel: true,
+  }),
+  // Ingresos (CLP) según hogares atendidos. Eje X = hogares; valueLabel usa
+  // fmtNum (es-CL: separador de miles con punto) -> "$37.374.912" vía valueLabelPrefix.
+  'chart-ingresos': (cv) => Charts.bar(cv, {
+    labels: ['60', '93', '122', '143', '161'],
+    data: [13895145, 21493276, 28154459, 33063850, 37374912],
+    keyIndex: 4, yMax: 40000000, yStep: 10000000, yTitle: 'Ingresos (CLP)', valueLabel: true,
   }),
   // TODO datos: ganancia anual años 1-5 (placeholder, falta en el informe leído).
   'chart-ganancias': (cv) => Charts.bar(cv, {
@@ -74,9 +79,9 @@ const CHART_CONFIGS = {
     labels: ['Huevos', 'Café', 'Aceite', 'Miel', 'Queso'],
     yMax: 70000, yStep: 20000, yTitle: 'CLP',
     series: [
-      { label: 'Mínimo mercado', role: 'muted', data: [9000, 28000, 35000, 6000, 10000] },
-      { label: 'Conpro', role: 'key', data: [8500, 30000, 60000, 7000, 12000] },
-      { label: 'Máximo mercado', role: 'base', data: [12000, 58000, 67000, 13000, 15000] },
+      { label: 'Mínimo mercado', role: 'muted', data: [9000, 28700, 61000, 7000, 12600] },
+      { label: 'Conpro', role: 'key', data: [9490, 29670, 34990, 6990, 10573] },
+      { label: 'Máximo mercado', role: 'base', data: [11990, 58000, 67776, 13000, 14990] },
     ],
   }),
 };

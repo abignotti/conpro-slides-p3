@@ -1,0 +1,158 @@
+<section class="slide" data-label="Flujo 2 filas" data-speaker-notes="El flujo de automatización del CBO de punta a punta: el pedido entra en Sheets, Make orquesta, Fintoc genera y cobra el link, y el control de venta se actualiza solo. La idea: casi todo corre sin intervención de Ricardo." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">10 / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;gap:22px;">
+
+    <div>
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;">
+        <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Flujo de implementación</span>
+      </div>
+      <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin:0;">Automatización simple</h2>
+    </div>
+
+    <!-- FILA 1 -->
+    <div>
+      <span style="display:inline-block;font-size:22px;font-weight:700;letter-spacing:0.02em;background:var(--color-accent);color:var(--color-on-accent);padding:7px 18px;border-radius:999px;margin-bottom:16px;">Crear y enviar link de pago</span>
+      <div style="display:flex;align-items:stretch;gap:10px;">
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">1</span>
+            <img src="assets/flujo/xlsx.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Pedido</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Se ingresa en Google Sheets</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">2</span>
+            <img src="assets/flujo/make.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Make</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Automatiza el proceso</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">3</span>
+            <img src="assets/flujo/fintoc.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Link de pago</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Creado por Fintoc</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">4</span>
+            <img src="assets/flujo/xlsx.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Link guardado</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">En Google Sheets</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">5</span>
+            <img src="assets/flujo/whatsapp.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">WhatsApp</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Cliente recibe el link</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Transición -->
+    <div style="display:flex;align-items:center;gap:10px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m6 13 6 6 6-6"/></svg>
+      <span style="font-family:var(--font-display);font-weight:700;font-size:24px;">Cliente paga</span>
+    </div>
+
+    <!-- FILA 2 -->
+    <div>
+      <span style="display:inline-block;font-size:22px;font-weight:700;letter-spacing:0.02em;background:var(--color-accent);color:var(--color-on-accent);padding:7px 18px;border-radius:999px;margin-bottom:16px;">Confirmar pago y actualizar control</span>
+      <div style="display:flex;align-items:stretch;gap:10px;">
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">6</span>
+            <img src="assets/flujo/fintoc.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Confirmación</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Por Fintoc</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">7</span>
+            <img src="assets/flujo/make.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Make valida</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Evitando duplicados</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">8</span>
+            <img src="assets/flujo/check.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Actualización</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Estado: pagado</p>
+          </div>
+        </div>
+
+        <span style="flex:none;display:flex;align-items:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">9</span>
+            <img src="assets/flujo/folder.png" alt="" width="46" height="46" style="object-fit:contain;">
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Visualización</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Control de venta</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Flujo de automatización del CBO. Fila 1 (crear y enviar el link): el pedido entra en Sheets, Make orquesta, Fintoc genera el link, se guarda y se envía por WhatsApp. Fila 2 (confirmar y actualizar): Fintoc confirma el pago, Make valida sin duplicar, se actualiza el estado y queda visible en el control de venta. Casi todo corre sin intervención de Ricardo.</aside>
+</section>
