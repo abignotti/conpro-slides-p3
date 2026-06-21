@@ -38,6 +38,13 @@
   --motion-duration: 600ms;
   --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --count-duration: 1200ms;
+  /* Entradas de slide (criterio Emil Kowalski): ease-out fuerte, no el
+     Material estándar débil; entrada < 600ms (elegante pero responsiva al
+     proyectar); stagger corto (30–80ms) entre elementos. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --anim-enter: 460ms;
+  --anim-stagger: 55ms;
+  --anim-rise: 14px;        /* translateY inicial de la entrada */
 
   /* ---- Tema por defecto: Mostaza claro ---- */
   --color-bg: #FBFAF7;

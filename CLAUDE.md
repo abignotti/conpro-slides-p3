@@ -16,6 +16,9 @@ el *dónde* vamos, en `docs/devlog.md`. Este archivo es solo reglas.
   repetir lo ya dicho. Da la conclusión/recomendación primero; el detalle
   después, solo si suma. Si algo queda incompleto u oscuro, el usuario
   preguntará — no infles la respuesta por las dudas.
+- **Ante cualquier decisión, entrega siempre tu recomendación.** No solo listes
+  opciones: di cuál eliges tú y por qué, en una línea. En las preguntas con
+  opciones, marca la recomendada ("(recomendado)"). (Pedido explícito del usuario.)
 
 ## Convenciones (reglas duras — estructura/proceso)
 - **1 archivo por slide.** Los moldes (biblioteca reutilizable de 22 templates)

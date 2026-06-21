@@ -337,6 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   const onSlide = (slide) => {
     heroOnSlide(slide); initChartsIn(slide); drawIcons(); setViewportBg(slide); bridgeNavIn(slide); syncDemoFill(slide);
+    if (window.DeckAnim) DeckAnim.onSlide(slide);   // entrada escalonada + timeline
     // tras render de fuentes/gráficos, ajustar si desborda
     requestAnimationFrame(() => fitSlide(slide));
     setTimeout(() => fitSlide(slide), 450);

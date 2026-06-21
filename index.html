@@ -199,33 +199,41 @@
     </div>
     <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:72px;">El pedido colectivo, por WhatsApp</h2>
 
-    <div style="position:relative;display:flex;justify-content:space-between;gap:24px;">
+    <div data-sequence style="position:relative;display:flex;justify-content:space-between;gap:24px;">
       <div style="position:absolute;top:21px;left:21px;right:21px;height:1px;background:var(--color-grid);"></div>
+      <div data-seq-progress style="position:absolute;top:21px;left:21px;right:21px;height:1px;background:var(--color-accent);transform:scaleX(0);transform-origin:left center;"></div>
       <div style="position:relative;display:flex;flex-direction:column;gap:24px;width:18%;">
-        <div style="width:44px;height:44px;border-radius:50%;background:var(--color-accent);border:1px solid var(--color-accent);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--color-on-accent);">01</div>
+        <div data-seq style="width:44px;height:44px;border-radius:50%;background:var(--color-accent);border:1px solid var(--color-accent);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--color-on-accent);">01</div>
         <h3 style="font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1.1;">Disponibilidad</h3>
         <p style="font-size:24px;line-height:1.45;color:var(--color-text-muted);">Ricardo informa producto, condiciones y volumen mínimo de la semana.</p>
       </div>
       <div style="position:relative;display:flex;flex-direction:column;gap:24px;width:18%;">
-        <div style="width:44px;height:44px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-grid);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-muted);">02</div>
+        <div data-seq style="width:44px;height:44px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-grid);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-muted);">02</div>
         <h3 style="font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1.1;">Inscripción</h3>
         <p style="font-size:24px;line-height:1.45;color:var(--color-text-muted);">Cada interesado se suma al pedido colectivo de su grupo.</p>
       </div>
       <div style="position:relative;display:flex;flex-direction:column;gap:24px;width:18%;">
-        <div style="width:44px;height:44px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-grid);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-muted);">03</div>
+        <div data-seq style="width:44px;height:44px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-grid);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-muted);">03</div>
         <h3 style="font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1.1;">Volumen mínimo</h3>
         <p style="font-size:24px;line-height:1.45;color:var(--color-text-muted);">Si se alcanza el mínimo del proveedor, la compra se concreta.</p>
       </div>
       <div style="position:relative;display:flex;flex-direction:column;gap:24px;width:18%;">
-        <div style="width:44px;height:44px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-grid);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-muted);">04</div>
+        <div data-seq style="width:44px;height:44px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-grid);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-muted);">04</div>
         <h3 style="font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1.1;">Pago</h3>
         <p style="font-size:24px;line-height:1.45;color:var(--color-text-muted);">Se consolidan las transferencias y se paga al proveedor.</p>
       </div>
       <div style="position:relative;display:flex;flex-direction:column;gap:24px;width:18%;">
-        <div style="width:44px;height:44px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-grid);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-muted);">05</div>
+        <div data-seq style="width:44px;height:44px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-grid);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-muted);">05</div>
         <h3 style="font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1.1;">Entrega</h3>
         <p style="font-size:24px;line-height:1.45;color:var(--color-text-muted);">Despacho a domicilio o retiro en la conserjería de Ricardo.</p>
       </div>
+    </div>
+
+    <!-- Marcadores invisibles que el avance (flecha/clic) activa: mueven el paso
+         activo 1→5 (lo pinta js/anim.js::paintSequence). 4 marcadores: la entrada
+         ya muestra el paso 1, cada avance suma uno. -->
+    <div aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
+      <span class="fragment" data-seq-marker></span><span class="fragment" data-seq-marker></span><span class="fragment" data-seq-marker></span><span class="fragment" data-seq-marker></span>
     </div>
   </div>
 
@@ -236,7 +244,7 @@
   <aside class="notes">Flujo cercano y flexible, pero todo parte de Ricardo (nodo 1 en acento) → enlaza con la dependencia del fundador.</aside>
 </section>
 
-<section class="slide" data-label="Bullets" data-speaker-notes="Toda la gestión pasa por Ricardo. Cierra con la idea de alta dependencia del fundador. Acento solo en el primer ítem." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+<section class="slide" data-label="Bullets" data-speaker-notes="Toda la gestión pasa por Ricardo. Los 3 ítems aparecen de a uno (flecha/clic), resaltando el activo. Cierra con la idea de alta dependencia del fundador." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
   <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
     <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
     <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">07 / 28</span>
@@ -248,23 +256,23 @@
     </div>
     <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:32px;max-width:1200px;">Toda la gestión pasa por Ricardo</h2>
 
-    <ul style="list-style:none;padding:0;margin:0;">
-      <li style="display:flex;gap:36px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--color-grid);">
+    <ul data-seq-bullets style="list-style:none;padding:0;margin:0;">
+      <li class="fragment" data-seq-bullet style="display:flex;gap:36px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--color-grid);">
         <span style="display:flex;align-items:center;justify-content:center;width:54px;height:54px;flex:none;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:26px;font-variant-numeric:tabular-nums;">01</span>
         <div>
           <h3 style="font-family:var(--font-display);font-weight:600;font-size:var(--scale-h2);line-height:1.1;margin-bottom:10px;">Pedidos</h3>
           <p style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text-muted);max-width:980px;">Reúne la demanda y envía las órdenes de compra a cada proveedor.</p>
         </div>
       </li>
-      <li style="display:flex;gap:36px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--color-grid);">
-        <span style="display:flex;align-items:center;justify-content:center;width:54px;height:54px;flex:none;border-radius:8px;background:var(--color-bg-alt);border:1px solid var(--color-grid);color:var(--color-text-muted);font-weight:600;font-size:26px;font-variant-numeric:tabular-nums;">02</span>
+      <li class="fragment" data-seq-bullet style="display:flex;gap:36px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--color-grid);">
+        <span style="display:flex;align-items:center;justify-content:center;width:54px;height:54px;flex:none;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:26px;font-variant-numeric:tabular-nums;">02</span>
         <div>
           <h3 style="font-family:var(--font-display);font-weight:600;font-size:var(--scale-h2);line-height:1.1;margin-bottom:10px;">Pagos</h3>
           <p style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text-muted);max-width:980px;">Recibe transferencias, revisa comprobantes, valida pagos y transfiere los fondos.</p>
         </div>
       </li>
-      <li style="display:flex;gap:36px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--color-grid);border-bottom:1px solid var(--color-grid);">
-        <span style="display:flex;align-items:center;justify-content:center;width:54px;height:54px;flex:none;border-radius:8px;background:var(--color-bg-alt);border:1px solid var(--color-grid);color:var(--color-text-muted);font-weight:600;font-size:26px;font-variant-numeric:tabular-nums;">03</span>
+      <li class="fragment" data-seq-bullet style="display:flex;gap:36px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--color-grid);border-bottom:1px solid var(--color-grid);">
+        <span style="display:flex;align-items:center;justify-content:center;width:54px;height:54px;flex:none;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:26px;font-variant-numeric:tabular-nums;">03</span>
         <div>
           <h3 style="font-family:var(--font-display);font-weight:600;font-size:var(--scale-h2);line-height:1.1;margin-bottom:10px;">Entrega</h3>
           <p style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text-muted);max-width:980px;">Coordina el despacho y el retiro de los pedidos en su conserjería.</p>
@@ -294,15 +302,15 @@
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--color-grid);border-top:1px solid var(--color-grid);border-bottom:1px solid var(--color-grid);">
       <div style="background:var(--color-bg);padding:48px 44px 44px;display:flex;flex-direction:column;gap:18px;">
-        <span style="font-family:var(--font-body);font-weight:600;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-text);">16 h/mes</span>
+        <span style="font-family:var(--font-body);font-weight:600;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-text);" data-hero>16 h/mes</span>
         <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">Dedicación de Ricardo a tareas administrativas</span>
       </div>
       <div style="background:var(--color-bg);padding:48px 44px 44px;display:flex;flex-direction:column;gap:18px;">
-        <span style="font-family:var(--font-body);font-weight:600;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-text);">$5.500/h</span>
+        <span style="font-family:var(--font-body);font-weight:600;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-text);" data-hero>$5.500/h</span>
         <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">Lo que rinde hoy esa hora dedicada al negocio</span>
       </div>
       <div style="background:var(--color-accent);padding:48px 44px 44px;display:flex;flex-direction:column;gap:18px;">
-        <span style="font-family:var(--font-body);font-weight:600;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-on-accent);">$16.700/h</span>
+        <span style="font-family:var(--font-body);font-weight:600;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-on-accent);" data-hero>$16.700/h</span>
         <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-on-accent);opacity:0.72;">Su costo de oportunidad en otras actividades</span>
       </div>
     </div>
@@ -714,7 +722,7 @@
   <aside class="notes">Mantiene el componente comunitario (grupos por producto) pero con operación escalable. Objetivos: automatizar transacciones, ampliar la red de proveedores y reducir la dependencia del fundador.</aside>
 </section>
 
-<section class="slide" data-label="Demo plataforma" data-speaker-notes="Muestra del producto: así se ve la plataforma B2C de compra comunitaria. El iframe corre a un viewport de 1280px y se escala 1.5× para llenar la slide, de modo que el contenido (productos y panel lateral) no quede angosto." style="background:#faf9f5;color:var(--color-text);font-family:var(--font-body);padding:0;display:flex;overflow:hidden;">
+<section class="slide" data-no-anim data-label="Demo plataforma" data-speaker-notes="Muestra del producto: así se ve la plataforma B2C de compra comunitaria. El iframe corre a un viewport de 1280px y se escala 1.5× para llenar la slide, de modo que el contenido (productos y panel lateral) no quede angosto." style="background:#faf9f5;color:var(--color-text);font-family:var(--font-body);padding:0;display:flex;overflow:hidden;">
   <iframe src="assets/plataforma-demo.html" title="Muestra de la plataforma B2C de Conpro" loading="lazy" style="width:1280px;height:720px;border:0;display:block;transform:scale(1.5);transform-origin:top left;"></iframe>
 
   <aside class="notes">Mockup del producto para que la audiencia visualice la plataforma antes de entrar al modelo financiero. La compra colectiva (grupos por producto, meta de volumen, cierre y pago) ahora vive en una interfaz propia, sin el cuello de botella de Ricardo.</aside>
@@ -1374,22 +1382,22 @@
     </div>
     <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:32px;max-width:1200px;">Optimizar hoy, escalar cuando se justifique</h2>
 
-    <ul style="list-style:none;padding:0;margin:0;">
-      <li style="display:flex;gap:36px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--color-grid);">
+    <ul data-seq-bullets style="list-style:none;padding:0;margin:0;">
+      <li class="fragment" data-seq-bullet style="display:flex;gap:36px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--color-grid);">
         <span style="display:flex;align-items:center;justify-content:center;width:54px;height:54px;flex:none;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:26px;font-variant-numeric:tabular-nums;">01</span>
         <div>
           <h3 style="font-family:var(--font-display);font-weight:600;font-size:var(--scale-h2);line-height:1.1;margin-bottom:10px;">No invertir todavía</h3>
           <p style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text-muted);max-width:980px;">El VAN del proyecto es positivo, pero menor que el del CBO: hoy no es la alternativa más conveniente.</p>
         </div>
       </li>
-      <li style="display:flex;gap:36px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--color-grid);">
+      <li class="fragment" data-seq-bullet style="display:flex;gap:36px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--color-grid);">
         <span style="display:flex;align-items:center;justify-content:center;width:54px;height:54px;flex:none;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:26px;font-variant-numeric:tabular-nums;">02</span>
         <div>
           <h3 style="font-family:var(--font-display);font-weight:600;font-size:var(--scale-h2);line-height:1.1;margin-bottom:10px;">Operar el CBO</h3>
           <p style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text-muted);max-width:980px;">Automatizar pagos, validar la demanda y reducir la incertidumbre con baja inversión.</p>
         </div>
       </li>
-      <li style="display:flex;gap:36px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--color-grid);border-bottom:1px solid var(--color-grid);">
+      <li class="fragment" data-seq-bullet style="display:flex;gap:36px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--color-grid);border-bottom:1px solid var(--color-grid);">
         <span style="display:flex;align-items:center;justify-content:center;width:54px;height:54px;flex:none;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:26px;font-variant-numeric:tabular-nums;">03</span>
         <div>
           <h3 style="font-family:var(--font-display);font-weight:600;font-size:var(--scale-h2);line-height:1.1;margin-bottom:10px;">Definir un gatillo</h3>
@@ -1436,6 +1444,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="js/charts.js"></script>
+  <script src="js/anim.js"></script>
   <script src="js/deck.js"></script>
 </body>
 </html>
