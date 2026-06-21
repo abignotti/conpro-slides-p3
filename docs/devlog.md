@@ -4,6 +4,57 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Fix de espaciado en Juan + skill `adaptar-slide`
+Qué hice:
+- **Espaciado de `03-juan.html`:** la slide quedaba encogida por `fitSlide`
+  (scale 0.83) y, ya sin escalar, el contenido quedaba pegado al footer (el
+  cuerpo tenía `padding-top` pero no `padding-bottom`). Solución: padding
+  vertical simétrico en el cuerpo (`padding-top:24px;padding-bottom:32px`) y
+  recorte del alto real del contenido (foto, gaps del perfil, ícono "!",
+  `margin-top` de la grilla) hasta que entra a **escala 1.0**. Verificado en
+  browser: `scale:none`, `topGap = bottomGap = 24px`.
+- **Aprendizaje clave:** subir el `padding-bottom` no alcanza si la grilla
+  (`flex:1`) desborda su espacio — el contenido se pasa por encima. Primero hay
+  que reducir el alto para que quepa a 1.0; recién ahí el padding inferior se
+  vuelve aire real.
+- **Skill local `adaptar-slide`** en `.claude/skills/adaptar-slide/SKILL.md`
+  (se commitea con el repo, no es global). Captura todo el proceso de integrar
+  una slide HTML standalone al deck: extraer el `<section>`, borrar el `:root`
+  local, header/footer con `data-chrome`, numeración automática, tabla de
+  tokens (incluido el gotcha del SVG: `var()` solo dentro de `style`, no en
+  `fill=`), y el loop de medir/recortar para el espaciado simétrico. Se dispara
+  cuando el usuario traiga un HTML de slide nuevo o pida arreglar espaciado.
+Próximo paso: usar la skill con las próximas slides; revisar/mergear.
+
+---
+
+## [2026-06-21] — Rediseño de slides 03-Juan y 18-Costos (integración al deck)
+Qué hice:
+- Reemplacé `presentacion/03-juan.html` (buyer persona) y `presentacion/18-costos.html`
+  (inversión + pie de costos) con diseños nuevos que el usuario hizo por fuera (HTML
+  standalone). Los integré al sistema del deck: extraje solo el `<section class="slide">`,
+  **eliminé el `:root` local** (redeclaraba los tokens y rompía el cambio de tema), y
+  apliqué header/footer estándar con `data-chrome="header"`/`"footer"`.
+- Header/footer: footer a **un solo span** ("Escalamiento de Conpro"), quité el segundo
+  span "Defensa académica" del original (decisión del usuario: footer igual al resto,
+  toggleable vía modo chrome).
+- Número de página: dejé el placeholder; lo recalcula `numberSlides()` por posición real.
+  **Nota:** por los sub-slides (`10b/14b/17b`), Juan queda en posición 3 y Costos en **21**
+  (no 18) — es el comportamiento correcto del sistema, no se hardcodea.
+- Tokenización: el pie SVG de Costos tenía hex fijos → pasé los `fill` a `style="fill:var(...)"`
+  (accent / text / chart-series-2) y los textos a on-accent / bg / text. Importante:
+  `var()` **no funciona** como atributo `fill="..."`; solo dentro de `style`.
+- Guardé la foto de Juan en `assets/juan.png` (la pasó el usuario). Íconos lucide
+  (`data-lucide`) ya renderizan vía `deck.js`.
+Decisiones/bugs:
+- Los slides venían a mayor escala (h1 88px, stat 80px) que los tokens del deck (72/66);
+  los alineé a los tokens por consistencia; `fitSlide()` protege contra desborde.
+- Verificado en browser: ambos render OK y **reaccionan al cambiar tema/typeset**
+  (probé Cobalto + Impacto) — confirma que la tokenización quedó bien.
+Próximo paso: revisar con el usuario; commit/PR si lo pide.
+
+---
+
 ## [2026-06-21] — Regla de comunicación concisa + normalización a español neutro
 Qué hice:
 - `CLAUDE.md` → Comunicación: nueva regla **"conciso pero completo"** (bullets/tablas/diagramas, conclusión primero, sin relleno; el usuario pregunta si algo no queda claro). También en memoria (`user-comms-concise`).
