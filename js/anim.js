@@ -77,8 +77,14 @@
     if (!seq) return;
     const steps = Array.from(seq.querySelectorAll('[data-seq]'));
     if (!steps.length) return;
+    // Paso activo: si [data-sequence] trae data-seq-active (lo setea el video
+    // del slide 06 vía deck.js::syncFlowVideo) se usa ese; si no, se cuenta por
+    // fragments revelados (flecha/clic), el comportamiento de los demás slides.
+    const explicit = parseInt(seq.getAttribute('data-seq-active'), 10);
     const shown = slide.querySelectorAll('[data-seq-marker].visible').length;
-    const active = Math.min(steps.length, shown + 1); // 1-based; enter = 1
+    const active = Number.isFinite(explicit)
+      ? Math.min(steps.length, Math.max(1, explicit))
+      : Math.min(steps.length, shown + 1); // 1-based; enter = 1
 
     steps.forEach((el, i) => {
       const n = i + 1;
@@ -111,14 +117,16 @@
       }
     });
 
-    // Línea de progreso que crece hasta el paso activo. Usa scaleX (GPU),
-    // no width (que dispararía layout). La línea cubre todo el tramo entre
-    // el primer y el último nodo; scaleX la rellena hasta el paso activo.
+    // Línea de progreso que crece hasta el paso activo. Usa scale (GPU), no
+    // width/height (que dispararía layout). La línea cubre todo el tramo entre
+    // el primer y el último nodo; el scale la rellena hasta el paso activo.
+    // Eje según data-orient: vertical (slide 06) usa scaleY; horizontal scaleX.
     const line = seq.querySelector('[data-seq-progress]');
     if (line && steps.length > 1) {
       const frac = (active - 1) / (steps.length - 1);
+      const vertical = seq.getAttribute('data-orient') === 'vertical';
       line.style.transition = 'transform var(--anim-enter) var(--ease-out)';
-      line.style.transform = 'scaleX(' + frac + ')';
+      line.style.transform = (vertical ? 'scaleY(' : 'scaleX(') + frac + ')';
     }
   }
 
@@ -153,6 +161,7 @@
   /* ---- API + enganche de fragments --------------------------------- */
   window.DeckAnim = {
     onSlide(slide) { enter(slide); paintSequence(slide); paintBullets(slide); },
+    paintSequence,   // lo llama deck.js en cada timeupdate del video (slide 06)
   };
 
   // Los fragments del timeline cambian el paso activo (flecha o clic).

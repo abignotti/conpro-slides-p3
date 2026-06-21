@@ -50,6 +50,52 @@ Decisiones/bugs:
 Próximo paso: PR a `main`. Eventualmente, deploy a producción y confirmar el PDF allí (si se protege prod, activar el bypass).
 
 ---
+## [2026-06-21] — Slide 06: video de WhatsApp + timeline vertical auto-sincronizado
+Qué hice:
+- **Rediseño de `06-como-opera.html`** ("El pedido colectivo, por WhatsApp"): de timeline
+  horizontal a **2 columnas** — teléfono (retrato) con un **video real del flujo de WhatsApp**
+  a la izquierda, y **timeline vertical de 5 pasos** a la derecha.
+- **Sincronización video↔timeline:** el video (`<video data-flow-video>`) autoreproduce
+  silenciado al entrar al slide y reinicia desde 0; en cada `timeupdate` se reparte su
+  duración en 5 tramos iguales (`floor(currentTime/(dur/5))+1`) y se mueve el paso activo
+  1→5. Nuevo `js/deck.js::syncFlowVideo(slide)`, enganchado en `onSlide` (pausa los videos
+  al salir; sin autoplay en print-pdf).
+- **`js/anim.js::paintSequence`:** (a) acepta paso activo explícito vía `data-seq-active`
+  (lo setea el video) además del conteo por fragments; (b) barra de progreso por eje según
+  `data-orient` (`scaleY` vertical / `scaleX` horizontal); (c) expone `paintSequence` en
+  `window.DeckAnim`. Retrocompatible: los demás slides (07 bullets, etc.) no usan esos attrs.
+- **Layout del riel vertical:** 5 bandas iguales (`flex:1`) con el círculo centrado y el riel
+  de `top:10%` a `bottom:10%` → conecta exacto del centro del 1.er al del 5.º círculo sin
+  importar el largo del texto. Cuerpo en `justify-content:flex-start` (lección: con `center`
+  desbordaría sobre el header).
+- **Video comprimido:** `5.5 MB → 1.22 MB` (−78%) con ffmpeg (H.264, escala a 1280px de alto,
+  CRF 23, faststart) en `assets/flujo/pedido-whatsapp.mp4`. `aspect-ratio:1080/2140` del marco
+  = aspecto real (sin recorte).
+Decisiones/bugs:
+- **Gotcha (clave):** Chrome pausa media **"video-only"** (sin pista de audio) cuando el
+  documento está oculto → "video-only background media was paused". Al stripear el audio
+  (`-an`) el video quedaba video-only y se frenaba. Fix: **conservar pista de audio** (AAC 96k);
+  el `<video muted>` igual lo silencia en la presentación.
+- En el entorno de automatización la pestaña queda `document.hidden=true`, que **impide el
+  autoplay** (artefacto del entorno, no del código). Verificado el render de la sincronización
+  de forma determinista (paso activo + `scaleY` exacto) y el handler `timeupdate` (t=8.4s→paso 2).
+  En la pestaña real (visible/fullscreen) el autoplay funciona.
+Iteración (mismo día):
+- **Timing calzado al video:** se pasó de 5 tramos iguales a **timestamps por paso** vía
+  `data-seq-times="0,18,25,29,32"` en `[data-sequence]`; `syncFlowVideo` lee el atributo (el paso
+  activo es el último cuyo tiempo de inicio ya pasó; si falta, cae a tramos iguales). Mapeo según
+  los frames reales (afinado con el usuario): 0–18 Disponibilidad (chat-list + msg de Ricardo),
+  18–25 Inscripción, 25–29 Volumen mínimo (justo antes del WhatsApp de Pedro, ~26s),
+  29–32 Pago (cuando Ricardo manda la lista consolidada, ~29s), 32–35.5 Entrega (no aparece en
+  el video → al final).
+- **Video a máximo tamaño (header→footer, 24px):** el título se movió a la columna derecha (arriba
+  del timeline) para que el teléfono ocupe toda la altura del cuerpo; cuerpo en fila de 2 columnas
+  con `padding:24px 0`. Verificado: video 780×395 px de slide, gaps de 24px arriba/abajo, **sin
+  escalado de fitSlide**.
+- **Bug de layout (clave):** el cuerpo desbordaba y `fitSlide` encogía el video. Causa: los `<h3>`
+  y `<p>` del timeline traían **márgenes por defecto del navegador** (~33px en h3, 24px en p),
+  inflando cada fila de 66px a 142px. Fix: `margin:0` en h3 y `margin:6px 0 0` en p. Sin desborde.
+Próximo paso: confirmar/afinar los segundos exactos de cada paso con el usuario; luego PR.
 
 ## [2026-06-21] — Fix del gráfico de precios (slide 05) + bullets
 Qué hice:
