@@ -137,8 +137,43 @@ function buildPicker() {
   });
   picker.appendChild(fsBtn);
 
-  // Botón de PDF retirado temporalmente: el export ?print-pdf se ve mal.
-  // Reactivar cuando se arregle (ver docs/devlog.md y memoria de pendientes).
+  // Botón de descarga PDF: pide a la función serverless /api/pdf un render
+  // headless (Chromium) del deck con el tema/tipografía ACTUALES, y descarga
+  // el archivo. El render tarda unos segundos (cold start incluido), por eso
+  // el botón muestra "Generando…" mientras espera.
+  const pdfBtn = document.createElement('button');
+  pdfBtn.className = 'pk-btn';
+  pdfBtn.type = 'button';
+  pdfBtn.innerHTML = '⤓ Descargar PDF';
+  pdfBtn.addEventListener('click', async () => {
+    if (pdfBtn.disabled) return;
+    const label = pdfBtn.innerHTML;
+    pdfBtn.disabled = true;
+    pdfBtn.innerHTML = '⏳ Generando…';
+    const theme = root.getAttribute('data-theme') || THEMES[0];
+    const typeset = root.getAttribute('data-typeset') || TYPESETS[0];
+    const url = `/api/pdf?theme=${encodeURIComponent(theme)}&typeset=${encodeURIComponent(typeset)}`;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const blob = await res.blob();
+      const href = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = href;
+      a.download = 'Escalamiento-Conpro.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(href), 4000);
+    } catch (err) {
+      alert('No se pudo generar el PDF. Revisá la consola.');
+      console.error('[PDF]', err);
+    } finally {
+      pdfBtn.disabled = false;
+      pdfBtn.innerHTML = label;
+    }
+  });
+  picker.appendChild(pdfBtn);
 
   const hint = document.createElement('span');
   hint.className = 'hint';
@@ -243,7 +278,18 @@ function drawIcons() {
 
 /* ---- Init ----------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
-  const isPrint = location.search.includes('print-pdf');
+  const params = new URLSearchParams(location.search);
+  const isPrint = params.has('print-pdf');
+
+  // Tema/tipografía desde la URL (?theme=…&typeset=…): así el render headless
+  // del PDF —y cualquier link compartido— reproduce la combinación elegida.
+  // Se valida contra las listas para no aceptar valores arbitrarios.
+  const root = document.documentElement;
+  const qpTheme = params.get('theme');
+  const qpTypeset = params.get('typeset');
+  if (qpTheme && THEMES.includes(qpTheme)) root.setAttribute('data-theme', qpTheme);
+  if (qpTypeset && TYPESETS.includes(qpTypeset)) root.setAttribute('data-typeset', qpTypeset);
+
   if (!isPrint) buildPicker();   // sin selector en el PDF
   Reveal.initialize({
     width: 1920, height: 1080, margin: 0,
@@ -254,6 +300,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // .slide (contenido centrado + pie abajo en cada lienzo de 1080).
     display: 'flex',
     transition: 'fade', controls: true, progress: true,
+    // PDF: un slide por página (nunca partido); sin multiplicar por fragmentos.
+    pdfMaxPagesPerSlide: 1, pdfSeparateFragments: false,
   });
   const onSlide = (slide) => {
     heroOnSlide(slide); initChartsIn(slide); drawIcons(); setViewportBg(slide);
@@ -265,10 +313,21 @@ document.addEventListener('DOMContentLoaded', () => {
     numberSlides();   // numera por posición real (no se hardcodea en partials)
     if (isPrint) {
       // PDF: todas las slides están apiladas y visibles → inicializar
-      // gráficos y ajustar TODAS (no solo la actual), sin animar el hero.
-      document.querySelectorAll('section.slide').forEach((s) => { initChartsIn(s); fitSlide(s); });
-      drawIcons(); setTimeout(drawIcons, 400);
-      setTimeout(() => window.print(), 1300);
+      // gráficos e íconos de TODAS (no solo la actual), sin animar el hero.
+      // No llamamos window.print(): el render headless (api/pdf.js) hace
+      // page.pdf() cuando detecta la señal window.__deckPrintReady. Esperamos
+      // a que las fuentes carguen y el layout se asiente antes de marcarla.
+      // OJO: en headless/print los timers (setTimeout/rAF) de la página se
+      // congelan, así que NO podemos depender de ellos para marcar la señal.
+      // Inicializamos todo de forma síncrona y marcamos __deckPrintReady ya.
+      // Las esperas (fuentes + asentado del layout) las hace el lado Node
+      // (api/pdf.js / scripts/export-pdf.mjs), donde los timers sí corren.
+      const slides = [...document.querySelectorAll('section.slide')];
+      slides.forEach((s) => initChartsIn(s));
+      drawIcons();
+      slides.forEach((s) => fitSlide(s));
+      drawIcons();
+      window.__deckPrintReady = true;
     } else {
       onSlide(e.currentSlide); setTimeout(drawIcons, 400);
     }

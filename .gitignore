@@ -2,6 +2,10 @@
 /Escalamiento-Conpro.pptx
 /build/
 
+# Node / Vercel
+node_modules/
+.vercel/
+
 # OS / editor cruft
 .DS_Store
 *.swp
