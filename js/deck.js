@@ -198,6 +198,25 @@ function fitSlide(slide) {
   }
 }
 
+/* ---- Numeración automática del slide (arriba-derecha) --------------- *
+   El número de página NO se hardcodea en los partials: se calcula acá según
+   la posición real del slide en el deck. Así, agregar/quitar/reordenar slides
+   nunca exige renumerar a mano. Elemento objetivo: [data-page] o, en su
+   defecto, el <span> del header cuyo texto sea "N / N" (el placeholder).
+   Slides sin ese elemento (portada, demo a pantalla completa) quedan sin
+   número impreso, pero igual cuentan para la posición. El total se omite. */
+function numberSlides() {
+  document.querySelectorAll('section.slide').forEach((slide, i) => {
+    let el = slide.querySelector('[data-page]');
+    if (!el) {
+      const header = slide.querySelector('[data-chrome="header"]');
+      if (header) el = [...header.querySelectorAll('span')]
+        .find((s) => /^\s*\d+\s*\/\s*\d+\s*$/.test(s.textContent));
+    }
+    if (el) el.textContent = String(i + 1).padStart(2, '0');
+  });
+}
+
 /* ---- Fondo del letterbox = fondo del slide actual ------------------- *
    Algunas slides usan --color-bg-alt (portada, cita, divisor). Para que
    las bandas laterales nunca se noten, el viewport copia el fondo real
@@ -238,6 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => fitSlide(slide), 450);
   };
   Reveal.on('ready', (e) => {
+    numberSlides();   // numera por posición real (no se hardcodea en partials)
     if (isPrint) {
       // PDF: todas las slides están apiladas y visibles → inicializar
       // gráficos y ajustar TODAS (no solo la actual), sin animar el hero.
