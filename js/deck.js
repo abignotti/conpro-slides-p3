@@ -449,6 +449,55 @@ function syncDemoFill(slide) {
   if (demoIframe) demoIframe.style.display = (slide === demoSection) ? 'block' : 'none';
 }
 
+/* ---- Video de flujo sincronizado con el timeline (slide 06) --------- *
+   El slide del pedido por WhatsApp tiene un <video data-flow-video> (el
+   teléfono) y un timeline vertical [data-sequence]. Al entrar al slide el
+   video arranca solo (muted, desde 0) y, en cada timeupdate, repartimos su
+   duración en N tramos iguales (N = cantidad de pasos) para mover el paso
+   activo 1→N: seteamos data-seq-active y repintamos vía DeckAnim.paintSequence.
+   Al salir del slide se pausa. Sin autoplay en el render de PDF. */
+function syncFlowVideo(slide) {
+  // Pausar cualquier video de flujo del deck (se está saliendo del anterior).
+  document.querySelectorAll('video[data-flow-video]').forEach((v) => v.pause());
+  if (!slide || location.search.includes('print-pdf')) return;
+  const video = slide.querySelector('video[data-flow-video]');
+  const seq = slide.querySelector('[data-sequence]');
+  if (!video || !seq) return;
+
+  if (!video.dataset.flowWired) {            // un solo listener por video
+    video.dataset.flowWired = '1';
+    // data-seq-times = segundos de inicio de cada paso (calza el avance con los
+    // momentos reales del video). Si falta, se reparte la duración en N tramos
+    // iguales. El paso activo es el último cuyo tiempo de inicio ya pasó.
+    const times = (seq.getAttribute('data-seq-times') || '')
+      .split(',').map((s) => parseFloat(s)).filter((x) => isFinite(x));
+    video.addEventListener('timeupdate', () => {
+      const d = video.duration;
+      if (!d || !isFinite(d)) return;
+      const n = seq.querySelectorAll('[data-seq]').length || 5;
+      const t = video.currentTime;
+      let active;
+      if (times.length === n) {
+        active = 1;
+        for (let i = 0; i < n; i++) if (t >= times[i]) active = i + 1;
+      } else {
+        active = Math.min(n, Math.floor(t / (d / n)) + 1);
+      }
+      if (String(active) !== seq.getAttribute('data-seq-active')) {
+        seq.setAttribute('data-seq-active', String(active));
+        if (window.DeckAnim) DeckAnim.paintSequence(slide);
+      }
+    });
+  }
+  // Reiniciar desde 0 y reproducir silenciado (ignorar rechazo de autoplay).
+  seq.setAttribute('data-seq-active', '1');
+  if (window.DeckAnim) DeckAnim.paintSequence(slide);
+  try { video.currentTime = 0; } catch (e) {}
+  video.muted = true;
+  const p = video.play();
+  if (p && p.catch) p.catch(() => {});
+}
+
 /* ---- Init perezoso de gráficos (Chart.js necesita dimensiones) ------ */
 function initChartsIn(slide) {
   if (!slide || !window.Charts) return;
@@ -558,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
     pdfMaxPagesPerSlide: 1, pdfSeparateFragments: false,
   });
   const onSlide = (slide) => {
-    heroOnSlide(slide); initChartsIn(slide); drawIcons(); setViewportBg(slide); bridgeNavIn(slide); syncDemoFill(slide);
+    heroOnSlide(slide); initChartsIn(slide); drawIcons(); setViewportBg(slide); bridgeNavIn(slide); syncDemoFill(slide); syncFlowVideo(slide);
     if (window.DeckAnim) DeckAnim.onSlide(slide);   // entrada escalonada + timeline
     // tras render de fuentes/gráficos, ajustar si desborda
     requestAnimationFrame(() => fitSlide(slide));
