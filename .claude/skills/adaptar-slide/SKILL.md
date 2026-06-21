@@ -102,11 +102,34 @@ pueden quedar en px; igual conviene usar los tokens de escala cuando calzan.
 | kicker / caption | `var(--scale-kicker)` / `var(--scale-caption)` |
 | radios | `var(--radius)` |
 
-**Gotcha SVG:** `var()` NO funciona como atributo de presentación
-(`fill="var(--color-accent)"` se ignora). Tiene que ir dentro de `style`:
-`style="fill:var(--color-accent)"`. Igual para `font-family`/`fill` en `<text>`.
-En un pie/torta: porciones → accent / text / chart-series-2; los `<text>` encima
-→ `on-accent` (sobre acento), `bg` (sobre porción oscura), `text` (sobre clara).
+**SVG y tokens:** en el Chrome del deck `var()` SÍ resuelve como atributo de
+presentación (`fill="var(--color-accent)"`, `stroke="var(--color-text)"`) y
+reacciona al cambio de tema — verificado. Así que, en un SVG con muchos paths,
+basta con **renombrar las variables del diseño a los tokens del deck** en los
+atributos `fill`/`stroke`; no hace falta convertir todo a `style=""` (eso es más
+portable para PDF/otros navegadores, pero es tedioso y propenso a errores en
+decenas de elementos). Para `<text>`/`font-family` sí conviene `style=`.
+
+**Regla de contraste (clave):** un elemento que va ENCIMA del acento (texto o
+ícono dentro de un círculo/relleno `var(--color-accent)`) debe usar
+`var(--color-on-accent)`, NO `var(--color-text)`. En el tema base coinciden
+(ambos oscuros) y el bug pasa desapercibido, pero en otros temas `--color-text`
+cambia (claro) y `--color-on-accent` no → el ícono queda sin contraste sobre el
+acento. Probar un tema de acento claro (p. ej. **Ácido**) lo revela.
+- Rellenos de acento SOBRE el fondo/banda (no sobre acento): `var(--color-accent)` ✓
+- Contornos/strokes sobre fondo/banda: `var(--color-text)` ✓
+- Blancos de relleno tipo "silueta vacía" (`#fff`): `var(--color-bg)` (theme-safe).
+- En un pie/torta: porciones → accent / text / chart-series-2; los `<text>`
+  encima → `on-accent` (sobre acento), `bg` (sobre porción oscura), `text` (sobre clara).
+
+**HTML "bundled" (Bundled Page / `<x-dc>`):** algunos export traen el HTML real
+comprimido (gzip+base64) dentro de `<script type="__bundler/manifest">` y un
+`<script type="__bundler/template">` con el `<x-dc>` (el diseño se renderiza por
+JS con React). El `<title>` dice "Bundled Page" y hay una línea gigantesca. No
+sirve leerlo directo: extrae el template (es un string JSON-encoded), toma lo que
+está dentro de `<x-dc>` después de `</helmet>` (eso es el diseño), y de ahí saca
+el `<section>`. Las variables del diseño (`--ink`, `--mustard`, `--band`, etc.)
+están definidas en el bundle; mapéalas a los tokens del deck.
 
 **Imágenes:** si la slide referencia `assets/foo.png`, confirma que el archivo
 exista en `assets/` (ruta relativa desde `index.html` en la raíz). Si no está,
@@ -159,8 +182,15 @@ footer** mientras arriba sí hay aire.
    - gaps de listas/íconos, tamaños de íconos, números gigantes ("!"/stats),
    - `margin-top` de la grilla, paddings de cards y de la franja final,
    - tamaños de subtítulos bespoke (34/40/42px) un par de puntos.
-4. Reconstruye, recarga con `?r=N` nuevo, vuelve a medir. Itera hasta que
-   `scale:none` y `topGap ≈ bottomGap` (un valor cómodo ≈ 24px).
+4. Si `content < region` (NO hay scale, pero `bottomGap > topGap`): el contenido
+   **flota alto** y sobra aire abajo. No centres con `justify-content:center`
+   (con temas más altos el contenido desborda hacia ARRIBA sobre el header y
+   `fitSlide` no lo detecta — lección de CLAUDE.md). En su lugar **reparte la
+   holgura** subiendo los `margin-top` entre bloques (título→diagrama,
+   diagrama→texto) hasta que el último bloque baje y `bottomGap ≈ topGap`. Esto
+   además hace respirar mejor el contenido.
+5. Reconstruye, recarga con `?r=N` nuevo, vuelve a medir. Itera hasta que
+   `scale:none` y `topGap ≈ bottomGap` (un valor cómodo ≈ 24px; ±5px no se nota).
 
 **Por qué funciona:** una vez que el contenido cabe a escala 1.0, el
 `padding-bottom` deja de ser absorbido por el desborde y se vuelve aire real,

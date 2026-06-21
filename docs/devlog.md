@@ -4,6 +4,31 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Slide 04 → "¿Qué es Conpro?" (diagrama) con la skill
+Qué hice:
+- Reemplacé `04-propuesta.html` (antes "Cita / Propuesta de valor") por el nuevo
+  diseño **"¿Qué es Conpro?"**: diagrama Consumidores → Conpro → Proveedores (SVGs
+  de casa+familia, carrito en círculo acento, bodega) + sección "Propuesta de
+  valor" con el dato "precios más justos". Integrado con la skill `adaptar-slide`.
+- El adjunto venía como **"Bundled Page"**: el HTML real estaba gzip+base64 dentro
+  de un manifest, renderizado por un runtime React (`<x-dc>`). Lo descomprimí,
+  extraje el diseño del template y de ahí el `<section>`.
+- Tokenización: mapeé las variables del diseño (`--ink`/`--mustard`/`--band`/…) a
+  los tokens del deck. **Hallazgo:** en el Chrome del deck `var()` SÍ funciona como
+  atributo `fill=`/`stroke=` del SVG y reacciona al tema — así que bastó renombrar
+  variables, sin convertir ~40 paths a `style=`. Actualicé el "gotcha" de la skill.
+- **Fix de contraste:** el carrito y el texto "CONPRO" van DENTRO del círculo de
+  acento → deben usar `var(--color-on-accent)`, no `--color-text` (con tema de
+  acento claro como Ácido, `--color-text` se aclara y perdía contraste). Probado
+  en Cobalto y Ácido: ahora correcto en todos los temas.
+- Espaciado: el contenido entra a escala 1.0 pero flotaba alto; repartí la holgura
+  subiendo los `margin-top` entre bloques hasta `topGap 24 ≈ bottomGap 29`.
+- Mejoré la skill con estos aprendizajes (bundler, regla on-accent, balance de
+  gaps cuando hay holgura).
+Próximo paso: revisar/mergear; seguir integrando slides con la skill.
+
+---
+
 ## [2026-06-21] — Fix de espaciado en Juan + skill `adaptar-slide`
 Qué hice:
 - **Espaciado de `03-juan.html`:** la slide quedaba encogida por `fitSlide`
