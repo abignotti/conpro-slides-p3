@@ -43,6 +43,41 @@ Decisiones/bugs:
 - `chart-van` usa M$ con `valueLabel` (sólo rotula la barra clave, patrón del deck).
 Próximo paso (plan aparte): 2 slides **nuevas** del PPTX — pregunta-ancla "¿Puede Conpro sostener…?" y "Análisis de Sustentación" (Imitación/Sustitución/Expropiación). Pendiente decisión: quitar o no `19-ganancias` (el PPTX la eliminó).
 
+---
+
+## [2026-06-21] — Regla de comunicación concisa + normalización a español neutro
+Qué hice:
+- `CLAUDE.md` → Comunicación: nueva regla **"conciso pero completo"** (bullets/tablas/diagramas, conclusión primero, sin relleno; el usuario pregunta si algo no queda claro). También en memoria (`user-comms-concise`).
+- Normalicé el voseo restante a español neutro: `CLAUDE.md` ("dejá"→"deja", "acá"→"aquí"). El devlog ya estaba en neutro (sin formas voseo). Solo cambió el dialecto, no el contenido; el voseo de los ejemplos citados (línea "vos tenés", "fijate") se deja a propósito.
+Próximo paso: mergear PR #1 (incluye demo + estas reglas).
+
+---
+
+## [2026-06-21] — Reglas nuevas en CLAUDE.md (idioma, PRs, workspaces)
+Qué hice:
+- Documenté tres reglas en `CLAUDE.md`:
+  - **Comunicación (sí o sí):** hablar y escribir siempre en español latino neutro, no argentino (sin voseo ni modismos rioplatenses). Aplica a mensajes, comentarios, docs y devlog; los commits de git siguen en inglés. También guardado en memoria del proyecto (`user-language-spanish`).
+  - **Git → crear PRs con permisos:** el token activo por defecto es de integración (`ghu_`, vía `GH_TOKEN`) y no puede crear PRs; hay un token OAuth en el keyring (`gho_`) que sí. Workaround: `env -u GH_TOKEN -u GITHUB_TOKEN gh pr create --base main …`. El `git push` normal funciona sin el truco.
+  - **Eficiencia y workspaces (Conductor):** recomendar de forma proactiva trabajar en otro workspace cuando una tarea pueda correr en paralelo y ahorre tiempo, evaluando antes el riesgo de conflictos (los generados se arreglan re-buildeando; los partials solo chocan si dos ramas tocan el mismo archivo).
+Decisiones/bugs:
+- Las entradas viejas del devlog y del propio `CLAUDE.md` quedan en su redacción original (voseo); la regla de español neutro aplica de aquí en adelante, no se reescribe lo previo.
+Próximo paso: mergear el PR del demo (#1) y seguir con animaciones (skill Emil Kowalski).
+
+---
+
+## [2026-06-21] — Demo: light mode por default, full-bleed real y flechas sobre el iframe
+Qué hice:
+- **Light mode por default** en el demo embebido: cambié el estado inicial de la app (`assets/plataforma-demo.html`, `darkMode:true → false`). El toggle sol/luna sigue funcionando, solo cambia el arranque. Fondo del contenedor en `14b-demo-plataforma.html` de `#0F0F0F` → `#faf9f5` para que no haya flash oscuro.
+- **El demo usa TODO el espacio (sin "bordes blancos"):** la app es internamente `100vw/100vh`, pero el deck dibuja un lienzo fijo 16:9 escalado dentro de `.slides`, y el letterbox sobrante (ahora claro) se veía como bordes blancos a los lados. Fix en `js/deck.js` (`setupDemoFill`/`syncDemoFill`, llamado en `Reveal.on('ready')`): saco el iframe del demo de `.slides` (que está escalado) y lo monto sobre `.reveal` (que sí cubre toda la ventana) con `position:absolute;inset:0;width/height:100%;z-index:6`. Así el iframe toma el tamaño real de la ventana y su contenido lo llena, sin importar el aspecto. Se muestra solo en su slide (toggle por `display`). `z-index:6` < controles (11)/progreso (10) → las flechas de reveal siguen clickeables.
+- **Flechas en todo momento, aunque interactúes con el demo:** un iframe con foco captura el teclado y reveal dejaba de recibir las flechas. Como es same-origin, engancho un `keydown` (fase de **captura**, para que el demo no se lo coma con `stopPropagation`) en el `document` del iframe y reenvío las teclas de navegación (←/→/↑/↓, PageUp/PageDown) a Reveal — salvo si el foco está en un `input`/`textarea` editable del demo (`bridgeIframeNav`).
+Decisiones/bugs:
+- **Bug encontrado y corregido:** mover el iframe con `appendChild` lo **recarga** (nuevo `contentDocument`); el flag `navBridged` estaba en el iframe, así que el re-attach tras la recarga bailaba y el listener quedaba en el doc viejo (muerto). Movido el flag al **document** (`doc.__navBridged`) y re-attach en cada `load`.
+- No se pudo validar el reenvío de flechas con la automatización del browser: el `key` sintético **no entrega keydown reales** ni siquiera en slides normales (no navega reveal). Sí verificado: el listener queda en el doc vivo y un `dispatchEvent('keydown')` sobre el doc del iframe **navega** (15→16). Lógica correcta; la entrega de teclas reales del usuario es estándar (bubble/capture).
+- Regla `CLAUDE.md` respetada: el demo **no se anima**; solo se reubica el iframe y se escuchan teclas desde afuera (no se toca su lógica).
+Próximo paso: ver en proyección 16:9 real (donde no hay letterbox) que el demo se vea idéntico; seguir con animaciones (skill Emil Kowalski) y deploy.
+
+---
+
 ## [2026-06-21] — Cierre de sesión: demo plataforma + numeración auto (commit/push)
 Qué hice:
 - Cierre de la sesión del **demo de la plataforma** y la **numeración automática**. Build OK (31 slides), server local 200, demo verificado en browser. Commit + push de `reimport-deck-redo` con todo el trabajo acumulado en el working tree (esta sesión + la de "datos reales" de la otra sesión).
