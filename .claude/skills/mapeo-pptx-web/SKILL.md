@@ -127,7 +127,11 @@ Clasifica cada slide física del deck de referencia a su partial web:
 ### 5. Reportar y hacer checkpoint — POR SECCIÓN
 Al terminar **cada sección** (no al final de todo):
 1. **Chat**: una mini-tabla de esa sección (PDF# → web#, categoría, qué no clava),
-   más las decisiones abiertas de la sección. Concluye y pasa a la siguiente.
+   más las decisiones abiertas de la sección. **Entrega también el link de arranque
+   de la sección** (la slide divisor) para que el usuario abra, revise y comente:
+   `http://localhost:<puerto>/index.html#/(N-1)` (reveal es 0-index → slide display
+   N = `#/(N-1)`; ej. divisor Sec 02 = slide 10 → `#/9`). Levanta el server si no
+   está corriendo. Concluye y pasa a la siguiente.
 2. **Doc vivo** `docs/mapeo-pptx-v1.md`: antepón **una sola** `## ⚠️ Delta vN`
    arriba e ir **agregándole** los hallazgos sección por sección (no reescribas
    las versiones viejas — son histórico). Convierte fechas relativas a absolutas.
