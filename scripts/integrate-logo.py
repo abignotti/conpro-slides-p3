@@ -26,8 +26,7 @@ NEW = (
     '<circle cx="32" cy="35" r="4.6" fill="var(--color-accent)"/>'
     '</svg>'
     '<span style="font-family:var(--font-body);font-weight:700;font-size:30px;'
-    'letter-spacing:-0.02em;line-height:1;">'
-    'Conpr<span style="color:var(--color-accent);">o</span></span>'
+    'letter-spacing:-0.02em;line-height:1;">Conpro</span>'
     '</div>'
 )
 

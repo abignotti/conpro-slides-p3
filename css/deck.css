@@ -239,10 +239,9 @@ html.reveal-print *,
 
 /* ============================================================
    Logo Conpro · toggle del picker (data-logo="con logo" | "sin logo")
-   "sin logo": oculta lockups y sello, "o" del título vuelve a color normal.
-   Para los lockups del header usamos visibility para preservar el slot flex
-   (así el número de slide se queda a la derecha).
+   "sin logo": oculta lockups del header y el sello del cierre.
+   Para los lockups usamos visibility para preservar el slot flex (así el
+   número de slide se queda a la derecha).
    ============================================================ */
 .reveal[data-logo="sin logo"] [data-conpro-lockup] { visibility: hidden; }
 .reveal[data-logo="sin logo"] [data-conpro-logo="seal"] { display: none; }
-.reveal[data-logo="sin logo"] [data-conpro-logo="accent-o"] { color: inherit; }
