@@ -267,7 +267,7 @@ function buildPicker() {
     () => reveal.getAttribute('data-chrome') || 'completo',
     (v) => reveal.setAttribute('data-chrome', v)));
   picker.appendChild(mk('Logo', LOGOS,
-    () => reveal.getAttribute('data-logo') || 'con logo',
+    () => reveal.getAttribute('data-logo') || 'sin logo',
     (v) => reveal.setAttribute('data-logo', v)));
 
   // Botón de pantalla completa (además de la tecla F nativa de reveal).
@@ -297,7 +297,7 @@ function buildPicker() {
     pdfBtn.innerHTML = '⏳ Generando…';
     const theme = root.getAttribute('data-theme') || THEMES[0];
     const typeset = root.getAttribute('data-typeset') || TYPESETS[0];
-    const logo = reveal.getAttribute('data-logo') || LOGOS[0];
+    const logo = reveal.getAttribute('data-logo') || 'sin logo';
     // Las slides ocultas también se excluyen del PDF: se reenvían sus data-sid.
     const hiddenSids = SLIDE_ORDER.filter((o) => !o.el.isConnected).map((o) => o.sid).filter(Boolean);
     let url = `/api/pdf?theme=${encodeURIComponent(theme)}&typeset=${encodeURIComponent(typeset)}&logo=${encodeURIComponent(logo)}`;

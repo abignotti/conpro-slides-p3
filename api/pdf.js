@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   const q = req.query || {};
   const theme = THEMES.includes(q.theme) ? q.theme : 'Mostaza claro';
   const typeset = TYPESETS.includes(q.typeset) ? q.typeset : 'Corporativo';
-  const logo = LOGOS.includes(q.logo) ? q.logo : 'con logo';
+  const logo = LOGOS.includes(q.logo) ? q.logo : 'sin logo';
   // Slides a excluir del PDF: data-sid separados por coma. Se sanea a tokens
   // tipo slug (espejo del formato que inyecta build.py) para no propagar basura.
   const hidden = String(q.hidden || '')
