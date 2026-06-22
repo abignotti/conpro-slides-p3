@@ -52,7 +52,7 @@ def shell(title, slides_html, typeset="Editorial"):
   <link rel="stylesheet" href="css/deck.css">
 </head>
 <body>
-  <div class="reveal" data-chrome="completo" data-logo="sin logo">
+  <div class="reveal" data-chrome="completo" data-logo="sin logo" data-progress="barra">
     <div class="slides">
 
 {slides_html}

@@ -13,6 +13,7 @@ const THEMES = ['Mostaza claro', 'Mostaza oscuro', 'Crema editorial', 'Grafito m
 const TYPESETS = ['Editorial', 'Clásico', 'Moderno', 'Geométrico', 'Impacto', 'Mono', 'Corporativo'];
 const CHROMES = ['completo', 'minimo', 'limpio'];
 const LOGOS = ['con logo', 'sin logo'];
+const PROGRESS = ['barra', 'oculta'];
 
 /* ---- Visibilidad de slides (ocultar/mostrar en vivo) ----------------- *
    Una slide se oculta SACÁNDOLA del DOM (no con data-visibility: reveal 5.1 no
@@ -283,6 +284,9 @@ function buildPicker() {
   picker.appendChild(mk('Logo', LOGOS,
     () => reveal.getAttribute('data-logo') || 'sin logo',
     (v) => reveal.setAttribute('data-logo', v)));
+  picker.appendChild(mk('Progreso', PROGRESS,
+    () => reveal.getAttribute('data-progress') || 'barra',
+    (v) => reveal.setAttribute('data-progress', v)));
 
   // Botón de pantalla completa (además de la tecla F nativa de reveal).
   const fsBtn = document.createElement('button');
@@ -605,9 +609,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const qpTheme = params.get('theme');
   const qpTypeset = params.get('typeset');
   const qpLogo = params.get('logo');
+  const qpProgress = params.get('progress');
   if (qpTheme && THEMES.includes(qpTheme)) root.setAttribute('data-theme', qpTheme);
   if (qpTypeset && TYPESETS.includes(qpTypeset)) root.setAttribute('data-typeset', qpTypeset);
   if (qpLogo && LOGOS.includes(qpLogo)) document.querySelector('.reveal').setAttribute('data-logo', qpLogo);
+  if (qpProgress && PROGRESS.includes(qpProgress)) document.querySelector('.reveal').setAttribute('data-progress', qpProgress);
 
   // Captura el orden canónico y saca del DOM las slides ocultas (localStorage en
   // vivo, ?hidden=… en el PDF) ANTES de inicializar reveal, para que ni cuenten.

@@ -4,6 +4,22 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-22] — Progress bar superior (sutil, con toggle)
+Qué hice (rama `progress-bar-superior`):
+- Agregué una **barra de progreso arriba** que avanza con el deck. reveal ya tenía
+  `progress: true` (`js/deck.js`), pero nunca se le dio estilo → salía con el default
+  (abajo, track oscuro). Solo restilicé `.reveal .progress` en `css/deck.css`: la moví
+  al tope (`top:0; bottom:auto`), 4px, track `--color-grid` y barra `--color-accent`
+  a contraste pleno (sin la opacidad que la apagaba). Tokenizada → coherente en los 9
+  temas. Ya estaba oculta en print (`deck.css:248`), no aparece en el PDF.
+- **Toggle activar/desactivar**: nuevo control "Progreso" en el theme-picker
+  (`buildPicker`), opciones `barra` (default) / `oculta`, vía `data-progress` en el
+  `.reveal`. También por URL `?progress=barra|oculta` (links compartidos / render PDF).
+  CSS: `.reveal[data-progress="oculta"] .progress { display:none }`. Default `barra`
+  inyectado por `scripts/build.py` en el wrapper `.reveal`.
+- Archivos: `css/deck.css`, `js/deck.js`, `scripts/build.py` (+ `index.html`/
+  `moldes.html` regenerados por el build).
+
 ## [2026-06-22] — Slide 29: distribución vertical del contenido
 Qué hice (rama `reduce-slide-30-bottom-space`, `presentacion/29-sustentacion-sintesis.html`):
 - El usuario pidió reducir el espacio inferior en la slide "¿Cómo mantener la ventaja
