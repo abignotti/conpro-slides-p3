@@ -4,6 +4,48 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Integración del logo Conpro (sistema de marca + toggle del header)
+Qué hice (rama `logos-conpro-zip`):
+- **Sistema de marca propio** (a partir del .dc.html que pasó el usuario): isotipo
+  de 3 anillos con punto naranja al centro (los 3 hogares uniéndose en el punto de
+  compra colectiva) + wordmark "Conpro". Todo en SVG inline con `currentColor` y
+  `var(--color-accent)` → recolorea automático en los 9 temas; el wordmark usa
+  `var(--font-body)` (weight 700) para adaptarse a los 7 typesets sin romper.
+- **Lockup horizontal** (isotipo 38px + wordmark 30px) en el header-izquierdo de las
+  33 slides con header (todas menos `14b-demo-plataforma.html`, que es full-bleed).
+  Marcado con `data-conpro-lockup="h"`.
+- **Sello de cierre** (slide 28): isotipo 280px a la derecha de la cita final como
+  remate visual. Marcado con `data-conpro-logo="seal"` (independiente del toggle).
+- **Picker "Logo"** (`con logo` / `sin logo`) en `buildPicker` (deck.js):
+  - Actúa **sólo sobre el header**: lockup ↔ caption original
+    ("EVALUACIÓN DE PROYECTOS" en contenido, "CONPRO · 2026" en portada).
+  - Mecánica: cada slide tiene ambos elementos como hermanos (`data-conpro-lockup="h"`
+    y `data-conpro-header-fallback`); CSS oculta uno u otro según
+    `.reveal[data-logo=…]`. Ambos estados dejan solo 2 hijos visibles en el header
+    flex → `justify-content:space-between` se mantiene.
+  - **Default = sin logo** (`scripts/build.py` setea `data-logo="sin logo"` en
+    `.reveal`). El sello del cierre NO depende del toggle: siempre visible.
+- **URL param + PDF**: `?logo=…` se acepta en `index.html` (validado contra
+  allowlist) y `api/pdf.js` lo reenvía al render headless → el PDF y los links
+  compartidos respetan la combinación elegida.
+- **Scripts reusables**:
+  - `scripts/integrate-logo.py` (inserta el lockup donde había el caption).
+  - `scripts/add-header-fallback.py` (añade el `<span data-conpro-header-fallback>`
+    junto al lockup, con el texto que tenía cada slide).
+Decisiones/bugs:
+- **Wordmark sin la "o" en acento**: el .dc.html original tenía la última "o" en
+  `var(--color-accent)`; se quitó (request del usuario) para evitar que la marca
+  compita con los datos del deck. El acento queda solo en el punto del isotipo.
+- **Por qué `display:none` y no `visibility:hidden`** para el lockup en "sin logo":
+  inicialmente se usó `visibility:hidden` para preservar el slot flex; con el
+  fallback hermano cumpliendo ese rol, `display:none` es más limpio (el lockup sale
+  del flujo). Necesita `!important` porque el lockup tiene `display:flex` inline.
+- **Demo plataforma**: el script ignora `14b-demo-plataforma.html` per regla
+  "no se anima/altera" en CLAUDE.md.
+Próximo paso: ninguno; PR abierto contra `main` para revisión del grupo.
+
+---
+
 ## [2026-06-21] — Slide flujo CBO (10b): layout serpiente alineado en grilla
 Qué hice (en `presentacion/10b-flujo-cbo.html`, "Automatización simple"):
 - **Flujo en serpiente/boomerang** como el PPT: fila 1 izq→der (pasos 1–5), baja por

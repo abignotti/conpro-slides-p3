@@ -12,6 +12,7 @@ const THEMES = ['Mostaza claro', 'Mostaza oscuro', 'Crema editorial', 'Grafito m
   'Cobalto', 'Ácido', 'Fucsia', 'Naranja brutal', 'Klein'];
 const TYPESETS = ['Editorial', 'Clásico', 'Moderno', 'Geométrico', 'Impacto', 'Mono', 'Corporativo'];
 const CHROMES = ['completo', 'minimo', 'limpio'];
+const LOGOS = ['con logo', 'sin logo'];
 
 /* ---- Visibilidad de slides (ocultar/mostrar en vivo) ----------------- *
    Una slide se oculta SACÁNDOLA del DOM (no con data-visibility: reveal 5.1 no
@@ -265,6 +266,9 @@ function buildPicker() {
   picker.appendChild(mk('Chrome', CHROMES,
     () => reveal.getAttribute('data-chrome') || 'completo',
     (v) => reveal.setAttribute('data-chrome', v)));
+  picker.appendChild(mk('Logo', LOGOS,
+    () => reveal.getAttribute('data-logo') || 'sin logo',
+    (v) => reveal.setAttribute('data-logo', v)));
 
   // Botón de pantalla completa (además de la tecla F nativa de reveal).
   const fsBtn = document.createElement('button');
@@ -293,9 +297,10 @@ function buildPicker() {
     pdfBtn.innerHTML = '⏳ Generando…';
     const theme = root.getAttribute('data-theme') || THEMES[0];
     const typeset = root.getAttribute('data-typeset') || TYPESETS[0];
+    const logo = reveal.getAttribute('data-logo') || 'sin logo';
     // Las slides ocultas también se excluyen del PDF: se reenvían sus data-sid.
     const hiddenSids = SLIDE_ORDER.filter((o) => !o.el.isConnected).map((o) => o.sid).filter(Boolean);
-    let url = `/api/pdf?theme=${encodeURIComponent(theme)}&typeset=${encodeURIComponent(typeset)}`;
+    let url = `/api/pdf?theme=${encodeURIComponent(theme)}&typeset=${encodeURIComponent(typeset)}&logo=${encodeURIComponent(logo)}`;
     if (hiddenSids.length) url += `&hidden=${encodeURIComponent(hiddenSids.join(','))}`;
     try {
       const res = await fetch(url);
@@ -585,8 +590,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
   const qpTheme = params.get('theme');
   const qpTypeset = params.get('typeset');
+  const qpLogo = params.get('logo');
   if (qpTheme && THEMES.includes(qpTheme)) root.setAttribute('data-theme', qpTheme);
   if (qpTypeset && TYPESETS.includes(qpTypeset)) root.setAttribute('data-typeset', qpTypeset);
+  if (qpLogo && LOGOS.includes(qpLogo)) document.querySelector('.reveal').setAttribute('data-logo', qpLogo);
 
   // Captura el orden canónico y saca del DOM las slides ocultas (localStorage en
   // vivo, ?hidden=… en el PDF) ANTES de inicializar reveal, para que ni cuenten.
