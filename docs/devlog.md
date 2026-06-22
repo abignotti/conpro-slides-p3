@@ -4,6 +4,29 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Rediseño slide Sustitución (27) según el PPT
+Qué hice (rama `mejorar-slide-sustentacion`):
+- **Slide 27 (`presentacion/27-sustentacion-sustitucion.html`) rehecho** para calzar
+  con el PPT de referencia:
+  - **Título** `Análisis de Sustentación` (grande) + kicker `Sustitución`; la frase
+    del riesgo (`no es la demanda, es la preferencia`) pasó de título a **bajada**.
+  - **Tarjeta izquierda** con borde de acento y fondo `--color-bg-alt`, texto en **dos
+    párrafos** separados.
+  - **Bloque derecho** reordenado en columnas paralelas: rótulo `Si el interés cae en:`
+    **afuera** de las cards → cards `7,5%` / `12,5%` al año → `VAN resultante` con
+    **barras proporcionales** (45% y 13% del VAN que queda) → `Impacto en VAN` −55% / −87%.
+  - **Distribución vertical**: el cuerpo pasó de `justify-content:flex-start` a
+    **`center`** para repartir el aire parejo y matar la banda muerta sobre el footer.
+- **Bug del server (importante)**: `localhost:8753` lo tenía corriendo **otro
+  workspace** (`medan`), así que se servía un `index.html` viejo y parecía que los
+  cambios no aplicaban. Lección: verificar `cwd` del proceso que escucha el puerto
+  (`lsof -p <pid>`) antes de asumir caché del navegador. Este workspace quedó en **8771**.
+- **Limpieza de puertos**: maté 7 servidores `http.server` **huérfanos** (workspaces ya
+  borrados: medan, pattaya, vilnius, brasilia, yokohama×2, havana) que ocupaban puertos.
+- Próximo paso: ninguno; el usuario validó el slide ("ahora sí está perfecto").
+
+---
+
 ## [2026-06-21] — Nueva portada (layout 2 columnas) + limpieza del cierre
 Qué hice (rama `cambiar-portada-adjunta`):
 - **Portada rediseñada** (`presentacion/01-portada.html`) según el diseño de
