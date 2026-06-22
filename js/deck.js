@@ -126,10 +126,13 @@ const CHART_CONFIGS = {
     malo: [-2.06, -2.69, -1.38, -2.90, -0.83],
     xMin: -4, xMax: 8, xStep: 2,
   }),
+  // Análisis de márgenes (PPT slide 25): set COMPLETO de 7 productos como el PPT.
+  // VAN resultante por producto al subir su margen; café y vino son los más altos
+  // (rampByValue → barras altas más oscuras). Base: VAN del proyecto $2.386.311.
   'chart-margenes': (cv) => Charts.bar(cv, {
-    labels: ['Café', 'Vino', 'Aceite'],
-    data: [6.1, 5.15, 1.1],
-    keyIndex: 0, yMax: 8, yStep: 2, yTitle: 'ΔVAN (M$)', valueLabel: true,
+    labels: ['Huevos', 'Café', ['Aceite de', 'oliva'], 'Miel', 'Queso', 'Vino', 'Frambuesa'],
+    data: [0, 6.1, 1.1, 0.65, 0, 5.15, 0.3],
+    keyIndex: null, rampByValue: true, yMax: 7, yStep: 1, yTitle: 'VAN (M$)',
   }),
   // Recomendación 27c: set COMPLETO de productos (como el PPT), todos del mismo
   // color con intensidad por valor (rampByValue) → las barras altas se ven más
