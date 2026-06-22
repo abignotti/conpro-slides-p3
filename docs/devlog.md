@@ -4,6 +4,26 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Rediseño slide 28 "Expropiación de renta y desintermediación"
+Qué hice (rama `medan`, `presentacion/28-sustentacion-expropiacion.html`):
+- **Reemplacé las 3 tarjetas numeradas en fila** (stack vertical, distribución floja)
+  por un **diagrama de cadena de valor + bypass**: `Proveedor → Conpro → Cliente`
+  con flechas de paso (1, 2) entre nodos, y una **flecha punteada de acento** que
+  vuelve del Cliente al Proveedor **saltándose a Conpro** (paso 3 = desintermediación,
+  con punta apuntando al Proveedor). Es el elemento que "faltaba": vuelve tangible la
+  desintermediación, que antes solo estaba en el título/texto.
+- **Conpro** marcado como eslabón en riesgo con `border:2px solid var(--color-accent)`.
+- El **bloque de cierre** ("A mayor holgura de precio…") queda igual, a ancho completo
+  abajo (decisión del usuario).
+- Bypass hecho con CSS (bracket `border` punteado + radio inferior) + label centrado
+  con `background:var(--color-bg)` que enmascara la línea; todo tokenizado → responde
+  al cambio de tema/typeset. `data-label` → "Flujo + bypass".
+Decisiones: el usuario confirmó (1) diagrama cadena+bypass vs. mantener tarjetas, y
+(2) cierre debajo a ancho completo. La imagen de referencia era el layout de la 27
+(Sustitución), tomada como nivel de pulido a alcanzar.
+Verificado: build OK + render en server local (slide #28, sin desborde).
+Próximo paso: pase de animaciones (skill Emil) pendiente para todo el bloque.
+
 ## [2026-06-21] — Nueva portada (layout 2 columnas) + limpieza del cierre
 Qué hice (rama `cambiar-portada-adjunta`):
 - **Portada rediseñada** (`presentacion/01-portada.html`) según el diseño de
