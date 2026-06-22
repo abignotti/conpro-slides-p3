@@ -1,0 +1,79 @@
+<section class="slide" data-label="Inversión + desglose" data-speaker-notes="Dato hero (inversión total) como número ancla, con pie chart de su composición a la izquierda; a la derecha el desglose en tres filas (categoría + monto). Acento en los montos." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">NN / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;padding-top:20px;">
+    <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:8px;">Inversión</span>
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.0;letter-spacing:-0.02em;color:var(--color-text);padding-bottom:16px;border-bottom:1px solid var(--color-grid);">Estructura de inversión y desglose de costos</h2>
+
+    <div style="flex:1;display:grid;grid-template-columns:0.92fr 1.08fr;gap:64px;padding-top:24px;">
+
+      <!-- Izquierda: dato hero + pie -->
+      <div style="display:flex;flex-direction:column;">
+        <span data-flow-order="1" style="font-family:var(--font-display);font-weight:800;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-text);" data-hero>$ 000.000</span>
+        <span data-flow-order="1" style="font-size:var(--scale-body);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);margin-top:4px;padding-bottom:20px;border-bottom:1px solid var(--color-grid);">Inversión inicial total</span>
+
+        <div data-flow-order="2" style="flex:1;min-height:0;overflow:hidden;display:flex;align-items:center;gap:36px;padding-top:14px;">
+          <svg viewBox="0 0 360 360" style="flex:0 0 auto;width:460px;height:460px;display:block;">
+            <path d="M 180,180 L 180,20 A 160,160 0 1,1 50.6,274.1 Z" style="fill:var(--color-accent);"></path>
+            <path d="M 180,180 L 50.6,274.1 A 160,160 0 0,1 20,180 Z" style="fill:var(--color-text);"></path>
+            <path d="M 180,180 L 20,180 A 160,160 0 0,1 180,20 Z" style="fill:var(--chart-series-2);"></path>
+            <text x="274" y="228" text-anchor="middle" dominant-baseline="middle" font-weight="800" font-size="30" style="font-family:var(--font-display);fill:var(--color-on-accent);">65%</text>
+            <text x="80" y="212" text-anchor="middle" dominant-baseline="middle" font-weight="800" font-size="24" style="font-family:var(--font-display);fill:var(--color-bg);">10%</text>
+            <text x="106" y="106" text-anchor="middle" dominant-baseline="middle" font-weight="800" font-size="28" style="font-family:var(--font-display);fill:var(--color-text);">25%</text>
+          </svg>
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:20px;">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="flex:none;width:18px;height:18px;border-radius:4px;background:var(--color-accent);"></span>
+              <span style="font-size:24px;line-height:1.25;color:var(--color-text);">Categoría A</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="flex:none;width:18px;height:18px;border-radius:4px;background:var(--color-text);"></span>
+              <span style="font-size:24px;line-height:1.25;color:var(--color-text);">Categoría B</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="flex:none;width:18px;height:18px;border-radius:4px;background:var(--chart-series-2);"></span>
+              <span style="font-size:24px;line-height:1.25;color:var(--color-text);">Categoría C</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Derecha: filas de desglose -->
+      <div style="display:flex;flex-direction:column;border-left:1px solid var(--color-grid);padding-left:56px;">
+
+        <div data-flow-order="3" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;padding-bottom:28px;border-bottom:1px solid var(--color-grid);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;">
+            <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--color-text);">Costos fijos</span>
+            <span style="font-family:var(--font-display);font-weight:800;font-size:28px;color:var(--color-on-accent);background:var(--color-accent);padding:4px 16px;border-radius:var(--radius);white-space:nowrap;font-variant-numeric:tabular-nums;">$ 000.000 / año</span>
+          </div>
+          <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">Descripción breve de la categoría de costo.</span>
+        </div>
+
+        <div data-flow-order="4" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:28px 0;border-bottom:1px solid var(--color-grid);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;">
+            <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--color-text);">Costos variables</span>
+            <span style="font-family:var(--font-display);font-weight:800;font-size:28px;color:var(--color-on-accent);background:var(--color-accent);padding:4px 16px;border-radius:var(--radius);white-space:nowrap;font-variant-numeric:tabular-nums;">$ 000.000</span>
+          </div>
+          <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">Descripción breve de la categoría de costo.</span>
+        </div>
+
+        <div data-flow-order="5" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;padding-top:28px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;">
+            <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--color-text);">Costos de estructura</span>
+            <span style="font-family:var(--font-display);font-weight:800;font-size:28px;color:var(--color-on-accent);background:var(--color-accent);padding:4px 16px;border-radius:var(--radius);white-space:nowrap;font-variant-numeric:tabular-nums;">$ 000.000</span>
+          </div>
+          <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">Descripción breve de la categoría de costo.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Úsalo cuando una cifra de inversión total tenga una composición interna (3 partes, ~65/25/10) y, en paralelo, varios tipos de costo recurrente. A la izquierda el dato hero ancla el monto y el pie chart muestra su reparto; a la derecha las filas con categoría + monto detallan el desglose. Ajusta los porcentajes del pie (paths y textos) y los montos según el caso. Para 2 o 4 categorías, recalcula los ángulos de los paths del SVG.</aside>
+</section>

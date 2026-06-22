@@ -1,0 +1,82 @@
+<section class="slide" data-no-anim data-label="Cadena + bypass" data-speaker-notes="Cadena lineal de tres actores (A → B → C) con un arco punteado de bypass que saltea el nodo central: desintermediación / riesgo. El eslabón del medio lleva borde negativo para señalar exposición. Útil para mostrar cómo un intermediario puede ser saltado por los extremos de la cadena." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">27 / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;min-height:0;padding-top:8px;">
+    <div data-flow-order="1">
+      <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Análisis de cadena</span>
+      <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin:8px 0 0;max-width:1300px;">Riesgo de desintermediación</h2>
+    </div>
+
+    <!-- Diagrama: cadena lineal A → B → C + arco de bypass que saltea el nodo central -->
+    <div style="position:relative;margin:0;">
+
+      <!-- Cadena: Proveedor → Intermediario → Cliente -->
+      <div style="display:flex;align-items:stretch;justify-content:center;gap:18px;">
+        <!-- Actor A -->
+        <div data-flow-order="2" style="flex:1;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:12px;padding:30px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;">
+          <span style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:34px;line-height:1;">Proveedor</span>
+          <span style="font-size:var(--scale-caption);color:var(--color-text-muted);line-height:1.3;">Origen de la cadena</span>
+        </div>
+
+        <!-- Paso 1 -->
+        <div data-flow-order="2.5" style="flex:none;width:168px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;">
+          <div style="flex:none;width:46px;height:46px;border-radius:999px;background:var(--color-accent);color:var(--color-on-accent);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:var(--weight-display);font-size:24px;">1</div>
+          <svg width="48" height="20" viewBox="0 0 48 20" fill="none" aria-hidden="true" style="display:block;color:var(--color-text-muted);">
+            <path d="M2 10 H42 M34 3 L43 10 L34 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-size:var(--scale-caption);color:var(--color-text-muted);line-height:1.3;">Entrega al intermediario</span>
+        </div>
+
+        <!-- Intermediario (eslabón en riesgo) -->
+        <div data-flow-order="3" style="flex:1;background:var(--color-bg-alt);border:2px solid var(--color-negative);border-radius:12px;padding:30px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;">
+          <span style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:34px;line-height:1;">Intermediario</span>
+          <span style="font-size:var(--scale-caption);color:var(--color-text-muted);line-height:1.3;">Eslabón en riesgo</span>
+        </div>
+
+        <!-- Paso 2 -->
+        <div data-flow-order="3.5" style="flex:none;width:168px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;">
+          <div style="flex:none;width:46px;height:46px;border-radius:999px;background:var(--color-accent);color:var(--color-on-accent);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:var(--weight-display);font-size:24px;">2</div>
+          <svg width="48" height="20" viewBox="0 0 48 20" fill="none" aria-hidden="true" style="display:block;color:var(--color-text-muted);">
+            <path d="M2 10 H42 M34 3 L43 10 L34 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-size:var(--scale-caption);color:var(--color-text-muted);line-height:1.3;">Entrega al cliente</span>
+        </div>
+
+        <!-- Actor C -->
+        <div data-flow-order="4" style="flex:1;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:12px;padding:30px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;">
+          <span style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:34px;line-height:1;">Cliente</span>
+          <span style="font-size:var(--scale-caption);color:var(--color-text-muted);line-height:1.3;">Destino final</span>
+        </div>
+      </div>
+
+      <!-- Bypass: el cliente vuelve al proveedor saltándose al intermediario -->
+      <div aria-hidden="true" data-flow-order="5" style="position:relative;height:92px;">
+        <!-- bracket punteado: del Cliente (der.) por debajo del intermediario al Proveedor (izq.) -->
+        <div style="position:absolute;left:7%;right:7%;top:4px;bottom:10px;border:2.5px dashed var(--color-accent);border-top:none;border-radius:0 0 16px 16px;"></div>
+        <!-- punta de flecha apuntando hacia arriba al Proveedor -->
+        <svg width="24" height="16" viewBox="0 0 24 16" fill="none" style="position:absolute;left:7%;top:-3px;transform:translateX(-50%);color:var(--color-accent);">
+          <path d="M12 1 L3 12 M12 1 L21 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <!-- etiqueta del paso 3 centrada sobre el tramo inferior -->
+        <div style="position:absolute;left:50%;bottom:0;transform:translate(-50%,50%);background:var(--color-bg);padding:4px 18px;display:flex;align-items:center;gap:14px;white-space:nowrap;">
+          <span style="flex:none;width:46px;height:46px;border-radius:999px;background:var(--color-accent);color:var(--color-on-accent);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:var(--weight-display);font-size:24px;">3</span>
+          <span style="font-size:var(--scale-body);line-height:1.3;color:var(--color-text);">Los extremos transan directo · <strong>desintermediación</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cierre destacado: centrado, sin card -->
+    <div data-flow-order="6" style="text-align:center;max-width:1200px;margin:8px auto 0;">
+      <p style="font-size:var(--scale-body);line-height:1.7;color:var(--color-text);"><strong style="background:var(--color-accent);color:var(--color-on-accent);padding:3px 12px;border-radius:5px;-webkit-box-decoration-break:clone;box-decoration-break:clone;">Cuanto menos valor agrega el intermediario, mayor el riesgo de ser saltado.</strong> El bypass aparece cuando los extremos pueden conectarse sin él.</p>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Cadena lineal de tres actores con bypass. Úsalo para representar desintermediación o riesgo de un eslabón intermedio: el flujo normal va A → B → C (pasos 1 y 2), pero el arco punteado de bypass (paso 3) muestra cómo los extremos (Proveedor y Cliente) pueden transar directo saltándose al Intermediario. El nodo central lleva borde negativo para señalar que es el eslabón expuesto. Generaliza a cualquier cadena de valor con un actor intermedio cuyo aporte sea sustituible. Renombra los actores y los textos de paso al caso concreto.</aside>
+</section>

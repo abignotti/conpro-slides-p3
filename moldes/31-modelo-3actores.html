@@ -1,0 +1,82 @@
+<section class="slide" data-label="Modelo 3 actores" data-speaker-notes="Diagrama de flujo con un actor central (círculo de acento) conectado a dos grupos a los lados mediante flechas bidireccionales, más una propuesta de valor centrada. Sustituye los placeholders por los actores reales del modelo." style="background:var(--color-bg-alt);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">NN / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;padding-top:24px;padding-bottom:32px;">
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;color:var(--color-text);margin:0;">Modelo de tres actores</h2>
+
+    <!-- Diagrama: Actor A <-> Plataforma <-> Actor B -->
+    <div style="background:var(--color-bg);border-radius:var(--radius);margin-top:60px;padding:44px 60px 40px 60px;display:flex;align-items:center;justify-content:space-between;">
+
+      <!-- Actor A (lado izquierdo) -->
+      <div style="display:flex;flex-direction:column;align-items:center;width:440px;">
+        <svg width="200" height="190" viewBox="0 0 200 190" fill="none" stroke="var(--color-text)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="100" cy="48" r="34" fill="var(--color-accent)" stroke="none"></circle>
+          <path d="M40 178 V148 C40 116 160 116 160 148 V178" fill="var(--color-accent)" stroke="none"></path>
+          <circle cx="100" cy="48" r="34"></circle>
+          <path d="M40 178 V148 C40 116 160 116 160 148 V178"></path>
+        </svg>
+        <div style="font-family:var(--font-display);font-weight:700;font-size:30px;letter-spacing:2px;color:var(--color-text);margin-top:14px;">CLIENTES</div>
+        <div style="font-size:24px;color:var(--color-text-muted);margin-top:8px;">Demanda del lado A</div>
+      </div>
+
+      <!-- flechas bidireccionales izquierda -->
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <svg width="150" height="20" viewBox="0 0 150 20" fill="none" aria-hidden="true"><path d="M2 10 H140 M124 2 L142 10 L124 18" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <svg width="150" height="20" viewBox="0 0 150 20" fill="none" aria-hidden="true"><path d="M148 10 H10 M26 2 L8 10 L26 18" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+
+      <!-- Actor central -->
+      <div style="width:300px;height:300px;border-radius:50%;background:var(--color-accent);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="var(--color-on-accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="60" cy="60" r="20"></circle>
+          <circle cx="60" cy="14" r="11"></circle>
+          <circle cx="20" cy="92" r="11"></circle>
+          <circle cx="100" cy="92" r="11"></circle>
+          <path d="M60 25 V40 M44 70 L29 84 M76 70 L91 84"></path>
+        </svg>
+        <div style="font-family:var(--font-display);font-weight:800;font-size:38px;letter-spacing:2px;color:var(--color-on-accent);margin-top:14px;">PLATAFORMA</div>
+      </div>
+
+      <!-- flechas bidireccionales derecha -->
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <svg width="150" height="20" viewBox="0 0 150 20" fill="none" aria-hidden="true"><path d="M2 10 H140 M124 2 L142 10 L124 18" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <svg width="150" height="20" viewBox="0 0 150 20" fill="none" aria-hidden="true"><path d="M148 10 H10 M26 2 L8 10 L26 18" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+
+      <!-- Actor B (lado derecho) -->
+      <div style="display:flex;flex-direction:column;align-items:center;width:440px;">
+        <svg width="220" height="190" viewBox="0 0 220 190" fill="none" stroke="var(--color-text)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+          <path d="M30 70 L110 34 L190 70" fill="none"></path>
+          <rect x="46" y="70" width="128" height="108" fill="var(--color-accent)" stroke="var(--color-text)"></rect>
+          <rect x="78" y="110" width="34" height="34" fill="var(--color-bg)" stroke="var(--color-text)"></rect>
+          <rect x="124" y="110" width="34" height="34" fill="var(--color-bg)" stroke="var(--color-text)"></rect>
+          <path d="M24 178 H196"></path>
+        </svg>
+        <div style="font-family:var(--font-display);font-weight:700;font-size:30px;letter-spacing:2px;color:var(--color-text);margin-top:14px;">PROVEEDORES</div>
+        <div style="font-size:24px;color:var(--color-text-muted);margin-top:8px;">Oferta del lado B</div>
+      </div>
+
+    </div>
+
+    <!-- Propuesta de valor -->
+    <div style="margin-top:56px;">
+      <div style="display:inline-block;">
+        <div style="font-family:var(--font-display);font-weight:700;font-size:28px;letter-spacing:5px;color:var(--color-text-muted);">PROPUESTA DE VALOR</div>
+        <div style="height:4px;width:200px;background:var(--color-accent);margin-top:12px;border-radius:var(--radius-pill,999px);"></div>
+      </div>
+
+      <div style="margin-top:40px;display:flex;justify-content:center;">
+        <p style="max-width:1300px;text-align:center;font-size:38px;line-height:1.5;color:var(--color-text-muted);margin:0;text-wrap:pretty;"><strong style="color:var(--color-text);font-weight:700;">Propuesta de valor del modelo</strong>: cómo la plataforma central crea valor al conectar a ambos lados que por separado no se encontrarían.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Cuándo usar este molde: para explicar un modelo de negocio o flujo de intermediación con un actor central (plataforma, empresa, intermediario) que conecta dos grupos a los lados (clientes/proveedores, oferta/demanda, actor A/actor B). El círculo de acento destaca al actor que crea valor; las flechas bidireccionales muestran el intercambio en ambos sentidos; la línea inferior resume la propuesta de valor. Sustituye los nombres (PLATAFORMA / CLIENTES / PROVEEDORES), los subtítulos de cada lado y la frase de propuesta de valor por los del caso real. Un solo acento por slide; el dato/idea clave va en la propuesta de valor centrada.</aside>
+</section>

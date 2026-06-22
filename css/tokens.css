@@ -22,12 +22,32 @@
   --scale-caption: 24px;
   --scale-kicker: 24px;
   --weight-display: 700;
+  /* Escala de pesos (aditiva — para nuevos moldes; migración del deck vivo, en la base) */
+  --weight-regular: 500;
+  --weight-medium: 600;
+  --weight-bold: 700;
+  --weight-black: 800;
 
   /* ---- Espaciado / layout ---- */
   --space-unit: 8px;
   --slide-padding: 80px;
   --content-max: 1100px;
   --radius: 12px;
+  /* Escalas aditivas (ver docs/diseno-sistema.md §6). No se aplican al deck actual:
+     existen para los moldes nuevos y para la base reutilizable. */
+  --radius-sm: 4px;
+  --radius-md: 9px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+  --size-xs: 16px;   /* marcadores */
+  --size-sm: 34px;   /* íconos en línea */
+  --size-md: 46px;   /* íconos/números en círculo o badge */
+  --size-lg: 74px;   /* círculos grandes */
+  --gap-xs: 8px;
+  --gap-sm: 12px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+  --gap-xl: 40px;
 
   /* ---- Gráficos ---- */
   --chart-series-1: var(--color-accent);   /* serie clave  */
@@ -46,6 +66,11 @@
   --anim-stagger: 55ms;
   --anim-rise: 14px;        /* translateY inicial de la entrada */
   --flow-stagger: 160ms;    /* delay entre pasos en flujos secuenciales (slide 12); < --anim-enter → se solapan */
+  /* Animación de gráficos (aditiva). Hoy js/charts.js hardcodea 600/650ms; en la base,
+     charts.js debería leer estos tokens vía cssMs(). Ver docs/diseno-sistema.md §6. */
+  --chart-anim-duration: 600ms;
+  --chart-anim-easing: var(--motion-ease);
+  --chart-anim-stagger: 220ms;
 
   /* ---- Tema por defecto: Mostaza claro ---- */
   --color-bg: #FBFAF7;
