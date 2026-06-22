@@ -14,11 +14,13 @@ import puppeteer from 'puppeteer-core';
 const THEMES = ['Mostaza claro', 'Mostaza oscuro', 'Crema editorial', 'Grafito mono',
   'Cobalto', 'Ácido', 'Fucsia', 'Naranja brutal', 'Klein'];
 const TYPESETS = ['Editorial', 'Clásico', 'Moderno', 'Geométrico', 'Impacto', 'Mono', 'Corporativo'];
+const LOGOS = ['con logo', 'sin logo'];
 
 export default async function handler(req, res) {
   const q = req.query || {};
   const theme = THEMES.includes(q.theme) ? q.theme : 'Mostaza claro';
   const typeset = TYPESETS.includes(q.typeset) ? q.typeset : 'Corporativo';
+  const logo = LOGOS.includes(q.logo) ? q.logo : 'con logo';
   // Slides a excluir del PDF: data-sid separados por coma. Se sanea a tokens
   // tipo slug (espejo del formato que inyecta build.py) para no propagar basura.
   const hidden = String(q.hidden || '')
@@ -34,7 +36,8 @@ export default async function handler(req, res) {
   const proto = req.headers['x-forwarded-proto']
     || (/^(localhost|127\.)/.test(host) ? 'http' : 'https');
   let url = `${proto}://${host}/index.html?print-pdf`
-    + `&theme=${encodeURIComponent(theme)}&typeset=${encodeURIComponent(typeset)}`;
+    + `&theme=${encodeURIComponent(theme)}&typeset=${encodeURIComponent(typeset)}`
+    + `&logo=${encodeURIComponent(logo)}`;
   if (hidden.length) url += `&hidden=${encodeURIComponent(hidden.join(','))}`;
 
   let browser;
