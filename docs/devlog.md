@@ -4,6 +4,19 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-22] — Slide 29: distribución vertical del contenido
+Qué hice (rama `reduce-slide-30-bottom-space`, `presentacion/29-sustentacion-sintesis.html`):
+- El usuario pidió reducir el espacio inferior en la slide "¿Cómo mantener la ventaja
+  competitiva?" (las 3 columnas Imitación/Sustitución/Expropiación). El cuerpo usaba
+  `justify-content:flex-start`, así que todo el sobrante vertical (~270px) quedaba
+  acumulado **abajo**. Cambié a `center` → contenido centrado y simétrico (135px
+  arriba / 135px abajo, medido en coords 1080).
+- Inicialmente toqué la slide 30 (`30-opcion-esperar`, gráfico de barras) por una
+  confusión de numeración; lo **reverti**. De paso, verifiqué que ese gráfico **sí
+  corresponde** al PPT (PPTX P31 "La opción de esperar"; cifras coinciden:
+  hogares 60/81/105/121/139 · VAN 2,39/4,30/5,66/6,69/8,74 M$, peak 4 años) — ver
+  `docs/mapeo-pptx-v1.md`.
+
 ## [2026-06-21] — Rediseño slide 28 "Expropiación de renta y desintermediación"
 Qué hice (rama `medan`, `presentacion/28-sustentacion-expropiacion.html`):
 - **Reemplacé las 3 tarjetas numeradas en fila** (stack vertical, distribución floja)
