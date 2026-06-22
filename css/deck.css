@@ -215,6 +215,25 @@ html, body { background: var(--color-bg); }
 }
 
 /* ============================================================
+   Progress bar (sutil, arriba) · reveal crea .progress con progress:true
+   Crece de izq→der según la posición real en el deck.
+   ============================================================ */
+.reveal .progress {
+  position: absolute;
+  top: 0;
+  bottom: auto;                      /* anula el default (bottom:0) de reveal */
+  height: 4px;
+  background: var(--color-grid);     /* track sutil */
+  z-index: 40;                       /* sobre el contenido, bajo theme-picker (60) */
+}
+.reveal .progress span {
+  background: var(--color-accent);   /* barra de acento del tema, a full contraste */
+  transition: width var(--motion-duration) var(--motion-ease);
+}
+/* toggle de visibilidad (data-progress en el .reveal): "barra" | "oculta" */
+.reveal[data-progress="oculta"] .progress { display: none !important; }
+
+/* ============================================================
    EXPORT PDF  ·  vista print de reveal 5.x
    reveal entra en "print view" con ?print-pdf y agrega las clases
    html.reveal-print / .print-pdf, además de forzar
