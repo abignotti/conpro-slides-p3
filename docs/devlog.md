@@ -4,6 +4,39 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Nueva portada (layout 2 columnas) + limpieza del cierre
+Qué hice (rama `cambiar-portada-adjunta`):
+- **Portada rediseñada** (`presentacion/01-portada.html`) según el diseño de
+  referencia que pasó el usuario: layout de **dos columnas**.
+  - **Barra lateral oscura**: identificador del curso (`Conpro · 2026` / `ICS3913 ·
+    Evaluación de Proyectos`), **Equipo docente** (Profesor Felipe Saavedra ·
+    Supervisor Alan Piket · Dueño Ricardo Melo) y `Junio 2026`.
+  - **Área principal crema**: kicker `Proyecto de título`, escudo PUC, titular
+    gigante `Escalamiento de Conpro` con regla de acento, y `Grupo 06` con los 6
+    integrantes en dos columnas.
+  - **100% tokenizado y theme-robusto**: la barra usa `var(--color-text)` de fondo y
+    `var(--color-bg)` de texto, así se **invierte coherente** en temas oscuros
+    (verificado en Cobalto). Acento/regla heredan `var(--color-accent)`.
+  - **Toggle de logo preservado** (`data-conpro-lockup` + `-header-fallback`).
+- **Escudo PUC** (`assets/puc-escudo.png`): recortado en alta resolución desde la
+  imagen de referencia y convertido a **máscara alpha**; se pinta vía CSS `mask` con
+  `var(--color-text)` → se adapta al color de cada tema (no es un PNG de color fijo).
+- **Fix de la "franja" del pillarbox** (`css/deck.css`): cuando la ventana es más
+  ancha que 16:9, reveal rellena los lados con el fondo del tema (crema). Como la
+  portada tiene la barra oscura pegada al borde izquierdo, esa banda crema se veía
+  como una franja. Solución: en la portada, el fondo del **viewport** es un degradado
+  partido — oscuro a la izq (= barra), crema a la der (= área) — con el corte al 50%
+  oculto tras el slide centrado. Scopeado con `:has(section[data-label="Portada"].present)`.
+  - **Bug**: reveal pone un `background` **inline** en `.reveal-viewport`, que le gana
+    a una regla normal del CSS → la regla necesitó `!important` para vencerlo.
+- **Slide 34 (cierre, `28-sintesis.html`)**: eliminado el **sello** Conpro
+  (`data-conpro-logo="seal"`, 280px) a pedido del usuario; la cita ahora ocupa el
+  ancho disponible, centrada vertical, sin desbalance.
+- Próximo paso: confirmar con el usuario los datos del equipo docente (salen tal cual
+  de la imagen de referencia).
+
+---
+
 ## [2026-06-21] — Integración del logo Conpro (sistema de marca + toggle del header)
 Qué hice (rama `logos-conpro-zip`):
 - **Sistema de marca propio** (a partir del .dc.html que pasó el usuario): isotipo

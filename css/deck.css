@@ -15,6 +15,19 @@ html, body { background: var(--color-bg); }
 :root { --r-background-color: var(--color-bg); }
 .reveal-viewport { background: var(--color-bg); }
 
+/* Portada: su borde izquierdo es la barra oscura, así que el pillarbox del
+   lado izquierdo no puede ser crema (se vería una franja). El fondo del
+   viewport se parte en dos: oscuro (= barra) a la izquierda, crema (= área
+   principal) a la derecha. El corte va al 50% del viewport (su centro), que
+   queda OCULTO tras el slide centrado; solo asoman los bordes, cada uno del
+   color de su lado. Robusto ante cualquier proporción de ventana. */
+.reveal-viewport:has(section.slide[data-label="Portada"].present) {
+  /* reveal.js pinta un background INLINE en el viewport; el inline gana a una
+     regla normal, por eso va !important (vence al inline sin !important). */
+  background: linear-gradient(to right,
+    var(--color-text) 0 50%, var(--color-bg-alt) 50% 100%) !important;
+}
+
 /* ---- Lienzo 1920×1080 por slide --------------------------------- *
    reveal escala todo el conjunto con transform, así que los px
    siguen afinados a 1920 (piso de texto 24px respetado al proyectar).
