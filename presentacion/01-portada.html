@@ -1,26 +1,73 @@
-<!-- TODO nombres: tomados del Informe 3 (confirmar orden, abreviaciones y tildes con el usuario) -->
-<section class="slide" data-label="Portada" data-speaker-notes="Apertura. Titular Fraunces enorme, regla amarilla como único acento, autoría del Grupo 06." style="background:var(--color-bg-alt);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
-  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-start;">
-    <div data-conpro-lockup="h" style="display:flex;align-items:center;gap:14px;color:var(--color-text);"><svg viewBox="0 0 64 64" width="38" height="38" aria-hidden="true" style="display:block;flex:none;"><circle cx="32" cy="24.5" r="15" fill="none" stroke="currentColor" stroke-width="3.6"/><circle cx="24" cy="40.5" r="15" fill="none" stroke="currentColor" stroke-width="3.6"/><circle cx="40" cy="40.5" r="15" fill="none" stroke="currentColor" stroke-width="3.6"/><circle cx="32" cy="35" r="4.6" fill="var(--color-accent)"/></svg><span style="font-family:var(--font-body);font-weight:700;font-size:30px;letter-spacing:-0.02em;line-height:1;">Conpro</span></div><span data-conpro-header-fallback style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-text-muted);">Conpro · 2026</span>
-    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);">ICS3913 · Evaluación de Proyectos</span>
-  </header>
+<!-- Portada · layout de dos columnas (barra lateral oscura + área crema).
+     Datos del equipo docente y nombres tomados del diseño de referencia.
+     Colores 100% tokenizados: la barra usa var(--color-text) como fondo y
+     var(--color-bg) como texto, así se invierte de forma coherente en temas
+     oscuros. El escudo PUC es una máscara alpha pintada con var(--color-text). -->
+<section class="slide" data-label="Portada" data-speaker-notes="Apertura. Barra lateral con curso y equipo docente; titular Fraunces enorme con regla amarilla; escudo PUC y autoría del Grupo 06." style="padding:0;display:flex;flex-direction:row;overflow:hidden;background:var(--color-bg-alt);color:var(--color-text);font-family:var(--font-body);">
 
-  <div style="max-width:1400px;">
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:40px;">
-      <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Proyecto de título · Informe 3</span>
+  <!-- ===== BARRA LATERAL ===== -->
+  <aside style="flex:0 0 620px;background:var(--color-text);color:var(--color-bg);padding:80px 64px;display:flex;flex-direction:column;justify-content:space-between;">
+
+    <!-- Identificador del curso -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div data-conpro-lockup="h" style="display:flex;align-items:center;gap:14px;color:var(--color-bg);"><svg viewBox="0 0 64 64" width="38" height="38" aria-hidden="true" style="display:block;flex:none;"><circle cx="32" cy="24.5" r="15" fill="none" stroke="currentColor" stroke-width="3.6"/><circle cx="24" cy="40.5" r="15" fill="none" stroke="currentColor" stroke-width="3.6"/><circle cx="40" cy="40.5" r="15" fill="none" stroke="currentColor" stroke-width="3.6"/><circle cx="32" cy="35" r="4.6" fill="var(--color-accent)"/></svg><span style="font-family:var(--font-body);font-weight:700;font-size:30px;letter-spacing:-0.02em;line-height:1;">Conpro</span></div><span data-conpro-header-fallback style="font-size:var(--scale-caption);font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-bg);">Conpro · 2026</span>
+      <span style="font-size:20px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;line-height:1.45;opacity:0.6;">ICS3913 · Evaluación de Proyectos</span>
     </div>
-    <h1 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:128px;line-height:0.98;letter-spacing:-0.02em;color:var(--color-text);">Escalamiento<br>de Conpro</h1>
-    <div style="width:200px;height:6px;background:var(--color-accent);border-radius:999px;margin:44px 0 36px;"></div>
-    <p style="font-size:30px;line-height:1.5;color:var(--color-text-muted);max-width:900px;">Evaluación financiera y estratégica del escalamiento desde la operación informal por WhatsApp hacia una plataforma digital.</p>
+
+    <!-- Equipo docente -->
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <span style="font-size:20px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-accent);">Equipo docente</span>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:15px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;opacity:0.55;">Profesor</span>
+          <span style="font-size:25px;line-height:1.1;">Felipe Saavedra</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:15px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;opacity:0.55;">Supervisor</span>
+          <span style="font-size:25px;line-height:1.1;">Alan Piket</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:15px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;opacity:0.55;">Dueño</span>
+          <span style="font-size:25px;line-height:1.1;">Ricardo Melo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fecha -->
+    <span style="font-size:20px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;opacity:0.6;">Junio 2026</span>
+  </aside>
+
+  <!-- ===== ÁREA PRINCIPAL ===== -->
+  <div style="flex:1;min-width:0;padding:80px 92px;display:flex;flex-direction:column;justify-content:space-between;">
+
+    <!-- Fila superior: kicker + escudo PUC -->
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;">
+      <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Proyecto de título</span>
+      <div style="display:flex;align-items:center;gap:18px;flex:none;">
+        <span role="img" aria-label="Pontificia Universidad Católica de Chile" style="display:block;flex:none;width:86px;height:116px;background:var(--color-text);-webkit-mask:url(assets/puc-escudo.png) center/contain no-repeat;mask:url(assets/puc-escudo.png) center/contain no-repeat;"></span>
+        <span style="font-size:18px;font-weight:700;letter-spacing:0.05em;line-height:1.3;text-transform:uppercase;color:var(--color-text);">Pontificia<br>Universidad<br>Católica<br>de Chile</span>
+      </div>
+    </div>
+
+    <!-- Titular -->
+    <div>
+      <h1 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:122px;line-height:0.98;letter-spacing:-0.02em;color:var(--color-text);margin:0;">Escalamiento<br>de Conpro</h1>
+      <div style="width:180px;height:6px;background:var(--color-accent);border-radius:999px;margin-top:36px;"></div>
+    </div>
+
+    <!-- Grupo + integrantes -->
+    <div style="display:flex;flex-direction:column;gap:22px;">
+      <span style="font-size:27px;font-weight:700;color:var(--color-text);">Grupo 06</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 72px;max-width:780px;">
+        <span style="font-size:25px;color:var(--color-text);">Agustín Bignotti</span>
+        <span style="font-size:25px;color:var(--color-text);">Barbara Küllmer</span>
+        <span style="font-size:25px;color:var(--color-text);">María Soledad Bravo</span>
+        <span style="font-size:25px;color:var(--color-text);">Emilia Luttecke</span>
+        <span style="font-size:25px;color:var(--color-text);">Javiera Hellwig</span>
+        <span style="font-size:25px;color:var(--color-text);">Dafne Valdivia</span>
+      </div>
+    </div>
   </div>
 
-  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:flex-end;padding-top:28px;border-top:1px solid var(--color-grid);">
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.06em;color:var(--color-text);">Grupo 06</span>
-      <span style="font-size:var(--scale-caption);letter-spacing:0.02em;color:var(--color-text-muted);">Agustín Bignotti · María Soledad Bravo · Javiera Hellwig · Barbara Küllmer · Emilia Luttecke · Dafne Valdivia</span>
-    </div>
-    <span style="font-size:var(--scale-caption);letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-muted);">Junio 2026</span>
-  </footer>
-
-  <aside class="notes">Apertura. Titular Fraunces enorme, regla amarilla como único acento, autoría del Grupo 06.</aside>
+  <aside class="notes">Apertura. Barra lateral con curso y equipo docente; titular Fraunces enorme con regla amarilla; escudo PUC y autoría del Grupo 06.</aside>
 </section>
