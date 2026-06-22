@@ -138,11 +138,20 @@ window.Charts = (() => {
   /* ============================================================
      BAR · estilo base de TODOS los gráficos
      ============================================================ */
-  function bar(canvas, { labels, data, keyIndex = data.length - 1, yMax, yTitle, yStep, valueLabel, valueLabelAll, valueLabelFmt, colorRamp, stagger, threshold, thresholdLabel } = {}) {
+  function bar(canvas, { labels, data, keyIndex = data.length - 1, yMax, yTitle, yStep, valueLabel, valueLabelAll, valueLabelFmt, colorRamp, rampByValue, stagger, threshold, thresholdLabel } = {}) {
     const d = base();
     const n = data.length;
-    // colorRamp: rampa de opacidad del acento (clara la 1ª -> opaca la última).
-    const colors = colorRamp
+    // Color de cada barra. Tres modos (de más específico a default):
+    //   rampByValue: opacidad del acento ∝ MAGNITUD del dato → barras altas oscuras,
+    //                bajas claras. Todas comparten color (el acento), solo cambia la
+    //                intensidad. Útil cuando importa la jerarquía por valor, no una
+    //                barra "clave". Reutilizable: pasar rampByValue:true (+ keyIndex:null).
+    //   colorRamp:   misma rampa pero por POSICIÓN (clara la 1ª -> opaca la última).
+    //   default:     gris, salvo la barra keyIndex en acento.
+    const maxAbs = Math.max(...data.map((v) => Math.abs(v))) || 1;
+    const colors = rampByValue
+      ? data.map((v) => withAlpha(d.accent, 0.35 + 0.65 * (Math.abs(v) / maxAbs)))
+      : colorRamp
       ? data.map((_, i) => withAlpha(d.accent, 0.4 + 0.6 * (n > 1 ? i / (n - 1) : 1)))
       : data.map((_, i) => (i === keyIndex ? d.accent : d.gray));
     const labelIdx = valueLabelAll ? data.map((_, i) => i) : (keyIndex == null ? [] : [keyIndex]);

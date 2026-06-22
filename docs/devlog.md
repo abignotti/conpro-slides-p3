@@ -4,6 +4,44 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Alinear deck al PDF v4: slides de cierre nuevas + reorden 1:1 + obsoletas aparte
+Contexto: se mapeó el PDF v4 (`ICS39113-…-G06.pdf`, 43 páginas) contra el deck
+(`docs/mapeo-pptx-v1.md`, Delta v4) y se completó el bloque de cierre que faltaba.
+
+Qué hice:
+- **11 slides nuevas** (creadas en 3 subagentes paralelos, integradas por mí):
+  - Sustentación: `sustentacion-sustitucion` (−55%/−87%), `…-expropiacion` (flujo
+    1→2→3), `…-sintesis` ("¿Cómo mantener la ventaja?", 3 columnas con divisores).
+  - Recomendaciones: `reco-no-escalar` (3 VAN + gatillo $2.336.640),
+    `reco-consideracion`, `reco-margenes` (gráfico), `reco-si-se-escala` (plan 01-04).
+  - Anexos: `divisor-anexos` + `bibliografia-1/2/3` (~21 refs APA, **sin número**).
+- **Correcciones de revisión**: VAN CBO unificado en $5,36M (`resultados-cbo`);
+  borde izq. amarillo en las cards de `reco-no-escalar`; texto en 2 párrafos en
+  `reco-si-se-escala`; bibliografía a 1 columna; FODA movido a anexos (sin número).
+- **Gráfico de márgenes reutilizable**: nueva opción `rampByValue` en `Charts.bar`
+  (`js/charts.js`) → todas las barras del acento con opacidad ∝ al valor (altas
+  oscuras, bajas claras). Config `chart-margenes-reco` (7 productos) en `js/deck.js`.
+- **Reorden 1:1 con el PDF**: los 41 partials renumerados `01..41` al orden físico
+  del PDF. Movimientos clave: sensibilidad/márgenes ahora **antes** de sustentación;
+  `¿sostener?` antes de sustentación; flexibilidad tras la síntesis; **divisor 05**
+  (`31-divisor-resultados`) justo antes de recomendaciones; FODA en anexos.
+- **Obsoletas → `presentacion-obsoletas/`** (el PDF no las trae, se conservan por si
+  acaso): `14-plataforma`, `19-ganancias`, `25-proyecto-vs-cbo`.
+
+Decisiones/bugs:
+- 2 pares del PDF van **consolidados** en la web (P06+P07 → `06-como-opera`;
+  P31+P32 → `30-opcion-esperar`): orden calza 1:1, conteo difiere en 2.
+- `reco-si-se-escala`: la lista 01-04 se dejó **estática** (no fragments) para que
+  la slide no se vea media vacía en la vista inicial.
+- Numeración automática (`numberSlides`) recalcula sola; portada/demo/anexos van sin
+  número impreso (igual cuentan posición). Sufijo "/ 28" es estático/aproximado.
+- Verificado por screenshots (escala 1.0) y `build.py` + HTTP 200.
+
+Pendiente: correcciones de revisión para las slides 28/29/35 (sustitución /
+expropiación / consideración), a la espera de indicación del usuario.
+
+---
+
 ## [2026-06-21] — Slide flujo CBO (10b): layout serpiente alineado en grilla
 Qué hice (en `presentacion/10b-flujo-cbo.html`, "Automatización simple"):
 - **Flujo en serpiente/boomerang** como el PPT: fila 1 izq→der (pasos 1–5), baja por

@@ -65,6 +65,29 @@ bibliografía + una portada nueva. Baseline de comparación = deck web actual de
   demo (P16).
 - `19-ganancias` (ganancias proyectadas 0,5→5,0 M): el PDF no la incluye.
 
+### ✅ Implementado (2026-06-21, rama `map-presentacion-actualizada`)
+Decisiones del usuario aplicadas y verificadas por screenshot (deck escala 1.0):
+- **VAN CBO** unificado en **$5,36M** (slide `11-resultados-cbo`).
+- **Sustentación expandida:** se conserva `21b` (Imitación) y se agregan
+  `21c` (Sustitución −55%/−87%), `21d` (Expropiación + desintermediación) y
+  `21e` (Síntesis "¿Cómo mantener la ventaja competitiva?").
+- **Recomendaciones:** agregadas `27a` (No escalar ahora · 3 VAN + gatillo $2.336.640),
+  `27b` (Tener en consideración), `27c` (Testear márgenes · chart `chart-margenes-reco`)
+  y `27d` (Si se escala · plan 01-04). Se **eliminó** `27-recomendaciones.html`; se
+  **conserva** `25-proyecto-vs-cbo`.
+- **Anexos:** `29-divisor-anexos` + `30-bibliografia-1/2/3` (~21 refs APA),
+  **sin número de página** (header sin span de número).
+- **Reordenado al orden físico del PDF (2026-06-21):** los 41 partials se
+  renumeraron `01..41` para calzar 1:1 con el PDF. Cambios de orden clave:
+  sensibilidad/márgenes ahora **antes** de sustentación; `¿sostener?` antes de
+  sustentación; flexibilidad después de la síntesis; el **divisor 05**
+  (`31-divisor-resultados`) movido a justo antes de las recomendaciones; FODA en
+  anexos. Dos pares del PDF van consolidados en la web (P06+P07 → `06-como-opera`;
+  P31+P32 → `30-opcion-esperar`).
+- **Obsoletas → `presentacion-obsoletas/`** (el PDF no las trae, se conservan por
+  si acaso): `14-plataforma`, `19-ganancias`, `25-proyecto-vs-cbo`.
+- Pendiente: commit + PR (a la espera del OK del usuario).
+
 ### Plan de acción sugerido (orden de impacto)
 1. **Resolver el VAN CBO $2,41M vs $5,36M** en `11-resultados-cbo` (decisión del usuario).
 2. **Crear las 4 slides de recomendaciones** (no escalar / tener en consideración /

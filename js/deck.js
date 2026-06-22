@@ -130,6 +130,15 @@ const CHART_CONFIGS = {
     data: [6.1, 5.15, 1.1],
     keyIndex: 0, yMax: 8, yStep: 2, yTitle: 'ΔVAN (M$)', valueLabel: true,
   }),
+  // Recomendación 27c: set COMPLETO de productos (como el PPT), todos del mismo
+  // color con intensidad por valor (rampByValue) → las barras altas se ven más
+  // oscuras y las bajas más claras. id distinto de chart-margenes para no duplicar
+  // el id de canvas en el documento.
+  'chart-margenes-reco': (cv) => Charts.bar(cv, {
+    labels: ['Huevos', 'Café', ['Aceite de', 'oliva'], 'Miel', 'Queso', 'Vino', 'Frambuesa'],
+    data: [0, 6.1, 1.1, 0.65, 0, 5.15, 0.3],
+    keyIndex: null, rampByValue: true, yMax: 7, yStep: 1, yTitle: 'ΔVAN (M$)',
+  }),
   // TODO datos: precios exactos del Informe 3 (Ilustración 1). Valores aprox.
   'chart-precios': (cv) => Charts.barGroup(cv, {
     labels: ['Huevos', 'Café', ['Aceite de', 'oliva'], 'Miel', 'Queso'],
