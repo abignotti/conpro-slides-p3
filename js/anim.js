@@ -37,23 +37,30 @@
     const ease = (getComputedStyle(document.documentElement)
       .getPropertyValue('--ease-out') || 'ease-out').trim();
 
-    items.forEach((el, i) => {
+    // Los bloques que contienen un gráfico (chart-wrap/canvas) entran SOLO con
+    // fade, sin translateY: el gráfico tiene su propia animación interna (barras
+    // que crecen) y el desplazamiento del contenedor hacía que "no entrara en su
+    // posición de inmediato". Fade sin movimiento → aparece ya en su lugar.
+    const noRiseFor = (el) => REDUCED || !!el.querySelector('.chart-wrap, canvas');
+
+    items.forEach((el) => {
       // Estado inicial sin transición (para no animar el "reset").
       el.style.transition = 'none';
       el.style.opacity = '0';
       el.style.willChange = 'opacity, transform';
-      if (!REDUCED) el.style.transform = `translateY(${rise})`;
+      if (!noRiseFor(el)) el.style.transform = `translateY(${rise})`;
     });
     // Forzar reflow para que el estado inicial se aplique antes de animar.
     void body.offsetHeight;
 
     items.forEach((el, i) => {
+      const noRise = noRiseFor(el);
       const delay = i * step;
       el.style.transition =
         `opacity ${dur}ms ${ease} ${delay}ms` +
-        (REDUCED ? '' : `, transform ${dur}ms ${ease} ${delay}ms`);
+        (noRise ? '' : `, transform ${dur}ms ${ease} ${delay}ms`);
       el.style.opacity = '1';
-      el.style.transform = REDUCED ? '' : 'translateY(0)';
+      el.style.transform = noRise ? '' : 'translateY(0)';
       // Al terminar, limpiar los estilos inline para devolver el elemento a
       // su estado natural (no interferir con fitSlide ni con re-entradas).
       const total = dur + delay;
@@ -132,22 +139,64 @@
 
   /* ---- Bullets secuenciales (slides de bullets clave) -------------- *
      El <ul> lleva [data-seq-bullets]; cada item lleva class="fragment"
-     [data-seq-bullet]. Aparecen de a uno (flecha/clic); el activo (el más
-     reciente) queda a plena prominencia y los ya mostrados se atenúan. Al
-     mostrar TODOS, vuelven todos a plena opacidad (estado final uniforme:
-     respeta el feedback de "bullets parejos"). */
+     [data-seq-bullet]. Aparecen de a uno (flecha/clic); a medida que aparecen,
+     todos los bullets visibles quedan parejos a plena opacidad (mismo color/
+     prominencia, sin atenuar el no-activo: respeta el feedback de "bullets
+     parejos"). */
   function paintBullets(slide) {
     if (!slide) return;
     slide.querySelectorAll('[data-seq-bullets]').forEach((group) => {
       const items = Array.from(group.querySelectorAll('[data-seq-bullet]'));
       if (!items.length) return;
-      const allShown = items.every((b) => b.classList.contains('visible'));
       items.forEach((b) => {
         b.style.transition = 'opacity var(--anim-enter) var(--ease-out)';
         if (!b.classList.contains('visible')) return; // reveal lo mantiene oculto
-        const active = b.classList.contains('current-fragment');
-        b.style.opacity = (allShown || active) ? '1' : '0.4';
+        b.style.opacity = '1';
       });
+    });
+  }
+
+  /* ---- Flujo secuencial auto (slide 12) ---------------------------- *
+     Los elementos con [data-flow-order] (tarjetas, flechas, conectores)
+     aparecen en orden numérico al ENTRAR al slide (sin clic), con un delay
+     entre pasos = --flow-stagger. delay = (orden - 1) * stagger → las flechas
+     en valores .5 caen justo entre tarjeta y tarjeta, "dibujando" el flujo.
+     Solo opacity/transform (GPU), interrumpible. En print y bajo
+     prefers-reduced-motion quedan todos visibles de una (sin stagger). */
+  function paintFlow(slide) {
+    if (!slide) return;
+    const items = Array.from(slide.querySelectorAll('[data-flow-order]'));
+    if (!items.length) return;
+    if (IS_PRINT || REDUCED) {
+      items.forEach((el) => { el.style.opacity = ''; el.style.transform = ''; });
+      return;
+    }
+    const stagger = cssMs('--flow-stagger', 380);
+    const dur = cssMs('--anim-enter', 460);
+    const ease = (getComputedStyle(document.documentElement)
+      .getPropertyValue('--ease-out') || 'ease-out').trim();
+
+    items.forEach((el) => {
+      el.style.transition = 'none';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(8px)';
+      el.style.willChange = 'opacity, transform';
+    });
+    void slide.offsetHeight;
+
+    items.forEach((el) => {
+      const order = parseFloat(el.getAttribute('data-flow-order')) || 1;
+      const delay = Math.max(0, order - 1) * stagger;
+      el.style.transition =
+        `opacity ${dur}ms ${ease} ${delay}ms, transform ${dur}ms ${ease} ${delay}ms`;
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      window.setTimeout(() => {
+        el.style.transition = '';
+        el.style.opacity = '';
+        el.style.transform = '';
+        el.style.willChange = '';
+      }, dur + delay + 60);
     });
   }
 
@@ -160,7 +209,7 @@
 
   /* ---- API + enganche de fragments --------------------------------- */
   window.DeckAnim = {
-    onSlide(slide) { enter(slide); paintSequence(slide); paintBullets(slide); },
+    onSlide(slide) { enter(slide); paintSequence(slide); paintBullets(slide); paintFlow(slide); },
     paintSequence,   // lo llama deck.js en cada timeupdate del video (slide 06)
   };
 

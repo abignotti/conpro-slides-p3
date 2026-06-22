@@ -132,7 +132,7 @@ const CHART_CONFIGS = {
   'chart-margenes': (cv) => Charts.bar(cv, {
     labels: ['Huevos', 'Café', ['Aceite de', 'oliva'], 'Miel', 'Queso', 'Vino', 'Frambuesa'],
     data: [0, 6.1, 1.1, 0.65, 0, 5.15, 0.3],
-    keyIndex: null, rampByValue: true, yMax: 7, yStep: 1, yTitle: 'VAN (M$)',
+    keyIndex: null, allAccent: true, stagger: true, yMax: 7, yStep: 1, yTitle: 'VAN (M$)',
   }),
   // Recomendación 27c: set COMPLETO de productos (como el PPT), todos del mismo
   // color con intensidad por valor (rampByValue) → las barras altas se ven más
@@ -141,7 +141,7 @@ const CHART_CONFIGS = {
   'chart-margenes-reco': (cv) => Charts.bar(cv, {
     labels: ['Huevos', 'Café', ['Aceite de', 'oliva'], 'Miel', 'Queso', 'Vino', 'Frambuesa'],
     data: [0, 6.1, 1.1, 0.65, 0, 5.15, 0.3],
-    keyIndex: null, rampByValue: true, yMax: 7, yStep: 1, yTitle: 'ΔVAN (M$)',
+    keyIndex: null, accentIndices: [1, 5], yMax: 7, yStep: 1, yTitle: 'ΔVAN (M$)',
   }),
   // TODO datos: precios exactos del Informe 3 (Ilustración 1). Valores aprox.
   'chart-precios': (cv) => Charts.barGroup(cv, {
@@ -149,7 +149,7 @@ const CHART_CONFIGS = {
     yMax: 80000, yStep: 10000, legendPosition: 'bottom',
     yFmt: (v) => '$' + Number(v).toLocaleString('es-CL'),
     series: [
-      { label: 'Precio mínimo', role: 'muted', data: [9490, 29670, 34990, 6990, 10573] },
+      { label: 'Precio mínimo', role: 'base', data: [9490, 29670, 34990, 6990, 10573] },
       { label: 'Conpro', role: 'key', data: [9000, 28700, 61000, 7000, 12600] },
       { label: 'Precio máximo', role: 'base', data: [11990, 58000, 67776, 13000, 14990] },
     ],
@@ -376,16 +376,23 @@ const fmtCL = new Intl.NumberFormat('es-CL');
 function animateHero(el) {
   if (!el || el.dataset.counted) return;
   const original = el.textContent;
-  const target = parseInt(original.replace(/\D/g, ''), 10);
+  // Primer número del texto (es-CL: '.' miles, ',' decimal). Conserva prefijo
+  // ($) y sufijo (%, /h, ' M', ' h/mes') para contar manteniendo el formato.
+  const m = original.match(/[\d.,]+/);
+  if (!m) return;
+  const prefix = original.slice(0, m.index);
+  const suffix = original.slice(m.index + m[0].length);
+  const decimals = (m[0].split(',')[1] || '').length;
+  const target = parseFloat(m[0].replace(/\./g, '').replace(',', '.'));
   if (!Number.isFinite(target) || target === 0) return;
-  const prefix = original.trim().startsWith('$') ? '$' : '';
   const dur = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--count-duration')) || 1200;
   el.dataset.counted = '1';
   const t0 = performance.now();
   const ease = (t) => 1 - Math.pow(1 - t, 3);
+  const fmt = (v) => v.toLocaleString('es-CL', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
   function frame(now) {
     const p = Math.min(1, (now - t0) / dur);
-    el.textContent = prefix + fmtCL.format(Math.round(target * ease(p)));
+    el.textContent = prefix + fmt(target * ease(p)) + suffix;
     if (p < 1) requestAnimationFrame(frame);
     else el.textContent = original; // restaura el formato exacto
   }
