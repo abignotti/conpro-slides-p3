@@ -4,6 +4,19 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Regla global: identificar servers locales por rama git
+Qué hice (rama `mejorar-slide-sustentacion`):
+- Agregué una regla a mi **CLAUDE.md global** (`~/.claude/CLAUDE.md`, fuera del repo,
+  se carga en todas las sesiones de cualquier proyecto): al listar/gestionar
+  servidores locales, identificarlos por **rama git** y no por el codename de carpeta
+  del workspace (Conductor los nombra distinto a la rama); y verificar el `cwd` del
+  proceso que escucha un puerto antes de asumir caché del navegador.
+- Motivo: en esta sesión el puerto 8753 lo servía otro workspace (`medan`) y confundió
+  el diagnóstico. Queda como práctica estándar para evitar repetirlo.
+- Nota: el archivo global no se versiona en este repo; esta entrada solo lo documenta.
+
+---
+
 ## [2026-06-21] — Rediseño slide Sustitución (27) según el PPT
 Qué hice (rama `mejorar-slide-sustentacion`):
 - **Slide 27 (`presentacion/27-sustentacion-sustitucion.html`) rehecho** para calzar
