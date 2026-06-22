@@ -238,10 +238,11 @@ html.reveal-print *,
 .print-pdf * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
 /* ============================================================
-   Logo Conpro · toggle del picker (data-logo="con logo" | "sin logo")
-   "sin logo": oculta lockups del header y el sello del cierre.
-   Para los lockups usamos visibility para preservar el slot flex (así el
-   número de slide se queda a la derecha).
+   Logo Conpro · toggle del HEADER (data-logo="con logo" | "sin logo")
+   "con logo" (default): se ve el lockup; el fallback de texto queda oculto.
+   "sin logo": se ve el texto original ("EVALUACIÓN DE PROYECTOS" / "CONPRO · 2026").
+   El sello del cierre y otros usos del logo NO dependen de este toggle.
    ============================================================ */
-.reveal[data-logo="sin logo"] [data-conpro-lockup] { visibility: hidden; }
-.reveal[data-logo="sin logo"] [data-conpro-logo="seal"] { display: none; }
+[data-conpro-header-fallback] { display: none; }
+.reveal[data-logo="sin logo"] [data-conpro-lockup] { display: none !important; }
+.reveal[data-logo="sin logo"] [data-conpro-header-fallback] { display: inline-block; }
