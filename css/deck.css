@@ -236,3 +236,13 @@ html.reveal-print .reveal .progress { display: none !important; }
 /* asegurar que fondos/acentos del tema se impriman */
 html.reveal-print *,
 .print-pdf * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+/* ============================================================
+   Logo Conpro · toggle del HEADER (data-logo="con logo" | "sin logo")
+   "con logo" (default): se ve el lockup; el fallback de texto queda oculto.
+   "sin logo": se ve el texto original ("EVALUACIÓN DE PROYECTOS" / "CONPRO · 2026").
+   El sello del cierre y otros usos del logo NO dependen de este toggle.
+   ============================================================ */
+[data-conpro-header-fallback] { display: none; }
+.reveal[data-logo="sin logo"] [data-conpro-lockup] { display: none !important; }
+.reveal[data-logo="sin logo"] [data-conpro-header-fallback] { display: inline-block; }
