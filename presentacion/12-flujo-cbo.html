@@ -1,4 +1,4 @@
-<section class="slide" data-label="Flujo 2 filas" data-speaker-notes="El flujo de automatización del CBO de punta a punta: el pedido entra en Sheets, Make orquesta, Fintoc genera y cobra el link, y el control de venta se actualiza solo. La idea: casi todo corre sin intervención de Ricardo." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+<section class="slide" data-no-anim data-label="Flujo 2 filas" data-speaker-notes="El flujo de automatización del CBO de punta a punta: el pedido entra en Sheets, Make orquesta, Fintoc genera y cobra el link, y el control de venta se actualiza solo. La idea: casi todo corre sin intervención de Ricardo. Los pasos aparecen de a uno (1→9) al entrar al slide." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
   <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
     <div data-conpro-lockup="h" style="display:flex;align-items:center;gap:14px;color:var(--color-text);"><svg viewBox="0 0 64 64" width="38" height="38" aria-hidden="true" style="display:block;flex:none;"><circle cx="32" cy="24.5" r="15" fill="none" stroke="currentColor" stroke-width="3.6"/><circle cx="24" cy="40.5" r="15" fill="none" stroke="currentColor" stroke-width="3.6"/><circle cx="40" cy="40.5" r="15" fill="none" stroke="currentColor" stroke-width="3.6"/><circle cx="32" cy="35" r="4.6" fill="var(--color-accent)"/></svg><span style="font-family:var(--font-body);font-weight:700;font-size:30px;letter-spacing:-0.02em;line-height:1;">Conpro</span></div><span data-conpro-header-fallback style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
     <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">10 / 28</span>
@@ -18,10 +18,10 @@
       <span style="display:inline-block;font-size:22px;font-weight:700;letter-spacing:0.02em;background:var(--color-accent);color:var(--color-on-accent);padding:7px 18px;border-radius:999px;margin-bottom:16px;">Crear y enviar link de pago</span>
       <div style="display:grid;grid-template-columns:1fr 38px 1fr 38px 1fr 38px 1fr 38px 1fr;align-items:stretch;gap:10px;">
 
-        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+        <div data-flow-order="1" style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
           <div style="display:flex;align-items:center;justify-content:space-between;">
             <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">1</span>
-            <img src="assets/flujo/xlsx.png" alt="" width="46" height="46" style="object-fit:contain;">
+            <img src="assets/flujo/xlsx.png" alt="" width="58" height="58" style="object-fit:contain;">
           </div>
           <div>
             <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Pedido</h4>
@@ -29,12 +29,12 @@
           </div>
         </div>
 
-        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+        <span data-flow-order="1.5" style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
 
-        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+        <div data-flow-order="2" style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">2</span>
-            <img src="assets/flujo/make.png" alt="" width="46" height="46" style="object-fit:contain;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">2</span>
+            <img src="assets/flujo/make.png" alt="" width="58" height="58" style="object-fit:contain;">
           </div>
           <div>
             <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Make</h4>
@@ -42,12 +42,12 @@
           </div>
         </div>
 
-        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+        <span data-flow-order="2.5" style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
 
-        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+        <div data-flow-order="3" style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">3</span>
-            <img src="assets/flujo/fintoc.png" alt="" width="46" height="46" style="object-fit:contain;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">3</span>
+            <img src="assets/flujo/fintoc.png" alt="" width="58" height="58" style="object-fit:contain;">
           </div>
           <div>
             <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Link de pago</h4>
@@ -55,12 +55,12 @@
           </div>
         </div>
 
-        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+        <span data-flow-order="3.5" style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
 
-        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+        <div data-flow-order="4" style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">4</span>
-            <img src="assets/flujo/xlsx.png" alt="" width="46" height="46" style="object-fit:contain;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">4</span>
+            <img src="assets/flujo/xlsx.png" alt="" width="58" height="58" style="object-fit:contain;">
           </div>
           <div>
             <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Link guardado</h4>
@@ -68,12 +68,12 @@
           </div>
         </div>
 
-        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+        <span data-flow-order="4.5" style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
 
-        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+        <div data-flow-order="5" style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">5</span>
-            <img src="assets/flujo/whatsapp.png" alt="" width="46" height="46" style="object-fit:contain;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">5</span>
+            <img src="assets/flujo/whatsapp.png" alt="" width="58" height="58" style="object-fit:contain;">
           </div>
           <div>
             <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">WhatsApp</h4>
@@ -89,10 +89,10 @@
       <span style="display:inline-block;font-size:22px;font-weight:700;letter-spacing:0.02em;background:var(--color-accent);color:var(--color-on-accent);padding:7px 18px;border-radius:999px;margin-bottom:16px;">Confirmar pago y actualizar control</span>
       <div style="display:grid;grid-template-columns:1fr 38px 1fr 38px 1fr 38px 1fr 38px 1fr;align-items:stretch;gap:10px;">
 
-        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+        <div data-flow-order="9" style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
           <div style="display:flex;align-items:center;justify-content:space-between;">
             <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">9</span>
-            <img src="assets/flujo/folder.png" alt="" width="46" height="46" style="object-fit:contain;">
+            <img src="assets/flujo/folder.png" alt="" width="58" height="58" style="object-fit:contain;">
           </div>
           <div>
             <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Visualización</h4>
@@ -100,12 +100,12 @@
           </div>
         </div>
 
-        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg></span>
+        <span data-flow-order="8.5" style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg></span>
 
-        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+        <div data-flow-order="8" style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">8</span>
-            <img src="assets/flujo/check.png" alt="" width="46" height="46" style="object-fit:contain;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">8</span>
+            <img src="assets/flujo/check.png" alt="" width="58" height="58" style="object-fit:contain;">
           </div>
           <div>
             <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Actualización</h4>
@@ -113,12 +113,12 @@
           </div>
         </div>
 
-        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg></span>
+        <span data-flow-order="7.5" style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg></span>
 
-        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+        <div data-flow-order="7" style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">7</span>
-            <img src="assets/flujo/make.png" alt="" width="46" height="46" style="object-fit:contain;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">7</span>
+            <img src="assets/flujo/make.png" alt="" width="58" height="58" style="object-fit:contain;">
           </div>
           <div>
             <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Make valida</h4>
@@ -126,12 +126,12 @@
           </div>
         </div>
 
-        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg></span>
+        <span data-flow-order="6.5" style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg></span>
 
-        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+        <div data-flow-order="6" style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-bg);border:1px solid var(--color-grid);color:var(--color-text);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">6</span>
-            <img src="assets/flujo/fintoc.png" alt="" width="46" height="46" style="object-fit:contain;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">6</span>
+            <img src="assets/flujo/fintoc.png" alt="" width="58" height="58" style="object-fit:contain;">
           </div>
           <div>
             <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Confirmación</h4>
@@ -140,7 +140,7 @@
         </div>
 
         <!-- Columna 5 sobrante: conector "Cliente paga" (WhatsApp ↓ → Confirmación) -->
-        <div style="grid-column:9;min-height:128px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+        <div data-flow-order="5.5" style="grid-column:9;min-height:128px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
           <span style="font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:0.01em;">Cliente paga</span>
           <svg width="92" height="64" viewBox="0 0 92 64" fill="none" stroke="var(--color-text)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M76 6C76 36 76 48 22 50" stroke-dasharray="1 8"/><path d="M38 38 22 50 38 62"/></svg>
         </div>
