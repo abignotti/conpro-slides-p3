@@ -271,5 +271,60 @@ window.Charts = (() => {
     });
   }
 
-  return { token, register, refreshAll, replay, bar, line, barGroup, barH };
+  /* Sensibilidad (PPT slide 24): tornado DIVERGENTE. Una fila por variable; el
+     rango malo (gris, valores negativos) va a la IZQUIERDA y el rango bueno
+     (amarillo, positivos) a la DERECHA, partiendo del caso base (0 = $2,39M).
+     malo/bueno = variación del VAN respecto al caso base (MM). */
+  function tornado(canvas, { labels, bueno, malo, xMin, xMax, xStep } = {}) {
+    const d = base();
+    const fmt$ = (v) => (v === 0 ? '$-' : v < 0 ? '$(' + Math.abs(v) + ')' : '$' + v);
+    const barDef = (label, data, color) => ({
+      label, data, backgroundColor: color, borderWidth: 0, borderRadius: 3,
+      categoryPercentage: 0.72, barPercentage: 0.9, maxBarThickness: 30,
+    });
+    const centerLine = {
+      id: 'centerLine',
+      afterDatasetsDraw(chart) {
+        const x = chart.scales.x.getPixelForValue(0);
+        const { top, bottom } = chart.chartArea;
+        const ctx = chart.ctx;
+        ctx.save();
+        ctx.strokeStyle = d.muted; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, bottom); ctx.stroke();
+        ctx.restore();
+      },
+    };
+    return new Chart(canvas, {
+      type: 'bar',
+      data: { labels, datasets: [
+        barDef('rango bueno', bueno, d.accent),
+        barDef('rango malo', malo, d.gray),
+      ] },
+      options: {
+        indexAxis: 'y',
+        responsive: true, maintainAspectRatio: false,
+        animation: { duration: 600, easing: 'easeOutCubic' },
+        plugins: {
+          legend: { display: true, position: 'bottom', align: 'end',
+            labels: { color: d.muted, font: { family: d.family, size: 20 }, boxWidth: 14, boxHeight: 14, usePointStyle: true, pointStyle: 'rectRounded' } },
+          tooltip: { enabled: false },
+        },
+        scales: {
+          x: {
+            stacked: true, min: xMin, max: xMax,
+            grid: { color: d.grid, lineWidth: 1 }, border: { display: false },
+            ticks: { color: d.muted, font: { family: d.family, size: 20 }, stepSize: xStep, callback: fmt$ },
+          },
+          y: {
+            stacked: true,
+            grid: { display: false }, border: { color: d.muted },
+            ticks: { color: d.text, font: { family: d.family, size: 22 } },
+          },
+        },
+      },
+      plugins: [centerLine],
+    });
+  }
+
+  return { token, register, refreshAll, replay, bar, line, barGroup, barH, tornado };
 })();

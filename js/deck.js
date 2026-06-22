@@ -91,9 +91,9 @@ const CHART_CONFIGS = {
   // TODO Fase 3: con varios gráficos por molde reutilizado, volver esto
   // data-driven (id único por slide) en vez de un map fijo por id.
   'chart-esperar': (cv) => Charts.bar(cv, {
-    labels: ['Ahora', 'Esperar 1 año', 'Esperar 2 años', 'Esperar 3 años'],
-    data: [2.39, 4.07, 5.66, 6.11],
-    keyIndex: 3, yMax: 7, yStep: 1, yTitle: 'VAN al presente (M$)', valueLabel: true,
+    labels: ['Ahora', 'Esperar 1 año', 'Esperar 2 años', 'Esperar 3 años', 'Esperar 4 años'],
+    data: [2.39, 4.30, 5.66, 6.69, 8.74],
+    keyIndex: 4, yMax: 9, yStep: 1, yTitle: 'VAN al presente (M$)', valueLabel: true,
   }),
   // VAN por escenario (M$). Conservador (keyIndex 1) en acento. Sin TIR.
   'chart-van': (cv) => Charts.bar(cv, {
@@ -117,15 +117,17 @@ const CHART_CONFIGS = {
     data: [0.5, 1.6, 2.8, 3.9, 5.0],
     keyIndex: 4, yMax: 6, yStep: 2, yTitle: 'Ganancia (M$)', valueLabel: true,
   }),
-  // TODO datos: magnitudes del tornado (placeholder). Orden e ingreso/hogar+fuga sí son del informe.
-  'chart-tornado': (cv) => Charts.barH(cv, {
-    labels: ['Ingreso por hogar', 'Tasa de fuga', 'Adopción', 'Nivel de interés', 'WACC'],
-    data: [4.5, 3.8, 2.4, 1.6, 1.1],
-    accentIndices: [0, 1], xMax: 5, xStep: 1, xTitle: 'Impacto en el VAN (M$)',
+  // Sensibilidad (PPT slide 24): tornado divergente. Variación del VAN vs caso base
+  // ($2,39M = 0). malo (gris) → izquierda (negativos); bueno (amarillo) → derecha.
+  'chart-tornado': (cv) => Charts.tornado(cv, {
+    labels: ['Ingreso anual por hogar', 'Tasa de fuga', 'Tasa de adopción', 'Nivel de interés', 'WACC'],
+    bueno: [7.37, 2.96, 1.44, 1.26, 0.80],
+    malo: [-2.06, -2.69, -1.38, -2.90, -0.83],
+    xMin: -4, xMax: 8, xStep: 2,
   }),
   'chart-margenes': (cv) => Charts.bar(cv, {
     labels: ['Café', 'Vino', 'Aceite'],
-    data: [6.2, 5.2, 1.2],
+    data: [6.1, 5.15, 1.1],
     keyIndex: 0, yMax: 8, yStep: 2, yTitle: 'ΔVAN (M$)', valueLabel: true,
   }),
   // TODO datos: precios exactos del Informe 3 (Ilustración 1). Valores aprox.
