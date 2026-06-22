@@ -4,6 +4,25 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-21] — Slide flujo CBO (10b): layout serpiente alineado en grilla
+Qué hice (en `presentacion/10b-flujo-cbo.html`, "Automatización simple"):
+- **Flujo en serpiente/boomerang** como el PPT: fila 1 izq→der (pasos 1–5), baja por
+  "Cliente paga", fila 2 der→izq (6→9 con flechas a la izquierda). Antes la fila 2
+  iba izq→der y rompía el orden de lectura.
+- **Grilla de 5 columnas iguales** en ambas filas (`grid-template-columns:1fr 38px …`):
+  todas las tarjetas con el mismo ancho; las 4 de abajo (9,8,7,6) alineadas bajo las
+  4 primeras de arriba (1,2,3,4).
+- **Conector "Cliente paga"** en la columna 5 sobrante (bajo WhatsApp): flecha
+  punteada curva que baja desde WhatsApp y apunta a Confirmación (6).
+- Tarjetas pulidas: contenido distribuido con `justify-content:space-between` y
+  `min-height` parejo (antes el texto se pegaba arriba con hueco abajo).
+Decisiones:
+- Se descartó el chip de acento "Cliente paga ↓" (tercera pastilla amarilla competía
+  con las de fase) a favor de la flecha punteada, más fiel al PPT.
+Próximo paso: ninguno; pendiente de review/merge del PR.
+
+---
+
 ## [2026-06-21] — Auto-resolución de conflictos de PR (gitattributes + merge driver)
 Qué hice (para no rehacer la resolución manual de conflictos en cada PR/sesión):
 - **`.gitattributes`** nuevo:
