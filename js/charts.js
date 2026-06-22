@@ -138,7 +138,7 @@ window.Charts = (() => {
   /* ============================================================
      BAR · estilo base de TODOS los gráficos
      ============================================================ */
-  function bar(canvas, { labels, data, keyIndex = data.length - 1, yMax, yTitle, yStep, valueLabel, valueLabelAll, valueLabelFmt, colorRamp, rampByValue, stagger, threshold, thresholdLabel } = {}) {
+  function bar(canvas, { labels, data, keyIndex = data.length - 1, yMax, yTitle, yStep, valueLabel, valueLabelAll, valueLabelFmt, colorRamp, rampByValue, allAccent, accentIndices, stagger, threshold, thresholdLabel } = {}) {
     const d = base();
     const n = data.length;
     // Color de cada barra. Tres modos (de más específico a default):
@@ -149,7 +149,11 @@ window.Charts = (() => {
     //   colorRamp:   misma rampa pero por POSICIÓN (clara la 1ª -> opaca la última).
     //   default:     gris, salvo la barra keyIndex en acento.
     const maxAbs = Math.max(...data.map((v) => Math.abs(v))) || 1;
-    const colors = rampByValue
+    const colors = allAccent
+      ? data.map(() => d.accent)
+      : accentIndices
+      ? data.map((_, i) => (accentIndices.includes(i) ? d.accent : d.gray))
+      : rampByValue
       ? data.map((v) => withAlpha(d.accent, 0.35 + 0.65 * (Math.abs(v) / maxAbs)))
       : colorRamp
       ? data.map((_, i) => withAlpha(d.accent, 0.4 + 0.6 * (n > 1 ? i / (n - 1) : 1)))

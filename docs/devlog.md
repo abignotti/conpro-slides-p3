@@ -4,6 +4,143 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-22] — Cierre: mapeo Anexos + revisión completa PDF↔web terminada
+Última sección mapeada (**Anexos**, web 39–43 ↔ PDF p39–43): está **1:1, sin
+divergencias estructurales**. Solo deltas cosméticos, que se dejan como están por
+decisión (la web es más limpia que el PDF en estos puntos):
+- **p40 FODA**: contenido F/O/D/A idéntico y "F" en amarillo; el único delta visible es
+  el kicker ("Anexos" en web vs "Análisis estratégico" en el PDF) — se deja "Anexos".
+- **p41–43 Bibliografía (3 slides, 7 citas c/u)**: mismas referencias; algunas URLs
+  acortadas en web y un par de títulos enriquecidos (Kotler) o limpiados (SII) respecto
+  del PDF. No se lee la URL al proyectar → se mantiene la versión web.
+Con esto queda **cerrada la revisión slide-por-slide** de las 6 secciones contra
+`P3-Enviada.pdf`. Resumen del recorrido: Sec 1 (textos p9, color barras p5, bullets p8) ·
+Sec 2 (flujo p12, micro-textos) · Sec 4a (textos PDF p19–25 + **fix del bug de entrada de
+gráficos**) · Sec 4b (animaciones p28/p29, slide nuevo de flexibilidad, tabla p32) ·
+Sec 5 (rediseños p34–38) · Anexos (sin cambios). **Bug clave documentado** en la entrada
+"Sección 4a (slides 19–25)" más abajo y en la memoria [[conpro-chart-entrada-fade]].
+
+## [2026-06-22] — Sección 5: ajustes finos p35/p36/p37
+Qué hice (rama `caracas`, a mano; 3 partials independientes):
+- **p35**: aire abajo (`padding-bottom:48px` en el cuerpo) para despegar las cards del pie;
+  entrada diferida (`data-no-anim` + `data-flow-order` en banner y 2 cards, igual que p37);
+  negrita agregada a "validación de demanda" e "interés" (alineado al PDF).
+- **p36**: layout reordenado a como el PDF — título a ancho completo arriba, **gráfico a la
+  izquierda y más alto** (380→440px), bullets a la derecha. Café y Vino siguen en amarillo.
+- **p37**: solo "**sin fricción ni pérdida de clientes**" y "**diseñar un plan de transición**"
+  quedan con el destacado (pill amarillo); se quitó la negrita de "se asume que la migración
+  de WhatsApp" (resto en letra normal, como pidió el usuario).
+- Verificado con screenshots headless (`--headless=new`) de `#/34`, `#/35`, `#/36`.
+
+## [2026-06-22] — Sección 5 (slides 34–38): rediseños + alineación al PDF
+Qué hice (rama `caracas`; p35/p37 vía 2 agentes en paralelo, resto a mano):
+- **p34**: título restaurado ("…hasta acumular demanda"); los 4 números a 66px
+  (`--scale-stat`) + bold + **count-up** (`data-hero`); "¿Pero cuándo sucede esto?"
+  **fuera** de la card; se eliminó la card → **barra amarilla + divisor** (como el PDF);
+  "ingreso por venta bruto" → **"margen bruto"**; highlight "comenzar el proyecto con
+  flujos atractivos".
+- **p35**: reconstruido como el PDF — título "No escalar ahora…", **banner amarillo**
+  ("…las más inciertas") + 2 tarjetas (Validación de demanda / **Registro de ventas y
+  clientes**).
+- **p36**: nueva opción `accentIndices` en `charts.js::bar()` → Café y Vino en acento,
+  resto gris, **full opacidad** (reemplaza `rampByValue` en `chart-margenes-reco`); texto
+  del PDF en **2 bullets** con negritas; título del gráfico conservado.
+- **p37**: texto exacto al PDF + negritas izquierdas ("se asume que la migración de
+  WhatsApp", "diseñar un plan de transición"); bullets más separados (padding 26px) +
+  **entrada diferida** (`data-no-anim` + `data-flow-order`).
+- **p38**: "Recomendación final" arriba de la cita, "¡MUCHAS GRACIAS!" abajo.
+- Verificado con screenshots headless. Falta: **Anexos (web 39–43: FODA + bibliografía)**.
+
+## [2026-06-22] — Sección 4b: animaciones p28/p29, slide nuevo (flexibilidad) + tabla
+Qué hice (rama `caracas`; p28/p29 vía 2 agentes en paralelo, slide nuevo y tabla a mano):
+- **Slide nuevo `31-flexibilidad-pregunta.html`** (existía en el PDF p31, faltaba en la web):
+  pregunta "¿Qué pasa si Conpro no invierte inmediatamente…?" + eyebrow "Flexibilidad",
+  mismo patrón que `26-pregunta-sostener`. **Se corrió la numeración 31→32 … 42→43**
+  (`git mv`) para insertarlo antes de la opción de esperar. Deck ahora 43 slides.
+- **`32-opcion-esperar.html` reconstruido como TABLA** (antes gráfico `chart-esperar`),
+  como el PDF p32: columnas Alternativa / Hogares Activos Y1 / VAN al presente, 5 filas
+  (fila "Esperar cuatro años" destacada en acento), cierre "esperar puede generar más
+  valor". Mismos datos ($2.386.311 → $8.742.617).
+- **p28**: entrada diferida por elemento (`data-no-anim` + `data-flow-order`) + **count-up**
+  en los 4 números (7,5% / 12,5% / −55% / −87% con `data-hero`).
+- **p29**: entrada diferida por elemento (cadena Proveedor→Conpro→Cliente + bypass).
+- Nota: el renumber corrió la Sección 5 (Resultados) a web **33–38** y Anexos a **39–43**.
+
+## [2026-06-22] — Sección 4a (ajustes 2): count-up de números + título p24
+Qué hice (rama `caracas`, edits directos por chicos/acoplados):
+- **`animateHero` (`js/deck.js`) ahora soporta decimales y sufijos**: parsea el primer
+  número (es-CL `.` miles / `,` decimal) y conserva prefijo (`$`) y sufijo
+  (`%`, `/h`, ` M`, ` h/mes`), formateando con `toLocaleString('es-CL', {decimals})`.
+  Antes era integer-only (rompía "0,19%" → contaba a 19; y "$5,36 M" → 536). Validado
+  en los 9 formatos del deck.
+- **p21**: `data-hero` en los 3 KPIs (161, 0,19%, 86.770) → count-up de entrada.
+- **p22**: `data-hero` en `$2.445.000` → count-up (alineado con su entrada por elemento).
+- **p24**: título del gráfico → "Variación del VAN ($MM CLP) · centro = caso base".
+- Memoria del proyecto: guardada la solución del bug de entrada de gráficos
+  ([[conpro-chart-entrada-fade]]) y la guía de uso de agentes vs tokens
+  ([[conpro-agentes-balance]]).
+
+## [2026-06-22] — Sección 4a (slides 19–25): textos PDF + animaciones de entrada de gráficos
+Qué hice (rama `caracas`; 5 agentes en paralelo para los partials + edits propios en el motor):
+- **Fix global de entrada de gráficos (`js/anim.js`, `enter()`)**: los bloques que
+  contienen `.chart-wrap`/`canvas` ahora entran **solo con fade, sin `translateY`**
+  (`noRiseFor`). Antes el contenedor subía 14px y el gráfico "no entraba en su
+  posición de inmediato" (bug reportado en p24/p25). El texto sigue animando normal.
+- **p19**: textos al PDF + **negritas** en los lead-ins ("Difusión boca a boca:",
+  "Marketing:", "Tasa de fuga:"); intro recupera "discreto".
+- **p21**: frase-titular reformulada al PDF ("El problema de Conpro… la velocidad de
+  captación") y **centrada**.
+- **p22**: animación de entrada **por elemento** (auto, sin clic) vía `paintFlow`
+  (`data-no-anim` + `data-flow-order` en stat, torta y 3 filas de costo).
+- **p23**: se quitó la caption "VAN con valor terminal…"; chip ahora "Payback base ·
+  3 años **(conservador)**"; el gráfico `chart-van` mantiene su `stagger` de entrada.
+- **p25** (`chart-margenes`): **todas las barras del mismo color/opacidad** (nueva
+  opción `allAccent` en `charts.js::bar()`, reemplaza `rampByValue`) + `stagger:true`
+  para la entrada escalonada.
+- **p24**: valores del tornado ya coinciden (aprox) con el PDF (mismos deltas
+  bueno/malo); solo aplicaba el fix de entrada. p20 quedó sin cambios (ya estaba bien).
+- Verificado con screenshots headless (p25 barras uniformes, p21 centrada, p19
+  negritas, p23 chip + sin caption, p22 layout). Pendiente: Sección 4b (slides 26–31).
+
+## [2026-06-22] — Sección 2: animación de flujo (slide 12) + micro-textos
+Qué hice (rama `caracas`):
+- **Motor de animación nuevo `paintFlow` (`js/anim.js`)**: revela los elementos con
+  `[data-flow-order]` en orden numérico al ENTRAR al slide (sin clic), con
+  `delay = (orden − 1) · --flow-stagger`. Las flechas/conectores llevan órdenes en
+  `.5` para caer entre tarjeta y tarjeta y "dibujar" el flujo. Solo opacity/transform;
+  en print y `prefers-reduced-motion` quedan todos visibles de una. Enganchado en
+  `DeckAnim.onSlide`. Token nuevo `--flow-stagger: 380ms` en `css/tokens.css` (≈0,38 s
+  entre pasos; elegido sobre el rango 0,3–0,5 s que pidió el usuario).
+- **Slide 12 (`12-flujo-cbo.html`)**: `data-no-anim` en la slide (el flujo maneja su
+  propia entrada), los **9 números de paso ahora amarillos** (antes solo 1 y 9; el
+  resto era gris con borde), **íconos 46→58px** (hay espacio), y `data-flow-order` en
+  17 piezas (tarjetas 1–9, flechas 1.5–8.5, conector "Cliente paga" 5.5). Verificado
+  con screenshots headless (frame intermedio: pasos 1–3 visibles, 4 entrando; final:
+  todo + números amarillos).
+- **Micro-textos Sec 2** (alineados al PDF): `11-que-es-cbo` "términos **y** condiciones"
+  (antes `&`), `13-resultados-cbo` "▲ 20% vs. **caso actual**" (antes "vs. hoy").
+- Pendiente: continuar mapeo Sec 3 (Proyecto de escalamiento, web 15–17).
+
+## [2026-06-22] — Mapeo P3-Enviada.pdf ↔ web + arreglos Sección 1
+Qué hice (rama `caracas`):
+- **Mapeo Sección 1** del PDF nuevo (`P3-Enviada.pdf`, 43 págs) contra el deck web.
+  Resultado: todo presente 1:1; solo 2 divergencias reales — slide 07 (web rediseñó
+  el "cómo opera" como flujo de 5 pasos sin el mockup de WhatsApp del PPT → se
+  **mantiene la web**) y slide 09 (faltaban datos del PPT).
+- **Arreglos Sec 1** (vía 3 agentes en paralelo, archivos independientes):
+  - **p5** (`js/deck.js`, `chart-precios`): serie "Precio mínimo" `role:'muted'`→`'base'`
+    → "mín" y "máx" en el mismo gris, solo "Conpro" en acento (como el PPT).
+  - **p8** (`js/anim.js`, `paintBullets`): se quitó la atenuación `opacity:0.4` de los
+    bullets ya mostrados → ahora todo bullet visible queda parejo (mismo color) a
+    medida que aparece. Lógica compartida → aplica a todas las slides con
+    `data-seq-bullets`. Fonts de `08` ya ≥24px (sin cambio).
+  - **p9** (`presentacion/09-costo-oportunidad.html`): textos alineados al PDF
+    ("tareas administrativas de Conpro", "en base a ingresos de $88.000", "Costo de
+    oportunidad en sus otras actividades laborales", y la frase inferior con el
+    highlight movido a "OPORTUNIDAD:").
+- **Convención nueva (persistida en la skill `mapeo-pptx-web`, §5):** en cada sección
+  se entrega el **link de arranque** (slide divisor, `…/index.html#/(N-1)`) para que
+  el usuario abra/revise/comente. Próximo paso: continuar Sec 02 (CBO, web 10–14).
 ## [2026-06-22] — Progress bar superior (sutil, con toggle)
 Qué hice (rama `progress-bar-superior`):
 - Agregué una **barra de progreso arriba** que avanza con el deck. reveal ya tenía

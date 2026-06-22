@@ -45,6 +45,7 @@
   --anim-enter: 460ms;
   --anim-stagger: 55ms;
   --anim-rise: 14px;        /* translateY inicial de la entrada */
+  --flow-stagger: 160ms;    /* delay entre pasos en flujos secuenciales (slide 12); < --anim-enter → se solapan */
 
   /* ---- Tema por defecto: Mostaza claro ---- */
   --color-bg: #FBFAF7;
