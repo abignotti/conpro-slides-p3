@@ -974,6 +974,721 @@
   <aside class="notes">Molde de buyer persona. Avatar + identidad (nombre, edad, familia, lugar), perfil de compra con dos atributos, un bloque de dolor/tensión destacado y una frase ancla de cierre. Reutilizable para cualquier cliente objetivo.</aside>
 </section>
 
+<!-- Portada de proyecto · layout de dos columnas (barra lateral oscura + área principal).
+     Barra lateral: identidad/curso + equipo/datos; usa var(--color-text) como fondo y
+     var(--color-bg) como texto, así se invierte coherente en temas oscuros. Área principal:
+     kicker + bloque institucional arriba, titular gigante con regla de acento al medio,
+     grupo + integrantes abajo. Colores y fuentes 100% tokenizados. -->
+<section data-sid="24-portada-proyecto" class="slide" data-label="Portada proyecto" data-speaker-notes="Molde de portada de proyecto: barra lateral oscura con curso, equipo docente y fecha; área principal con kicker, bloque de la institución, titular enorme con regla de acento, y grupo + integrantes. Generaliza el contenido a cada proyecto." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+
+  <!-- El cuerpo (único hijo, lo que escala fitSlide) contiene las dos columnas a alto completo. -->
+  <div style="flex:1;min-height:0;display:flex;flex-direction:row;gap:0;">
+
+    <!-- ===== BARRA LATERAL ===== -->
+    <aside style="flex:0 0 600px;background:var(--color-text);color:var(--color-bg);padding:64px 56px;display:flex;flex-direction:column;justify-content:space-between;border-radius:var(--radius);">
+
+      <!-- Identificador del curso -->
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <span style="font-size:30px;font-weight:700;letter-spacing:-0.02em;line-height:1;color:var(--color-bg);">Grupo NN</span>
+        <span style="font-size:20px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;line-height:1.45;opacity:0.6;">Curso · Profesor</span>
+      </div>
+
+      <!-- Equipo / datos -->
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <span style="font-size:20px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-accent);">Equipo docente</span>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-size:15px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;opacity:0.55;">Profesor</span>
+            <span style="font-size:25px;line-height:1.1;">Nombre del profesor</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-size:15px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;opacity:0.55;">Supervisor</span>
+            <span style="font-size:25px;line-height:1.1;">Nombre del supervisor</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-size:15px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;opacity:0.55;">Dueño</span>
+            <span style="font-size:25px;line-height:1.1;">Nombre del dueño</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fecha -->
+      <span style="font-size:20px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;opacity:0.6;">Mes Año</span>
+    </aside>
+
+    <!-- ===== ÁREA PRINCIPAL ===== -->
+    <div style="flex:1;min-width:0;padding:16px 0 16px 80px;display:flex;flex-direction:column;justify-content:space-between;">
+
+      <!-- Fila superior: kicker + bloque institucional -->
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;">
+        <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Tipo de proyecto</span>
+        <div style="display:flex;align-items:center;gap:18px;flex:none;">
+          <span aria-hidden="true" style="display:block;flex:none;width:72px;height:96px;background:var(--color-text);border-radius:var(--radius);"></span>
+          <span style="font-size:18px;font-weight:700;letter-spacing:0.05em;line-height:1.3;text-transform:uppercase;color:var(--color-text);">Institución</span>
+        </div>
+      </div>
+
+      <!-- Titular -->
+      <div>
+        <h1 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:118px;line-height:0.98;letter-spacing:-0.02em;color:var(--color-text);margin:0;">Título del<br>proyecto</h1>
+        <div style="width:180px;height:6px;background:var(--color-accent);border-radius:999px;margin-top:36px;"></div>
+        <p style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);max-width:760px;margin:28px 0 0;">Subtítulo: una frase que resume el alcance o la propuesta del proyecto.</p>
+      </div>
+
+      <!-- Grupo + integrantes -->
+      <div style="display:flex;flex-direction:column;gap:22px;">
+        <span style="font-size:27px;font-weight:700;color:var(--color-text);">Grupo NN</span>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 72px;max-width:780px;">
+          <span style="font-size:25px;color:var(--color-text);">Integrante 1</span>
+          <span style="font-size:25px;color:var(--color-text);">Integrante 2</span>
+          <span style="font-size:25px;color:var(--color-text);">Integrante 3</span>
+          <span style="font-size:25px;color:var(--color-text);">Integrante 4</span>
+          <span style="font-size:25px;color:var(--color-text);">Integrante 5</span>
+          <span style="font-size:25px;color:var(--color-text);">Integrante 6</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="notes">Úsalo como slide de apertura de un proyecto con identidad de equipo: la barra lateral oscura concentra curso, equipo docente/datos y fecha; el área principal lleva el titular grande con regla de acento y la lista de integrantes. Ideal cuando hay que mostrar autoría y contexto institucional en la misma portada. Reemplaza todos los placeholders por los datos reales del proyecto.</aside>
+</section>
+
+<section data-sid="25-video-timeline-sync" class="slide" data-label="Video + timeline" data-speaker-notes="Layout de mockup de teléfono (izq) + timeline vertical de 5 pasos (der). Úsalo para narrar un flujo o proceso paso a paso mientras se muestra una grabación de pantalla en el teléfono. El paso 1 va en acento; el riel se rellena de arriba hacia abajo. En el deck real el placeholder se reemplaza por un video sincronizado con el timeline vía deck.js." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">NN / 28</span>
+  </header>
+
+  <!-- Cuerpo = fila de 2 columnas de header a footer.
+       Izquierda: mockup de teléfono (placeholder de video).
+       Derecha: kicker + título + timeline vertical de 5 pasos. -->
+  <div style="flex:1;min-height:0;display:flex;gap:64px;align-items:stretch;padding:24px 0;">
+
+    <!-- Teléfono (retrato), a altura completa del cuerpo. Placeholder visual:
+         en el deck real se reemplaza por un <video> sincronizado con el timeline. -->
+    <div style="flex:0 0 auto;height:100%;aspect-ratio:1080/2140;border-radius:40px;overflow:hidden;border:1px solid var(--color-grid);background:var(--color-bg-alt);box-shadow:0 18px 48px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;color:var(--color-text-muted);">
+        <svg viewBox="0 0 24 24" width="64" height="64" aria-hidden="true" fill="none" stroke="var(--color-text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M10 9l5 3-5 3z" fill="var(--color-text-muted)" stroke="none"/></svg>
+        <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;">Video</span>
+      </div>
+    </div>
+
+    <!-- Columna derecha: título + timeline -->
+    <div style="flex:1;min-height:0;display:flex;flex-direction:column;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+        <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Cómo funciona</span>
+      </div>
+      <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin:0 0 40px;">El proceso, paso a paso</h2>
+
+      <!-- Timeline vertical: 5 bandas iguales (flex:1) con el círculo centrado;
+           el riel va de 10% a 90% (centro de la 1.ª banda al de la 5.ª).
+           El primer nodo va en acento; el resto en contorno. -->
+      <div style="position:relative;flex:1;min-height:0;display:flex;flex-direction:column;">
+        <div style="position:absolute;left:21px;top:10%;bottom:10%;width:1px;background:var(--color-grid);"></div>
+        <div style="position:absolute;left:21px;top:10%;height:18%;width:1px;background:var(--color-accent);"></div>
+
+        <div style="position:relative;flex:1;display:flex;align-items:center;gap:24px;">
+          <div style="flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--color-accent);border:1px solid var(--color-accent);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--color-on-accent);">01</div>
+          <div>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1.1;margin:0;">Paso 1</h3>
+            <p style="font-size:24px;line-height:1.3;color:var(--color-text-muted);margin:6px 0 0;">Breve descripción de la primera acción del flujo.</p>
+          </div>
+        </div>
+        <div style="position:relative;flex:1;display:flex;align-items:center;gap:24px;">
+          <div style="flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-grid);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-muted);">02</div>
+          <div>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1.1;margin:0;">Paso 2</h3>
+            <p style="font-size:24px;line-height:1.3;color:var(--color-text-muted);margin:6px 0 0;">Qué ocurre a continuación, en una frase clara.</p>
+          </div>
+        </div>
+        <div style="position:relative;flex:1;display:flex;align-items:center;gap:24px;">
+          <div style="flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-grid);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-muted);">03</div>
+          <div>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1.1;margin:0;">Paso 3</h3>
+            <p style="font-size:24px;line-height:1.3;color:var(--color-text-muted);margin:6px 0 0;">El punto intermedio del proceso, resumido.</p>
+          </div>
+        </div>
+        <div style="position:relative;flex:1;display:flex;align-items:center;gap:24px;">
+          <div style="flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-grid);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-muted);">04</div>
+          <div>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1.1;margin:0;">Paso 4</h3>
+            <p style="font-size:24px;line-height:1.3;color:var(--color-text-muted);margin:6px 0 0;">Penúltima etapa antes del cierre del flujo.</p>
+          </div>
+        </div>
+        <div style="position:relative;flex:1;display:flex;align-items:center;gap:24px;">
+          <div style="flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-grid);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-muted);">05</div>
+          <div>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1.1;margin:0;">Paso 5</h3>
+            <p style="font-size:24px;line-height:1.3;color:var(--color-text-muted);margin:6px 0 0;">Resultado o entrega final del proceso.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Molde para narrar un flujo o proceso de 5 pasos junto a una grabación de pantalla. El teléfono (izq) muestra el contexto visual y el timeline (der) lo desglosa; el primer paso va en acento para marcar el origen del flujo. Aquí el teléfono es solo un placeholder estático "Video": en el deck real se reemplaza por un &lt;video&gt; que se reproduce y sincroniza con el avance del timeline vía deck.js (atributos data-flow-video / data-sequence / data-seq-times). Ajusta a 5 pasos para que las bandas queden parejas.</aside>
+</section>
+
+<section data-sid="26-flujo-2filas" class="slide" data-label="Flujo 2 filas" data-speaker-notes="Flujo de ida y vuelta en 2 filas: la fila superior avanza de izquierda a derecha (pasos 1→5) y la inferior regresa de derecha a izquierda. Cada paso es una tarjeta con ícono lucide, número y etiqueta; los conectores SVG marcan la dirección. Ideal para procesos de extremo a extremo donde el final retroalimenta al inicio." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">NN / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;gap:22px;">
+
+    <div>
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;">
+        <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Flujo del proceso</span>
+      </div>
+      <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin:0;">Proceso de ida y vuelta</h2>
+    </div>
+
+    <!-- FILA 1 — ida: izquierda → derecha (pasos 1→5) -->
+    <div>
+      <span style="display:inline-block;font-size:22px;font-weight:700;letter-spacing:0.02em;background:var(--color-accent);color:var(--color-on-accent);padding:7px 18px;border-radius:999px;margin-bottom:16px;">Etapa de ida</span>
+      <div style="display:grid;grid-template-columns:1fr 38px 1fr 38px 1fr 38px 1fr 38px 1fr;align-items:stretch;gap:10px;">
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">1</span>
+            <i data-lucide="file-text" style="width:42px;height:42px;color:var(--color-text);"></i>
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Paso 1</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Etiqueta neutra</p>
+          </div>
+        </div>
+
+        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">2</span>
+            <i data-lucide="settings" style="width:42px;height:42px;color:var(--color-text);"></i>
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Paso 2</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Etiqueta neutra</p>
+          </div>
+        </div>
+
+        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">3</span>
+            <i data-lucide="link" style="width:42px;height:42px;color:var(--color-text);"></i>
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Paso 3</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Etiqueta neutra</p>
+          </div>
+        </div>
+
+        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">4</span>
+            <i data-lucide="save" style="width:42px;height:42px;color:var(--color-text);"></i>
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Paso 4</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Etiqueta neutra</p>
+          </div>
+        </div>
+
+        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">5</span>
+            <i data-lucide="send" style="width:42px;height:42px;color:var(--color-text);"></i>
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Paso 5</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Etiqueta neutra</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FILA 2 — vuelta: derecha → izquierda (etapas E→A). La col. 5 sobrante lleva el conector de retorno entre filas. -->
+    <div>
+      <span style="display:inline-block;font-size:22px;font-weight:700;letter-spacing:0.02em;background:var(--color-accent);color:var(--color-on-accent);padding:7px 18px;border-radius:999px;margin-bottom:16px;">Etapa de vuelta</span>
+      <div style="display:grid;grid-template-columns:1fr 38px 1fr 38px 1fr 38px 1fr 38px 1fr;align-items:stretch;gap:10px;">
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">E</span>
+            <i data-lucide="layout-dashboard" style="width:42px;height:42px;color:var(--color-text);"></i>
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Etapa E</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Etiqueta neutra</p>
+          </div>
+        </div>
+
+        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">D</span>
+            <i data-lucide="check-circle" style="width:42px;height:42px;color:var(--color-text);"></i>
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Etapa D</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Etiqueta neutra</p>
+          </div>
+        </div>
+
+        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">C</span>
+            <i data-lucide="shield-check" style="width:42px;height:42px;color:var(--color-text);"></i>
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Etapa C</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Etiqueta neutra</p>
+          </div>
+        </div>
+
+        <span style="display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg></span>
+
+        <div style="flex:1 1 0;min-width:0;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:128px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:var(--color-accent);color:var(--color-on-accent);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;">B</span>
+            <i data-lucide="refresh-cw" style="width:42px;height:42px;color:var(--color-text);"></i>
+          </div>
+          <div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:25px;line-height:1.1;margin:0 0 3px;">Etapa B</h4>
+            <p style="font-size:22px;line-height:1.32;color:var(--color-text-muted);margin:0;">Etiqueta neutra</p>
+          </div>
+        </div>
+
+        <!-- Columna 5 sobrante: conector de retorno entre filas (Paso 5 ↓ → Etapa A) -->
+        <div style="grid-column:9;min-height:128px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+          <span style="font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:0.01em;">Retorno</span>
+          <svg width="92" height="64" viewBox="0 0 92 64" fill="none" stroke="var(--color-text)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M76 6C76 36 76 48 22 50" stroke-dasharray="1 8"/><path d="M38 38 22 50 38 62"/></svg>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Molde "Flujo 2 filas": diagrama de proceso de extremo a extremo con ~5 pasos por fila en dos filas. La fila superior avanza de izquierda a derecha (1→5) y la inferior regresa de derecha a izquierda (E→A), con un conector de retorno entre filas. Úsalo cuando quieras mostrar un flujo de ida y vuelta o un ciclo donde el último paso retroalimenta al primero. Cada tarjeta lleva ícono lucide (data-lucide), número/letra y una etiqueta corta; reemplaza íconos, números y etiquetas según el caso. Si tienes menos pasos, elimina tarjetas y sus conectores; ajusta grid-template-columns en proporción.</aside>
+</section>
+
+<section data-sid="27-cadena-bypass" class="slide" data-no-anim data-label="Cadena + bypass" data-speaker-notes="Cadena lineal de tres actores (A → B → C) con un arco punteado de bypass que saltea el nodo central: desintermediación / riesgo. El eslabón del medio lleva borde negativo para señalar exposición. Útil para mostrar cómo un intermediario puede ser saltado por los extremos de la cadena." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">27 / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;min-height:0;padding-top:8px;">
+    <div data-flow-order="1">
+      <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Análisis de cadena</span>
+      <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin:8px 0 0;max-width:1300px;">Riesgo de desintermediación</h2>
+    </div>
+
+    <!-- Diagrama: cadena lineal A → B → C + arco de bypass que saltea el nodo central -->
+    <div style="position:relative;margin:0;">
+
+      <!-- Cadena: Proveedor → Intermediario → Cliente -->
+      <div style="display:flex;align-items:stretch;justify-content:center;gap:18px;">
+        <!-- Actor A -->
+        <div data-flow-order="2" style="flex:1;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:12px;padding:30px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;">
+          <span style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:34px;line-height:1;">Proveedor</span>
+          <span style="font-size:var(--scale-caption);color:var(--color-text-muted);line-height:1.3;">Origen de la cadena</span>
+        </div>
+
+        <!-- Paso 1 -->
+        <div data-flow-order="2.5" style="flex:none;width:168px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;">
+          <div style="flex:none;width:46px;height:46px;border-radius:999px;background:var(--color-accent);color:var(--color-on-accent);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:var(--weight-display);font-size:24px;">1</div>
+          <svg width="48" height="20" viewBox="0 0 48 20" fill="none" aria-hidden="true" style="display:block;color:var(--color-text-muted);">
+            <path d="M2 10 H42 M34 3 L43 10 L34 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-size:var(--scale-caption);color:var(--color-text-muted);line-height:1.3;">Entrega al intermediario</span>
+        </div>
+
+        <!-- Intermediario (eslabón en riesgo) -->
+        <div data-flow-order="3" style="flex:1;background:var(--color-bg-alt);border:2px solid var(--color-negative);border-radius:12px;padding:30px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;">
+          <span style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:34px;line-height:1;">Intermediario</span>
+          <span style="font-size:var(--scale-caption);color:var(--color-text-muted);line-height:1.3;">Eslabón en riesgo</span>
+        </div>
+
+        <!-- Paso 2 -->
+        <div data-flow-order="3.5" style="flex:none;width:168px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;">
+          <div style="flex:none;width:46px;height:46px;border-radius:999px;background:var(--color-accent);color:var(--color-on-accent);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:var(--weight-display);font-size:24px;">2</div>
+          <svg width="48" height="20" viewBox="0 0 48 20" fill="none" aria-hidden="true" style="display:block;color:var(--color-text-muted);">
+            <path d="M2 10 H42 M34 3 L43 10 L34 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-size:var(--scale-caption);color:var(--color-text-muted);line-height:1.3;">Entrega al cliente</span>
+        </div>
+
+        <!-- Actor C -->
+        <div data-flow-order="4" style="flex:1;background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:12px;padding:30px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;">
+          <span style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:34px;line-height:1;">Cliente</span>
+          <span style="font-size:var(--scale-caption);color:var(--color-text-muted);line-height:1.3;">Destino final</span>
+        </div>
+      </div>
+
+      <!-- Bypass: el cliente vuelve al proveedor saltándose al intermediario -->
+      <div aria-hidden="true" data-flow-order="5" style="position:relative;height:92px;">
+        <!-- bracket punteado: del Cliente (der.) por debajo del intermediario al Proveedor (izq.) -->
+        <div style="position:absolute;left:7%;right:7%;top:4px;bottom:10px;border:2.5px dashed var(--color-accent);border-top:none;border-radius:0 0 16px 16px;"></div>
+        <!-- punta de flecha apuntando hacia arriba al Proveedor -->
+        <svg width="24" height="16" viewBox="0 0 24 16" fill="none" style="position:absolute;left:7%;top:-3px;transform:translateX(-50%);color:var(--color-accent);">
+          <path d="M12 1 L3 12 M12 1 L21 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <!-- etiqueta del paso 3 centrada sobre el tramo inferior -->
+        <div style="position:absolute;left:50%;bottom:0;transform:translate(-50%,50%);background:var(--color-bg);padding:4px 18px;display:flex;align-items:center;gap:14px;white-space:nowrap;">
+          <span style="flex:none;width:46px;height:46px;border-radius:999px;background:var(--color-accent);color:var(--color-on-accent);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:var(--weight-display);font-size:24px;">3</span>
+          <span style="font-size:var(--scale-body);line-height:1.3;color:var(--color-text);">Los extremos transan directo · <strong>desintermediación</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cierre destacado: centrado, sin card -->
+    <div data-flow-order="6" style="text-align:center;max-width:1200px;margin:8px auto 0;">
+      <p style="font-size:var(--scale-body);line-height:1.7;color:var(--color-text);"><strong style="background:var(--color-accent);color:var(--color-on-accent);padding:3px 12px;border-radius:5px;-webkit-box-decoration-break:clone;box-decoration-break:clone;">Cuanto menos valor agrega el intermediario, mayor el riesgo de ser saltado.</strong> El bypass aparece cuando los extremos pueden conectarse sin él.</p>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Cadena lineal de tres actores con bypass. Úsalo para representar desintermediación o riesgo de un eslabón intermedio: el flujo normal va A → B → C (pasos 1 y 2), pero el arco punteado de bypass (paso 3) muestra cómo los extremos (Proveedor y Cliente) pueden transar directo saltándose al Intermediario. El nodo central lleva borde negativo para señalar que es el eslabón expuesto. Generaliza a cualquier cadena de valor con un actor intermedio cuyo aporte sea sustituible. Renombra los actores y los textos de paso al caso concreto.</aside>
+</section>
+
+<section data-sid="28-datos-tabla-proyeccion" class="slide" data-label="Datos + tabla proyección" data-speaker-notes="Dos tarjetas apiladas a la izquierda (una de acento con la cifra clave, una alt con un cualitativo) y una tabla multi-año (Año 1…5) a la derecha. La última columna (Año 5) se destaca con borde de acento; la fila final se resalta con fondo bg-alt y su cifra clave en acento. Cifras con tabular-nums alineadas a la derecha." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">28 / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+      <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Sección · subtítulo</span>
+    </div>
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin-bottom:44px;">Título del slide</h2>
+
+    <div style="display:grid;grid-template-columns:0.62fr 1.38fr;gap:48px;align-items:stretch;">
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <div style="background:var(--color-accent);border-radius:var(--radius);padding:34px 32px;display:flex;flex-direction:column;gap:14px;flex:1;justify-content:center;">
+          <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-on-accent);opacity:0.72;">Métrica 1</span>
+          <span style="font-family:var(--font-body);font-weight:600;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-on-accent);">$ 000.000</span>
+          <span style="font-size:var(--scale-caption);color:var(--color-on-accent);opacity:0.8;">Descripción de la métrica</span>
+        </div>
+        <div style="background:var(--color-bg-alt);border:1px solid var(--color-grid);border-radius:var(--radius);padding:34px 32px;display:flex;flex-direction:column;gap:14px;flex:1;justify-content:center;">
+          <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Métrica 2</span>
+          <span style="font-family:var(--font-body);font-weight:600;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;color:var(--color-text);">Valor</span>
+          <span style="font-size:var(--scale-caption);color:var(--color-text-muted);">Descripción de la métrica</span>
+        </div>
+      </div>
+
+      <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;align-self:center;">
+        <thead>
+          <tr>
+            <th style="text-align:left;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 18px;border-bottom:1px solid var(--color-grid);"></th>
+            <th style="text-align:right;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 18px;border-bottom:1px solid var(--color-grid);">Año 1</th>
+            <th style="text-align:right;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 18px;border-bottom:1px solid var(--color-grid);">Año 2</th>
+            <th style="text-align:right;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 18px;border-bottom:1px solid var(--color-grid);">Año 3</th>
+            <th style="text-align:right;font-size:var(--scale-caption);font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);padding:0 0 18px;border-bottom:1px solid var(--color-grid);">Año 4</th>
+            <th style="text-align:right;font-size:var(--scale-caption);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text);padding:0 0 18px;border-bottom:2px solid var(--color-accent);">Año 5</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align:left;font-size:30px;color:var(--color-text-muted);padding:30px 0;border-bottom:1px solid var(--color-grid);">Indicador A</td>
+            <td style="text-align:right;font-size:34px;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">000</td>
+            <td style="text-align:right;font-size:34px;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">000</td>
+            <td style="text-align:right;font-size:34px;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">000</td>
+            <td style="text-align:right;font-size:34px;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">000</td>
+            <td style="text-align:right;font-size:34px;font-weight:700;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">000</td>
+          </tr>
+          <tr>
+            <td style="text-align:left;font-size:30px;color:var(--color-text-muted);padding:30px 0;border-bottom:1px solid var(--color-grid);">Indicador B</td>
+            <td style="text-align:right;font-size:34px;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">0.0</td>
+            <td style="text-align:right;font-size:34px;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">0.0</td>
+            <td style="text-align:right;font-size:34px;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">0.0</td>
+            <td style="text-align:right;font-size:34px;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">0.0</td>
+            <td style="text-align:right;font-size:34px;font-weight:700;color:var(--color-text);padding:30px 0;border-bottom:1px solid var(--color-grid);">0.0</td>
+          </tr>
+          <tr>
+            <td style="text-align:left;font-size:30px;font-weight:600;color:var(--color-text);padding:30px 24px 30px 28px;background:var(--color-bg-alt);border-radius:var(--radius) 0 0 var(--radius);">Indicador C</td>
+            <td style="text-align:right;font-size:34px;color:var(--color-text);padding:30px 24px;background:var(--color-bg-alt);">$ 000.000</td>
+            <td style="text-align:right;font-size:34px;color:var(--color-text);padding:30px 24px;background:var(--color-bg-alt);">$ 000.000</td>
+            <td style="text-align:right;font-size:34px;color:var(--color-text);padding:30px 24px;background:var(--color-bg-alt);">$ 000.000</td>
+            <td style="text-align:right;font-size:34px;color:var(--color-text);padding:30px 24px;background:var(--color-bg-alt);">$ 000.000</td>
+            <td style="text-align:right;font-size:34px;font-weight:700;color:var(--color-on-accent);padding:30px 28px;background:var(--color-accent);border-radius:0 var(--radius) var(--radius) 0;">$ 000.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Cuándo usar: cuando tienes una proyección multi-año/multi-columna (Año 1…5) con varias filas de indicadores y quieres anclar la atención en 1–2 cifras clave fuera de la tabla. La columna izquierda lleva dos tarjetas apiladas (la de acento para el dato más importante, la alt para un cualitativo o secundario); la derecha lleva la tabla. Resalta la última columna con borde de acento y la fila/celda clave con fondo bg-alt y su valor en acento. Usa tabular-nums y alinea las cifras a la derecha para que escaneen bien al proyectar.</aside>
+</section>
+
+<section data-sid="29-inversion-desglose" class="slide" data-label="Inversión + desglose" data-speaker-notes="Dato hero (inversión total) como número ancla, con pie chart de su composición a la izquierda; a la derecha el desglose en tres filas (categoría + monto). Acento en los montos." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">NN / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;padding-top:20px;">
+    <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:8px;">Inversión</span>
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.0;letter-spacing:-0.02em;color:var(--color-text);padding-bottom:16px;border-bottom:1px solid var(--color-grid);">Estructura de inversión y desglose de costos</h2>
+
+    <div style="flex:1;display:grid;grid-template-columns:0.92fr 1.08fr;gap:64px;padding-top:24px;">
+
+      <!-- Izquierda: dato hero + pie -->
+      <div style="display:flex;flex-direction:column;">
+        <span data-flow-order="1" style="font-family:var(--font-display);font-weight:800;font-size:var(--scale-stat);line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--color-text);" data-hero>$ 000.000</span>
+        <span data-flow-order="1" style="font-size:var(--scale-body);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);margin-top:4px;padding-bottom:20px;border-bottom:1px solid var(--color-grid);">Inversión inicial total</span>
+
+        <div data-flow-order="2" style="flex:1;min-height:0;overflow:hidden;display:flex;align-items:center;gap:36px;padding-top:14px;">
+          <svg viewBox="0 0 360 360" style="flex:0 0 auto;width:460px;height:460px;display:block;">
+            <path d="M 180,180 L 180,20 A 160,160 0 1,1 50.6,274.1 Z" style="fill:var(--color-accent);"></path>
+            <path d="M 180,180 L 50.6,274.1 A 160,160 0 0,1 20,180 Z" style="fill:var(--color-text);"></path>
+            <path d="M 180,180 L 20,180 A 160,160 0 0,1 180,20 Z" style="fill:var(--chart-series-2);"></path>
+            <text x="274" y="228" text-anchor="middle" dominant-baseline="middle" font-weight="800" font-size="30" style="font-family:var(--font-display);fill:var(--color-on-accent);">65%</text>
+            <text x="80" y="212" text-anchor="middle" dominant-baseline="middle" font-weight="800" font-size="24" style="font-family:var(--font-display);fill:var(--color-bg);">10%</text>
+            <text x="106" y="106" text-anchor="middle" dominant-baseline="middle" font-weight="800" font-size="28" style="font-family:var(--font-display);fill:var(--color-text);">25%</text>
+          </svg>
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:20px;">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="flex:none;width:18px;height:18px;border-radius:4px;background:var(--color-accent);"></span>
+              <span style="font-size:24px;line-height:1.25;color:var(--color-text);">Categoría A</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="flex:none;width:18px;height:18px;border-radius:4px;background:var(--color-text);"></span>
+              <span style="font-size:24px;line-height:1.25;color:var(--color-text);">Categoría B</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="flex:none;width:18px;height:18px;border-radius:4px;background:var(--chart-series-2);"></span>
+              <span style="font-size:24px;line-height:1.25;color:var(--color-text);">Categoría C</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Derecha: filas de desglose -->
+      <div style="display:flex;flex-direction:column;border-left:1px solid var(--color-grid);padding-left:56px;">
+
+        <div data-flow-order="3" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;padding-bottom:28px;border-bottom:1px solid var(--color-grid);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;">
+            <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--color-text);">Costos fijos</span>
+            <span style="font-family:var(--font-display);font-weight:800;font-size:28px;color:var(--color-on-accent);background:var(--color-accent);padding:4px 16px;border-radius:var(--radius);white-space:nowrap;font-variant-numeric:tabular-nums;">$ 000.000 / año</span>
+          </div>
+          <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">Descripción breve de la categoría de costo.</span>
+        </div>
+
+        <div data-flow-order="4" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:28px 0;border-bottom:1px solid var(--color-grid);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;">
+            <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--color-text);">Costos variables</span>
+            <span style="font-family:var(--font-display);font-weight:800;font-size:28px;color:var(--color-on-accent);background:var(--color-accent);padding:4px 16px;border-radius:var(--radius);white-space:nowrap;font-variant-numeric:tabular-nums;">$ 000.000</span>
+          </div>
+          <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">Descripción breve de la categoría de costo.</span>
+        </div>
+
+        <div data-flow-order="5" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;padding-top:28px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;">
+            <span style="font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--color-text);">Costos de estructura</span>
+            <span style="font-family:var(--font-display);font-weight:800;font-size:28px;color:var(--color-on-accent);background:var(--color-accent);padding:4px 16px;border-radius:var(--radius);white-space:nowrap;font-variant-numeric:tabular-nums;">$ 000.000</span>
+          </div>
+          <span style="font-size:var(--scale-body);line-height:1.4;color:var(--color-text-muted);">Descripción breve de la categoría de costo.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Úsalo cuando una cifra de inversión total tenga una composición interna (3 partes, ~65/25/10) y, en paralelo, varios tipos de costo recurrente. A la izquierda el dato hero ancla el monto y el pie chart muestra su reparto; a la derecha las filas con categoría + monto detallan el desglose. Ajusta los porcentajes del pie (paths y textos) y los montos según el caso. Para 2 o 4 categorías, recalcula los ángulos de los paths del SVG.</aside>
+</section>
+
+<section data-sid="30-tres-columnas-badges" class="slide" data-label="Tres columnas con badges" data-speaker-notes="Tres columnas simétricas separadas por hairlines; cada una con un badge de acento + título + 2-3 bullets. Úsalo para comparar/desglosar tres temas, ejes o categorías paralelas." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">NN / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;">
+    <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Antetítulo de sección</span>
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin:8px 0 44px;max-width:1300px;">Título de la diapositiva en una línea</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;align-items:start;">
+      <div style="padding:8px 48px 8px 0;">
+        <span style="display:inline-block;background:var(--color-accent);color:var(--color-on-accent);font-family:var(--font-display);font-weight:700;font-size:30px;padding:4px 14px;border-radius:5px;margin-bottom:26px;">01</span>
+        <p style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text);margin:0 0 16px;">Descripción breve del primer tema y qué busca resolver.</p>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;">
+          <li style="display:flex;align-items:flex-start;gap:14px;font-size:var(--scale-body);line-height:1.4;color:var(--color-text);"><span style="width:8px;height:8px;flex:none;margin-top:11px;border-radius:2px;background:var(--color-accent);"></span><strong>Primer punto</strong></li>
+          <li style="display:flex;align-items:flex-start;gap:14px;font-size:var(--scale-body);line-height:1.4;color:var(--color-text);"><span style="width:8px;height:8px;flex:none;margin-top:11px;border-radius:2px;background:var(--color-accent);"></span><strong>Segundo punto</strong></li>
+          <li style="display:flex;align-items:flex-start;gap:14px;font-size:var(--scale-body);line-height:1.4;color:var(--color-text);"><span style="width:8px;height:8px;flex:none;margin-top:11px;border-radius:2px;background:var(--color-accent);"></span><strong>Tercer punto</strong></li>
+        </ul>
+      </div>
+
+      <div style="padding:8px 48px;border-left:1px solid var(--color-grid);">
+        <span style="display:inline-block;background:var(--color-accent);color:var(--color-on-accent);font-family:var(--font-display);font-weight:700;font-size:30px;padding:4px 14px;border-radius:5px;margin-bottom:26px;">02</span>
+        <p style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text);margin:0 0 16px;">Descripción breve del segundo tema y su prioridad.</p>
+        <p style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text-muted);margin:0;">Texto de apoyo con los conceptos <strong style="color:var(--color-text);">clave</strong> o <strong style="color:var(--color-text);">acciones</strong> que sostienen este eje.</p>
+      </div>
+
+      <div style="padding:8px 0 8px 48px;border-left:1px solid var(--color-grid);">
+        <span style="display:inline-block;background:var(--color-accent);color:var(--color-on-accent);font-family:var(--font-display);font-weight:700;font-size:30px;padding:4px 14px;border-radius:5px;margin-bottom:26px;">03</span>
+        <p style="font-size:var(--scale-body);line-height:1.5;color:var(--color-text);margin:0 0 16px;">Descripción breve del tercer tema y el valor que aporta.</p>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;">
+          <li style="display:flex;align-items:flex-start;gap:14px;font-size:var(--scale-body);line-height:1.4;color:var(--color-text);"><span style="width:8px;height:8px;flex:none;margin-top:11px;border-radius:2px;background:var(--color-accent);"></span><strong>Primer punto</strong></li>
+          <li style="display:flex;align-items:flex-start;gap:14px;font-size:var(--scale-body);line-height:1.4;color:var(--color-text);"><span style="width:8px;height:8px;flex:none;margin-top:11px;border-radius:2px;background:var(--color-accent);"></span><strong>Segundo punto</strong></li>
+          <li style="display:flex;align-items:flex-start;gap:14px;font-size:var(--scale-body);line-height:1.4;color:var(--color-text);"><span style="width:8px;height:8px;flex:none;margin-top:11px;border-radius:2px;background:var(--color-accent);"></span><strong>Tercer punto</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Molde de tres columnas con badges. Úsalo cuando necesites comparar o desglosar tres temas, ejes o categorías paralelas con peso visual idéntico: cada columna lleva un badge de acento (numérico "01/02/03" o etiqueta corta), un título o descripción breve, y 2-3 bullets. Las columnas se separan con hairlines (sin borde en la primera). Sirve igual con bullets en lista o con párrafo de apoyo; mantén el contenido balanceado entre columnas para que ninguna desborde.</aside>
+</section>
+
+<section data-sid="31-modelo-3actores" class="slide" data-label="Modelo 3 actores" data-speaker-notes="Diagrama de flujo con un actor central (círculo de acento) conectado a dos grupos a los lados mediante flechas bidireccionales, más una propuesta de valor centrada. Sustituye los placeholders por los actores reales del modelo." style="background:var(--color-bg-alt);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">NN / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;padding-top:24px;padding-bottom:32px;">
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;color:var(--color-text);margin:0;">Modelo de tres actores</h2>
+
+    <!-- Diagrama: Actor A <-> Plataforma <-> Actor B -->
+    <div style="background:var(--color-bg);border-radius:var(--radius);margin-top:60px;padding:44px 60px 40px 60px;display:flex;align-items:center;justify-content:space-between;">
+
+      <!-- Actor A (lado izquierdo) -->
+      <div style="display:flex;flex-direction:column;align-items:center;width:440px;">
+        <svg width="200" height="190" viewBox="0 0 200 190" fill="none" stroke="var(--color-text)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="100" cy="48" r="34" fill="var(--color-accent)" stroke="none"></circle>
+          <path d="M40 178 V148 C40 116 160 116 160 148 V178" fill="var(--color-accent)" stroke="none"></path>
+          <circle cx="100" cy="48" r="34"></circle>
+          <path d="M40 178 V148 C40 116 160 116 160 148 V178"></path>
+        </svg>
+        <div style="font-family:var(--font-display);font-weight:700;font-size:30px;letter-spacing:2px;color:var(--color-text);margin-top:14px;">CLIENTES</div>
+        <div style="font-size:24px;color:var(--color-text-muted);margin-top:8px;">Demanda del lado A</div>
+      </div>
+
+      <!-- flechas bidireccionales izquierda -->
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <svg width="150" height="20" viewBox="0 0 150 20" fill="none" aria-hidden="true"><path d="M2 10 H140 M124 2 L142 10 L124 18" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <svg width="150" height="20" viewBox="0 0 150 20" fill="none" aria-hidden="true"><path d="M148 10 H10 M26 2 L8 10 L26 18" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+
+      <!-- Actor central -->
+      <div style="width:300px;height:300px;border-radius:50%;background:var(--color-accent);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="var(--color-on-accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="60" cy="60" r="20"></circle>
+          <circle cx="60" cy="14" r="11"></circle>
+          <circle cx="20" cy="92" r="11"></circle>
+          <circle cx="100" cy="92" r="11"></circle>
+          <path d="M60 25 V40 M44 70 L29 84 M76 70 L91 84"></path>
+        </svg>
+        <div style="font-family:var(--font-display);font-weight:800;font-size:38px;letter-spacing:2px;color:var(--color-on-accent);margin-top:14px;">PLATAFORMA</div>
+      </div>
+
+      <!-- flechas bidireccionales derecha -->
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <svg width="150" height="20" viewBox="0 0 150 20" fill="none" aria-hidden="true"><path d="M2 10 H140 M124 2 L142 10 L124 18" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <svg width="150" height="20" viewBox="0 0 150 20" fill="none" aria-hidden="true"><path d="M148 10 H10 M26 2 L8 10 L26 18" stroke="var(--color-text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+
+      <!-- Actor B (lado derecho) -->
+      <div style="display:flex;flex-direction:column;align-items:center;width:440px;">
+        <svg width="220" height="190" viewBox="0 0 220 190" fill="none" stroke="var(--color-text)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+          <path d="M30 70 L110 34 L190 70" fill="none"></path>
+          <rect x="46" y="70" width="128" height="108" fill="var(--color-accent)" stroke="var(--color-text)"></rect>
+          <rect x="78" y="110" width="34" height="34" fill="var(--color-bg)" stroke="var(--color-text)"></rect>
+          <rect x="124" y="110" width="34" height="34" fill="var(--color-bg)" stroke="var(--color-text)"></rect>
+          <path d="M24 178 H196"></path>
+        </svg>
+        <div style="font-family:var(--font-display);font-weight:700;font-size:30px;letter-spacing:2px;color:var(--color-text);margin-top:14px;">PROVEEDORES</div>
+        <div style="font-size:24px;color:var(--color-text-muted);margin-top:8px;">Oferta del lado B</div>
+      </div>
+
+    </div>
+
+    <!-- Propuesta de valor -->
+    <div style="margin-top:56px;">
+      <div style="display:inline-block;">
+        <div style="font-family:var(--font-display);font-weight:700;font-size:28px;letter-spacing:5px;color:var(--color-text-muted);">PROPUESTA DE VALOR</div>
+        <div style="height:4px;width:200px;background:var(--color-accent);margin-top:12px;border-radius:var(--radius-pill,999px);"></div>
+      </div>
+
+      <div style="margin-top:40px;display:flex;justify-content:center;">
+        <p style="max-width:1300px;text-align:center;font-size:38px;line-height:1.5;color:var(--color-text-muted);margin:0;text-wrap:pretty;"><strong style="color:var(--color-text);font-weight:700;">Propuesta de valor del modelo</strong>: cómo la plataforma central crea valor al conectar a ambos lados que por separado no se encontrarían.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Cuándo usar este molde: para explicar un modelo de negocio o flujo de intermediación con un actor central (plataforma, empresa, intermediario) que conecta dos grupos a los lados (clientes/proveedores, oferta/demanda, actor A/actor B). El círculo de acento destaca al actor que crea valor; las flechas bidireccionales muestran el intercambio en ambos sentidos; la línea inferior resume la propuesta de valor. Sustituye los nombres (PLATAFORMA / CLIENTES / PROVEEDORES), los subtítulos de cada lado y la frase de propuesta de valor por los del caso real. Un solo acento por slide; el dato/idea clave va en la propuesta de valor centrada.</aside>
+</section>
+
+<section data-sid="32-bibliografia" class="slide" data-label="Bibliografía" data-speaker-notes="Lista de referencias con sangría francesa (hanging indent) y URLs atenuadas. Reutilizable: repetir como '1 de N', '2 de N'… cuando las fuentes no caben en una sola slide." style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);padding:var(--slide-padding);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+  <header data-chrome="header" style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:22px;border-bottom:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-muted);">Evaluación de Proyectos</span>
+    <span style="font-size:var(--scale-caption);font-weight:500;letter-spacing:0.16em;color:var(--color-text-muted);font-variant-numeric:tabular-nums;">NN / 28</span>
+  </header>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-start;min-height:0;padding-top:8px;">
+    <span style="font-size:var(--scale-kicker);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-muted);">Anexos</span>
+    <h2 style="font-family:var(--font-display);font-weight:var(--weight-display);font-size:var(--scale-h1);line-height:1.04;letter-spacing:-0.01em;margin:8px 0 32px;">Bibliografía <span style="font-size:0.42em;font-weight:500;color:var(--color-text-muted);letter-spacing:0.04em;">1 de N</span></h2>
+
+    <div style="display:grid;grid-template-columns:1fr;gap:18px;font-size:var(--scale-body);line-height:1.5;color:var(--color-text-muted);">
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px;">
+        <li style="padding-left:28px;text-indent:-28px;">Apellido, A. (2023). <em>Título de la obra de referencia: subtítulo descriptivo.</em> Editorial Académica.</li>
+        <li style="padding-left:28px;text-indent:-28px;">Apellido, B., y Apellido, C. (2022). Título del artículo de revista. <em>Nombre de la Revista, 14</em>(3), 112-138.</li>
+        <li style="padding-left:28px;text-indent:-28px;">Organización Internacional de Ejemplo. (2024). <em>Informe anual sobre la materia.</em> <span style="opacity:0.7;word-break:break-all;">https://www.ejemplo.org/informes/2024</span></li>
+      </ul>
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px;">
+        <li style="padding-left:28px;text-indent:-28px;">Instituto de Estudios Ficticios. (s. f.). <em>Serie estadística de referencia.</em> Recuperado el 1 de mayo de 2026, de <span style="opacity:0.7;word-break:break-all;">https://datos.ejemplo.org/serie/indicador</span></li>
+        <li style="padding-left:28px;text-indent:-28px;">Apellido, D. (2021). <em>Manual de metodología aplicada</em> (3.ª ed.). Casa Editorial Ejemplo.</li>
+        <li style="padding-left:28px;text-indent:-28px;">Agencia Reguladora Modelo. (2024). <em>Normativa N.° 000: marco general del sector.</em> <span style="opacity:0.7;word-break:break-all;">https://www.ejemplo.org/normativa/000</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer data-chrome="footer" style="display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--color-grid);">
+    <span style="font-size:var(--scale-caption);letter-spacing:0.06em;color:var(--color-text-muted);">Escalamiento de Conpro</span>
+  </footer>
+
+  <aside class="notes">Molde de referencias bibliográficas en formato APA neutro, con sangría francesa (text-indent negativo) y URLs atenuadas (opacidad reducida sobre var(--color-text-muted)). Úsalo para los anexos de fuentes. Si las referencias no caben en una sola slide, copia este molde varias veces y numera el título "1 de N", "2 de N", etc. Ajusta el número de columnas (grid) y de entradas por columna según el volumen; manténlo a escala 1.0 sin desbordar.</aside>
+</section>
+
     </div>
   </div>
 
