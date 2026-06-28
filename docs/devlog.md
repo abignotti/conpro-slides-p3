@@ -4,6 +4,31 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-22] — Retrospectiva de flujo + base reutilizable (docs, moldes, tokens)
+Sesión de retrospectiva sobre el uso de IA, orientada a reutilización futura (el deck cierra).
+Entregables (todo aditivo, **`index.html` quedó byte-idéntico** — el deck vivo no se tocó):
+- **`docs/playbook-trabajo-con-ia.md`**: playbook durable en dos capas — (A) 10 principios
+  generales de uso de IA, (B) específico de presentaciones. Incluye escalera de madurez
+  (L1–L5), qué centralizar para evitar hardcodes, metodología para PPT/cifras cambiantes y para
+  decks sin base, catálogo de skills/MCPs (diseño/animación/flujo), y guía de paralelización
+  (subagentes vs worktrees vs workspaces).
+- **`docs/diseno-sistema.md`**: documento de diseño para generar moldes/íconos/recursos desde la
+  base (grid, anatomía del slide, escalas, sistema de íconos Lucide, componentes, do/don't,
+  checklist de molde nuevo, boilerplate). Consolida `docs/fuentes/*` + skill `adaptar-slide`.
+- **9 moldes nuevos** (`moldes/24-32`) extraídos de slides que se generaron sin molde:
+  portada-proyecto, video-timeline-sync, flujo-2filas, cadena-bypass, datos-tabla-proyeccion,
+  inversion-desglose, tres-columnas-badges, modelo-3actores, bibliografia. Contenido
+  generalizado a placeholders; 100% tokenizados (sin `:root`, sin hex). Generados en paralelo
+  con 9 subagentes (demostración del patrón de paralelización del playbook). `moldes.html`: 23→32.
+- **Tokens aditivos** en `css/tokens.css`: escalas de peso/radio/tamaño/gap y animación de chart
+  (`--chart-anim-*`). No se aplican al deck actual (evitar regresión antes de reentrega); existen
+  para los moldes nuevos y la base. La migración de los 200+ hardcodes del deck se hará en la
+  base extraída.
+- Build OK (32 moldes); `git diff index.html` vacío. Próximo paso: extraer la base/template real
+  (hooks pre-commit, dev-server por rama, fuente única de cifras) al iniciar el próximo proyecto.
+
+---
+
 ## [2026-06-22] — Cierre: mapeo Anexos + revisión completa PDF↔web terminada
 Última sección mapeada (**Anexos**, web 39–43 ↔ PDF p39–43): está **1:1, sin
 divergencias estructurales**. Solo deltas cosméticos, que se dejan como están por

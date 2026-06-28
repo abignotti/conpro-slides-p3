@@ -37,11 +37,16 @@
     const ease = (getComputedStyle(document.documentElement)
       .getPropertyValue('--ease-out') || 'ease-out').trim();
 
-    // Los bloques que contienen un gráfico (chart-wrap/canvas) entran SOLO con
-    // fade, sin translateY: el gráfico tiene su propia animación interna (barras
-    // que crecen) y el desplazamiento del contenedor hacía que "no entrara en su
-    // posición de inmediato". Fade sin movimiento → aparece ya en su lugar.
-    const noRiseFor = (el) => REDUCED || !!el.querySelector('.chart-wrap, canvas');
+    // Los bloques que contienen MEDIA PESADA entran SOLO con fade, sin translateY:
+    // gráficos (chart-wrap/canvas), diagramas SVG, imágenes, video, iframes y tablas
+    // tienen su propio render/animación interna y el desplazamiento del contenedor
+    // hace que "no entren en su posición de inmediato" (el bug de entrada). Fade sin
+    // movimiento → aparecen ya en su lugar. Los íconos lucide (svg.lucide) SÍ pueden
+    // subir: son chicos y acompañan al texto. Regla ÚNICA y centralizada — antes esto
+    // se parchaba slide por slide (data-no-anim); ver docs/playbook-trabajo-con-ia.md.
+    const MEDIA_SEL = '.chart-wrap, canvas, svg:not(.lucide), img, video, iframe, table';
+    const noRiseFor = (el) =>
+      REDUCED || el.matches(MEDIA_SEL) || !!el.querySelector(MEDIA_SEL);
 
     items.forEach((el) => {
       // Estado inicial sin transición (para no animar el "reset").
