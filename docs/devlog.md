@@ -4,6 +4,33 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-28] — Alinear el deck con el "Informe Nuevo" (Informe N°3)
+Las compañeras ajustaron el informe tras presentar (sobre todo la parte final). Se cruzó el
+PDF completo contra las 43 slides; la mayoría ya calzaba, los cambios se concentraron en la
+parte final. Cambios de contenido:
+- **S32 (opción de esperar):** tabla actualizada a la Tabla 8 del informe (pág. 26). El peak se
+  movió del año 4 al **año 2 ($4.481.041)**; montos: 1a $3.727.232 · 2a $4.481.041 · 3a $4.373.544
+  · 4a $4.169.210. Se confirmó que la Tabla 8 está **con valor terminal** (su "invertir ahora"
+  $2.386.311 = VAN con VT, no el sin-VT $739.780), misma base que el deck. La opción de esperar
+  es el VAN del proyecto diferido (no incluye flujos del CBO durante la espera).
+- **S34 (recomendación):** reencuadrada — la comparación con el VAN del CBO ya no aplica. 3 cards:
+  invertir ahora $2.386.311 · esperar ~2 años $4.481.041 (destacada) · "flujos previos al proyecto"
+  (CBO, sin cifra). Gatillo de inversión **100-110 hogares activos** (reemplaza el "margen bruto
+  $2.336.640"). Título → "Esperar hasta acumular demanda para realizar el proyecto".
+- **S28 (sustitución):** escenario fuerte **−87% → −83%** (barra 13%→17%), pág. 23.
+- **S25/S36 (márgenes):** datos del gráfico alineados al informe (pág. 25): café 6,2 · vino 5,2 ·
+  aceite 1,2 · miel 0,5 · frambuesa 0,3.
+- **VAN del CBO ($5.361.672, con VT):** se mantiene; el informe solo publica el sin-VT $2.405.096.
+  Decisión del equipo (el deck usa con VT en todo).
+Pulido visual (sin cambio de contenido):
+- **S13:** borde amarillo a las 2 cards no destacadas; VAN con número completo **$5.361.672**.
+- **S27:** intro más grande, "Supuesto" en su línea, bold→destacado amarillo, cards con borde
+  amarillo, frases de la derecha centradas y sin símbolos.
+- **S35:** rediseño (badges numerados 01/02, bordes amarillos, card derecha balanceada).
+Build OK; verificado en `index.html`. Próximo paso: PR a `main`.
+
+---
+
 ## [2026-06-22] — Retrospectiva de flujo + base reutilizable (docs, moldes, tokens)
 Sesión de retrospectiva sobre el uso de IA, orientada a reutilización futura (el deck cierra).
 Entregables (todo aditivo, **`index.html` quedó byte-idéntico** — el deck vivo no se tocó):
