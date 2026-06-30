@@ -4,6 +4,31 @@ Lo nuevo arriba. No edites entradas viejas.
 
 ---
 
+## [2026-06-29] — Slide alternativa de recomendación: gatillo por COSTO DE OPORTUNIDAD
+Se revisó el `Informe.03-G06.pdf` (mismo Informe N°3 ya alineado el 2026-06-28; el deck ya lo
+reflejaba). La S34 actual usa el gatillo "100-110 hogares activos" (peak de VAN a 2 años). Se creó
+una alternativa que reencuadra el gatillo en la lógica del informe (sección 4, pág. 28-29).
+- **Nueva slide `presentacion/34b-reco-gatillo-margen.html`** (molde KPI cards de S34, sin tocar
+  S34; queda como alternativa paralela para que el usuario elija). Gatillo = que el **flujo anual
+  del proyecto cubra el costo de oportunidad del fundador, $3.206.400/año**. 3 cards con subtítulo:
+  costo de oportunidad (destacada) vs flujo proyecto año 5 $2.127.143 y flujo CBO año 5 $1.522.159
+  (ambos aún por debajo). Texto = operar bajo el CBO hasta validar si la trayectoria de la demanda
+  permite igualar ese costo de oportunidad.
+- **Decisión de fondo:** el informe cita un "margen bruto $2.336.640" como gatillo, pero lo
+  menciona una sola vez, sin derivarlo, y queda por debajo del costo de oportunidad ($3.206.400) —
+  además un margen bruto es contablemente mayor que el flujo, así que no reconcilia. El deck usa la
+  condición consistente del informe (el flujo cubre los $3.206.400), no el $2.336.640.
+- Restricciones de copy del usuario: sin ":" ni ";" en el texto visible; gatillo con el monto
+  ($3.206.400), sin signo "≥"; sin mostrar el valor/hora de Ricardo; título en 2 líneas.
+- **Lección:** el placeholder de número de slide debe ser **dígitos** ("28 / 28"), no "NN / 28":
+  `numberSlides()` busca el span con regex `^\d+\s*/\s*\d+$`; "NN" no matchea y queda sin numerar.
+- Build OK (44 slides); verificado en `index.html#/34` (numera como slide 35), título 2 líneas,
+  sin desborde sobre el footer (fitSlide ~0.92).
+- **Decisión (2026-06-29):** la nueva reemplaza a la de hogares. Se renombró a
+  `presentacion/34-reco-costo-oportunidad.html` (numeración plana) y la previa
+  `34-reco-no-escalar.html` (gatillo por hogares) se **archivó** en `slides-archivadas/` (no se
+  borró; el build solo arma `presentacion/`, así que sale del deck pero queda para volver atrás).
+
 ## [2026-06-28] — Alinear el deck con el "Informe Nuevo" (Informe N°3)
 Las compañeras ajustaron el informe tras presentar (sobre todo la parte final). Se cruzó el
 PDF completo contra las 43 slides; la mayoría ya calzaba, los cambios se concentraron en la
